@@ -6,23 +6,23 @@
       <div class="container">
         <div class="menu-bg-wrap">
           <div class="site-navigation">
-            <a href="${contextPath }" class="logo m-0 float-start">Property</a>
+            <a href="${contextPath }/" class="logo m-0 float-start">Property</a>
             <ul
               class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
             >
               <c:if test="${user == null }">
-              <li><a href="login">로그인</a></li>
-              <li><a href="signup">회원가입</a></li>
+              <li><a href="${contextPath }/login">로그인</a></li>
+              <li><a href="${contextPath }/signup">회원가입</a></li>
               </c:if>
               <c:if test="${user != null }">
-              <li><a href="logout">로그아웃</a></li>
+              <li><a href="${contextPath }/logout">로그아웃</a></li>
               <li class="has-children">
-              <a href="edit">내 정보 수정</a>
+              <a href="${contextPath }/edit">내 정보 수정</a>
                 <ul class="dropdown">
-                  <li><a href="revlistPage">내 예약조회</a></li>
-                  <li><a href="jjimlistPage">내 찜목록</a></li>
-                  <li><a href="reviewlistPage">내 리뷰목록</a></li>
-                  <li><a href="couponlist">내 쿠폰함</a></li>
+                  <li><a href="${contextPath }/revlistPage">내 예약조회</a></li>
+                  <li><a href="${contextPath }/jjimlistPage">내 찜목록</a></li>
+                  <li><a href="${contextPath }/reviewlistPage">내 리뷰목록</a></li>
+                  <li><a href="${contextPath }/couponlistPage">내 쿠폰함</a></li>
 
                 </ul>
               </li>

@@ -106,4 +106,16 @@ public class MypageDAOImpl implements MypageDAO {
 		return sqlSession.selectOne(namespace+"couponcountPaging", cri);
 	}
 
+	@Override
+	public int quit(UserDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(namespace+"quit", dto);
+	}
+
+	@Override
+	public int nickcheck(String id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"nickcheck", id);
+	}
+
 }

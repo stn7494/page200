@@ -20,8 +20,8 @@
 	<!-- 예약 페이징 페이지 번호 -->
 	<select id="countPaging" resultType="int">
 	<![CDATA[
-		select count(rev_code) from reservation
-		where rev_code > 'rev000'
+		select count(case when rev_start_date > now() then 1 end)
+		from reservation where rev_code > 'rev000' and id = #{id}
 	]]>
 	</select>
 	<!-- 예약 상세조회2 -->
@@ -89,6 +89,7 @@
         order by cp_num desc limit #{pageStart},#{perPageNum}
 	]]>
 	</select>
+	<!-- 내 쿠폰함 페이지 번호 -->
 	<select id="couponcountPaging" resultType="int">
 	<![CDATA[
 		select count(cp_code)
@@ -107,10 +108,20 @@
 		update user set nick = #{nick},birth = #{birth},phone = #{phone},email = #{email}
 		where id = #{id}
 	</update>
+	<!-- 회원탈퇴 -->
+	<delete id="quit" parameterType="UserDTO">
+		delete from user
+		where id = #{id}
+	</delete>
 	<!-- 비밀번호수정 -->
 	<update id="editpassword" parameterType="UserDTO">
 		update user set pw = #{pw}
 		where id = #{id}
 	</update>
+	<!-- 닉네임중복 -->
+	<select id="nickcheck" parameterType="String" resultType="Integer">
+		select count(*) from user
+		where nick = #{nick}
+	</select>
 	
 </mapper>
