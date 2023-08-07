@@ -37,6 +37,7 @@
 		<div class="container">
 			<div class="row justify-content-center align-items-center">
 				<div class="col-lg-9 text-center mt-5">
+				
 					<h1 class="heading" data-aos="fade-up">글쓰기</h1>
 
 					<nav aria-label="breadcrumb" data-aos="fade-up"
@@ -59,35 +60,34 @@
 			<section class="content container-fluid">
 				<div class="box-header">
 					<h3 class="box-title">게시판 글쓰기</h3>
-				</div>
+					<form role="form" method="post">
+						<div class="box-body">
 
-				<form role="form" method="post">
-					<div class="box-body">
+							<div class="form-group">
+								<label>글번호</label> <input type="text" name="n_code"
+									class="form-control" placeholder="글 번호를 입력하세요.">
+							</div>
+							<div class="form-group">
+								<label>제목</label> <input type="text" name="n_title"
+									class="form-control" placeholder="제목을 입력하세요">
+							</div>
+							<div class="form-group">
+								<label>내용</label>
+								<textarea class="form-control" name="n_content" rows="3"
+									placeholder="내용을 입력하세요"></textarea>
+							</div>
 
-						<div class="form-group">
-							<label>글번호</label> <input type="text" name="n_code"
-								class="form-control" placeholder="글 번호를 입력하세요.">
-						</div>
-						<div class="form-group">
-							<label>제목</label> <input type="text" name="n_title"
-								class="form-control" placeholder="제목을 입력하세요">
-						</div>
-						<div class="form-group">
-							<label>내용</label>
-							<textarea class="form-control" name="n_content" rows="3"
-								placeholder="내용을 입력하세요"></textarea>
+							<div class="form-group">
+								<label>작성자</label> <input type="text" name="n_writer"
+									class="form-control" value="${notice.n_writer}"
+									readonly="readonly">
+							</div>
 						</div>
 
-						<div class="form-group">
-							<label>작성자</label> <input type="text" name="n_writer"
-								class="form-control" value=${now } readonly>
+						<div class="box-footer">
+							<button type="submit" class="btn btn-primary">작성완료</button>
 						</div>
-					</div>
-
-					<div class="box-footer">
-						<button type="submit" class="btn btn-primary">작성완료</button>
-					</div>
-				</form>
+					</form>
 			</section>
 			<!-- /.content -->
 		</div>

@@ -22,11 +22,23 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="ez.en.page" />
+	
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
     <beans:property name="defaultEncoding" value="utf-8"></beans:property>
     <beans:property name="maxUploadSize" value="104857560"></beans:property>
     <beans:property name="maxInMemorySize" value="10485756"></beans:property>
-</beans:bean>
+	</beans:bean> 
+
+	<beans:bean class = "ez.en.page.common.AuthenticationInterceptor" id ="auth"/>
+	<interceptors>
+	<interceptor>
+	<mapping path="/notice/insert"/>
+	<mapping path="/notice/selectOne"/>
+	<mapping path="/notice/update"/>
+	<mapping path="/notice/delete"/>
+	<beans:ref bean="auth"/>
+	</interceptor>
 	
+	</interceptors>
 	
 </beans:beans>
