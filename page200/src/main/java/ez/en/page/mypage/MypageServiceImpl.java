@@ -91,4 +91,16 @@ public class MypageServiceImpl implements MypageService {
 		return dao.reviewcountPaging(cri);
 	}
 
+	@Override
+	public List<CouponDTO> couponlistCriteria(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.couponlistCriteria(cri);
+	}
+
+	@Override
+	public int couponcountPaging(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.couponcountPaging(cri);
+	}
+
 }

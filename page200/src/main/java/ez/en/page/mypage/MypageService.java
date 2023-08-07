@@ -28,6 +28,10 @@ public interface MypageService {
 	public List<ReviewDTO> reviewlistCriteria(Criteria cri) throws Exception;
 //	내 리뷰목록 페이지 번호
 	public int reviewcountPaging(Criteria cri)throws Exception;
+//	내 쿠폰함 Criteria
+	public List<CouponDTO> couponlistCriteria(Criteria cri)throws Exception;
+//	내 쿠폰함 페이지 버호
+	public int couponcountPaging(Criteria cri)throws Exception;
 //	내 쿠폰함
 	public List<CouponDTO> couponlist(Object id);
 //	회원정보수정
