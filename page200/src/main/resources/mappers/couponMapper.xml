@@ -43,6 +43,8 @@
 		select cp_code, cp_amount from page200.coupon where cp_code = #{cp_code}
 	</select>
 	
+	<!-- 쿠폰 발급 -->
+
 	<!-- 차월 생일 회원조회 -->
 	
 	<!-- 중복 발급 확인 -->
