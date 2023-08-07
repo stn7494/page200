@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<%@ include file="include/head.jsp"%>
+<%@ include file="../include/head.jsp"%>
 
 <title>쿠폰 상세조회</title>
 </head>
@@ -26,7 +26,7 @@
 	</div>
 
 	<!-- 상단에 네비게이션 -->
-	<%@ include file="include/top_menu.jsp"%>
+	<%@ include file="../include/top_menu.jsp"%>
 
 	<div class="hero page-inner overlay"
 		style="background-image: url('${contextPath}/resources/images/hero_bg_1.jpg')">
@@ -93,7 +93,7 @@
 	
 
 
-		<%@ include file="include/footer.jsp"%>
+		<%@ include file="../include/footer.jsp"%>
 		<!-- /.site-footer -->
 
 		<!-- Preloader -->
@@ -105,6 +105,6 @@
 		</div>
 
 		<!-- 플러그인 -->
-		<%@ include file="include/plugin.jsp"%>
+		<%@ include file="../include/plugin.jsp"%>
 	</body>
 </html>

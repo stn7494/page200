@@ -31,7 +31,7 @@ public class CouponController {
 		List<CouponDTO>listAll = service.listAll();
 		logger.info("전체조회" + listAll);
 		model.addObject("listAll", listAll);
-		model.setViewName("couponlist");
+		model.setViewName("coupon/list");
 		return model;
 	}
 	
@@ -43,7 +43,7 @@ public class CouponController {
 		List<CouponDTO>listAll = service.listAll();
 		logger.info("전체조회" + listAll);
 		model.addObject("listAll", listAll);
-		model.setViewName("couponlist_user");
+		model.setViewName("coupon/list_user");
 		return model;
 	}
 	
@@ -53,7 +53,7 @@ public class CouponController {
 		ModelAndView model = new ModelAndView();
 		CouponDTO coupon = service.selectOne(cp_code);
 		model.addObject("coupon", coupon);
-		model.setViewName("coudetail");
+		model.setViewName("coupon/detail");
 		return model;
 	}
 	
@@ -63,7 +63,7 @@ public class CouponController {
 		ModelAndView model = new ModelAndView();
 		CouponDTO coupon = service.selectOne(cp_code);
 		model.addObject("coupon", coupon);
-		model.setViewName("couponupdate");
+		model.setViewName("coupon/update");
 		return model;
 	}
 
@@ -75,11 +75,11 @@ public class CouponController {
 			String cp_code = dto.getCp_code();
 			CouponDTO coupon = service.selectOne(cp_code);
 			model.addObject("coupon", coupon);
-			model.setViewName("couponupdate");
+			model.setViewName("coupon/update");
 		} else { // 수정 성공
 			List<CouponDTO>listAll = service.listAll();
 			model.addObject("listAll", listAll);
-			model.setViewName("couponlist");
+			model.setViewName("coupon/list");
 		}
 		return model;
 	}
@@ -88,7 +88,7 @@ public class CouponController {
 	@GetMapping("insert")
 	public ModelAndView insert() {
 		ModelAndView model = new ModelAndView();
-		model.setViewName("couponinsert");
+		model.setViewName("coupon/insert");
 		return model;
 	}
 	
@@ -101,11 +101,11 @@ public class CouponController {
 			String cp_code = dto.getCp_code();
 			CouponDTO coupon = service.selectOne(cp_code);
 			model.addObject("coupon", coupon);
-			model.setViewName("couponinsert");
+			model.setViewName("coupon/insert");
 		} else { // 추가 성공
 			List<CouponDTO>listAll = service.listAll();
 			model.addObject("listAll", listAll);
-			model.setViewName("couponlist");
+			model.setViewName("coupon/list");
 		}
 		return model;
 	}
@@ -118,7 +118,7 @@ public class CouponController {
 		service.delete(cp_code);
 		List<CouponDTO>listAll = service.listAll();
 		model.addObject("listAll", listAll);
-		model.setViewName("couponlist");
+		model.setViewName("coupon/list");
 		return model;
 	}
 	

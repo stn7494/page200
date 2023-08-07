@@ -39,10 +39,10 @@
               <li><a href="camping/list">캠핑장</a></li>
               <li><a href="review">리뷰</a></li>
               <li><a href ="notice/list">공지사항</a></li>
-              <c:if test="${user.id == admin }">
+               <c:if test="${user.admin == 1}">
              	 <li><a href="coupon">쿠폰</a></li>
               </c:if>
-              
+
             </ul>
 
             <a
