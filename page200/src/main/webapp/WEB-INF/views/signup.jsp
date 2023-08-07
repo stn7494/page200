@@ -31,7 +31,6 @@
     <%@ include file="include/top_menu.jsp" %>
 	
 	
-	
 
     <div
       class="hero page-inner overlay"
