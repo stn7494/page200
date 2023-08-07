@@ -37,6 +37,8 @@ public interface MypageDAO {
 	public List<ReviewDTO> reviewlistPage(Map<String, Object> map)throws Exception;
 //	내 리뷰목록 Criteria ================================
 	public List<ReviewDTO> reviewlistCriteria(Criteria cri)throws Exception;
+//	내 리뷰목록 페이지 번호
+	public int reviewcountPaging(Criteria cri)throws Exception;
 //	내 쿠폰함
 	public List<CouponDTO> couponlist(Object id);
 //	회원정보수정

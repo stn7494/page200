@@ -97,4 +97,16 @@ public class MypageServiceImpl implements MypageService {
 		return dao.jjimcountPaging(cri);
 	}
 
+	@Override
+	public List<ReviewDTO> reviewlistCriteria(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.reviewlistCriteria(cri);
+	}
+
+	@Override
+	public int reviewcountPaging(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.reviewcountPaging(cri);
+	}
+
 }

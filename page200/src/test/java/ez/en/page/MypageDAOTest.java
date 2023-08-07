@@ -43,18 +43,18 @@ public class MypageDAOTest {
 //			logger.info(reviewDTO.getR_code() + ":" + reviewDTO.getRev_code());
 //		}
 //	}
-//	@Test
-//	public void testListCriteria() throws Exception {
-//		Criteria cri = new Criteria();
-//		cri.setId("user01");
-//		cri.setPage(2);
-//		cri.setPerPageNum(20);
-//		
-//		List<JjimDTO> list = dao.jjimlistCriteria(cri);
-//		
-//		for (JjimDTO jjimDTO : list) {
-//			logger.info(jjimDTO.getJ_num() + ":" + jjimDTO.getCam_name());
-//		}
-//	}
+	@Test
+	public void testListCriteria() throws Exception {
+		Criteria cri = new Criteria();
+		cri.setId("user01");
+		cri.setPage(2);
+		cri.setPerPageNum(20);
+		
+		List<ReviewDTO> list = dao.reviewlistCriteria(cri);
+		
+		for (ReviewDTO reviewDTO : list) {
+			logger.info(reviewDTO.getR_code() + ":" + reviewDTO.getRev_code());
+		}
+	}
 
 }

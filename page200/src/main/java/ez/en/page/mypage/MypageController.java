@@ -49,18 +49,6 @@ public class MypageController {
 		return mav;
 	}
 	// sjs의 흔적
-	// 리뷰 전체조회
-	@GetMapping(value = "reviewlist")
-	public ModelAndView reviewlist(HttpServletRequest request,
-			HttpSession session) throws Exception{
-		ModelAndView mav = new ModelAndView();
-		request.setCharacterEncoding("utf-8");
-		
-		mav.addObject("reviewlist", service.reviewlist(session.getAttribute("user")));
-		mav.setViewName("mypage/reviewlist");
-		return mav;
-	}
-	// sjs의 흔적
 	// 쿠폰 전체조회
 	@GetMapping(value = "couponlist")
 	public ModelAndView couponlist(HttpServletRequest request,
@@ -118,15 +106,22 @@ public class MypageController {
 		mav.setViewName("index");
 		return mav;
 	}
-//	@GetMapping(value = "revlistCri")
-//	public ModelAndView revlistCri(Criteria cri,HttpSession session)throws Exception {
-//		ModelAndView mav = new ModelAndView();
-//		UserDTO dto =  (UserDTO)session.getAttribute("user");
-//		cri.setId(dto.getId());
-//		mav.addObject("revlist", service.revlistCriteria(cri));
-//		mav.setViewName("revlistCri");
-//		return mav;
-//	}
+	// 리뷰목록 페이징
+	@GetMapping(value = "reviewlistPage")
+	public ModelAndView revlistCri(Criteria cri,HttpSession session)throws Exception {
+		ModelAndView mav = new ModelAndView();
+		UserDTO dto =  (UserDTO)session.getAttribute("user");
+		cri.setId(dto.getId());
+		logger.info(cri.toString());
+		mav.addObject("reviewlist", service.reviewlistCriteria(cri));
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.reviewcountPaging(cri));
+		mav.addObject("pageMaker", pageMaker);
+		mav.setViewName("mypage/reviewlistPage");
+		return mav;
+	}
+	// 예약목록 페이징
 	@GetMapping(value = "revlistPage")
 	public ModelAndView revlistPage(Criteria cri,HttpSession session) throws Exception{
 		ModelAndView mav = new ModelAndView();
@@ -141,7 +136,6 @@ public class MypageController {
 		mav.setViewName("mypage/revlistPage");
 		return mav;
 	}
-//	여기부터 밑에 =========================================
 	// 찜 전체조회
 	@GetMapping(value = "jjimlistPage")
 	public ModelAndView jjimlistPage(Criteria cri,HttpSession session) throws Exception{

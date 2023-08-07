@@ -126,7 +126,13 @@ public class MypageDAOImpl implements MypageDAO {
 	@Override
 	public List<ReviewDTO> reviewlistCriteria(Criteria cri) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace+"wewq", cri);
+		return sqlSession.selectList(namespace+"reviewlistCriteria", cri);
+	}
+
+	@Override
+	public int reviewcountPaging(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"reviewcountPaging", cri);
 	}
 
 }
