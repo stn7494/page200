@@ -10,19 +10,19 @@
             <ul
               class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
             >
-              <c:if test="${user == null }">
-              <li><a href="login">로그인</a></li>
-              <li><a href="signup">회원가입</a></li>
+              <c:if test="${user == null && admin == null}">
+              <li><a href="${contextPath }/login">로그인</a></li>
+              <li><a href="${contextPath }/signup">회원가입</a></li>
               </c:if>
               <c:if test="${user != null }">
-              <li><a href="logout">로그아웃</a></li>
+              <li><a href="${contextPath }/logout">로그아웃</a></li>
               <li class="has-children">
               <a href="edit">내 정보 수정</a>
                 <ul class="dropdown">
                   <li><a href="revlistPage">내 예약조회</a></li>
                   <li><a href="jjimlistPage">내 찜목록</a></li>
                   <li><a href="reviewlistPage">내 리뷰목록</a></li>
-                  <li><a href="couponlist">내 쿠폰함</a></li>
+                  <li><a href="couponlistPage">내 쿠폰함</a></li>
 
                 </ul>
               </li>
@@ -36,12 +36,15 @@
               </li>
               
               </c:if>
+              <c:if test="${admin != null}">
+               	 <li><a href="logout">로그아웃</a></li>
+               	 <li><a href="${contextPath }/userchk">회원조회</a></li>
+             	 <li><a href="coupon">쿠폰</a></li>
+              </c:if>
               <li><a href="camping/list">캠핑장</a></li>
               <li><a href="review">리뷰</a></li>
               <li><a href ="notice/list">공지사항</a></li>
-               <c:if test="${user.admin == 1}">
-             	 <li><a href="coupon">쿠폰</a></li>
-              </c:if>
+               
 
             </ul>
 

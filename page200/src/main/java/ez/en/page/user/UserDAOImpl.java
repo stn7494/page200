@@ -1,6 +1,5 @@
 package ez.en.page.user;
 
-import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -46,6 +45,18 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	@Override
+	public String idFind(UserDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NS+"idFind", dto);
+	}
+	
+	@Override
+	public String pwFind(UserDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NS+"pwFind", dto);
+	}
+	
+	@Override
 	public int edit(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		return sqlSession.update(NS+"edit", map);
@@ -56,6 +67,10 @@ public class UserDAOImpl implements UserDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NS+"info", Id);
 	}
+
+	
+
+	
 
 	
 

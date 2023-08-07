@@ -14,7 +14,7 @@
     <%@ include file="include/head.jsp" %>
 
     <title>
-      로그인
+      아아디 찾기
     </title>
   </head>
   <body>
@@ -48,12 +48,12 @@
               data-aos-delay="200"
             >
               <ol class="breadcrumb text-center justify-content-center">
-                <li class="breadcrumb-item"><a href="${contextPath }">Home</a></li>
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                 <li
                   class="breadcrumb-item active text-white-50"
                   aria-current="page"
                 >
-                  로그인
+                  Properties
                 </li>
               </ol>
             </nav>
@@ -66,58 +66,47 @@
       <div class="container">
       	<!-- 여기에 내용을 작성 -->
       	<div>
-      		<form id="loginform" method="post">
-	      		<table>
-	      			<tr>
-	      				<td>
-	      					아이디 : <input type="text" id="id" name="id" placeholder="아이디">
-	      				</td>
-	      				<td rowspan="2">
-	      					<input type="button" value="로그인" id="login">
-	      				</td>
-	      			</tr>
-	      			<tr>
-	      				<td>
-	      					비밀번호 : <input type="password" id="pw" name="pw" placeholder="비밀번호">
-	      				</td>
-	      			</tr>
-	      			<tr>
-	      				<td style="color: red;" colspan="2">
-	      					${msg }
-	      				</td>
-	      			</tr>
-	      			<tr>
-	      				<td>
-	      					<input type="button" id="idfind" value="아이디 찾기">
-	      				</td>
-	      				<td>
-	      					<input type="button" id="pwfind" value="비밀번호 찾기">
-	      				</td>
-	      			</tr>
-	      		</table>
-      		</form>
-      		<script type="text/javascript">
-      			$("#login").click(function(){
-      				if($("#id").val()== ""){
-      					alert("아이디를 입력해주세요");
-      				}else if($("#pw").val() == ""){
-      					alert("비밀번호를 입력해주세요");
-      				}else{
-      					$("#loginform").submit();
-      				}
-      			});
-      			$("#idfind").click(function(){
-      				location.href="${contextPath}/idfind";
-      			});
-      			$("#pwfind").click(function(){
-      				location.href="${contextPath}/serachid";
-      			});
-      		</script>
+	      	<table>
+	      		<c:choose>
+	      			<c:when test="${result == null }">
+	      				<tr>
+	      					<td>
+	      					 	<h1 style="color: gray;">입력하신 정보의 아이디가 존재하지 않습니다.</h1>
+	      					</tr>
+	      					<tr>
+	      					 	<td><input type="button" id="idfind" value="아이디 찾기"></td>
+	      					 	<td><input type="button" id="back" value="홈으로">	</td>
+	      					</tr>
+	      					 </c:when>
+	      					 <c:otherwise>
+	      					 <tr>
+	      						<td>
+	      					 	<h1 style="color: green;">회원님의 아이디는 ${result } 입니다.</h1>
+	      					 	</td>
+	      					</tr>
+	      					<tr>
+	      					 	<td><input type="button" id="pwfind" value="비밀번호 찾기"></td>
+	      					 	<td><input type="button" id="back" value="홈으로">	</td>
+	      					 </tr>
+	      				 </c:otherwise>
+	      			</c:choose>
+	      	</table>
       	</div>
       </div>
     </div>
-
-	
+    
+    <script type="text/javascript">
+    	$("#back").click(function(){
+    		location.href="${contextPath}";
+    	});
+		$("#pwfind").click(function(){
+			location.href="${contextPath}/serachid";
+		});
+		$("#idfind").click(function(){
+			location.href="${contextPath}/idfind";
+		});
+    </script>
+    
 	<%@ include file="include/footer.jsp" %>
     <!-- /.site-footer -->
 

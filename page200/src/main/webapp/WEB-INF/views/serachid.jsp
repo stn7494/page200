@@ -14,8 +14,22 @@
     <%@ include file="include/head.jsp" %>
 
     <title>
-      로그인
+    	비밀번호 찾기
     </title>
+   <style type="text/css">
+   a:link {
+  color : green;
+}
+a:visited {
+  color : green;
+}
+a:hover {
+  color : green;
+}
+a:active {
+  color : green;
+}
+   </style>
   </head>
   <body>
     <div class="site-mobile-menu site-navbar-target">
@@ -48,12 +62,12 @@
               data-aos-delay="200"
             >
               <ol class="breadcrumb text-center justify-content-center">
-                <li class="breadcrumb-item"><a href="${contextPath }">Home</a></li>
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                 <li
                   class="breadcrumb-item active text-white-50"
                   aria-current="page"
                 >
-                  로그인
+                  Properties
                 </li>
               </ol>
             </nav>
@@ -66,57 +80,57 @@
       <div class="container">
       	<!-- 여기에 내용을 작성 -->
       	<div>
-      		<form id="loginform" method="post">
-	      		<table>
+      		<form action="pwfind" method="post">
+	      		<table style="margin: auto;">
+	      			<tr>
+	      				<td><p>비밀번호를 찾고자하는 아이디를 입력해주세요.</p></td>
+	      			</tr>
 	      			<tr>
 	      				<td>
-	      					아이디 : <input type="text" id="id" name="id" placeholder="아이디">
-	      				</td>
-	      				<td rowspan="2">
-	      					<input type="button" value="로그인" id="login">
+	      					<input type="text" id="id" name="id" placeholder="아이디">
 	      				</td>
 	      			</tr>
 	      			<tr>
 	      				<td>
-	      					비밀번호 : <input type="password" id="pw" name="pw" placeholder="비밀번호">
+	      					<input type="button" value="다음" id="next">
 	      				</td>
 	      			</tr>
 	      			<tr>
-	      				<td style="color: red;" colspan="2">
-	      					${msg }
-	      				</td>
-	      			</tr>
-	      			<tr>
-	      				<td>
-	      					<input type="button" id="idfind" value="아이디 찾기">
-	      				</td>
-	      				<td>
-	      					<input type="button" id="pwfind" value="비밀번호 찾기">
-	      				</td>
+	      				<td>아이디가 기억나지 않는다면? <a href="${contextPath}/idfind">아이디 찾기</a>></td>
 	      			</tr>
 	      		</table>
       		</form>
-      		<script type="text/javascript">
-      			$("#login").click(function(){
-      				if($("#id").val()== ""){
-      					alert("아이디를 입력해주세요");
-      				}else if($("#pw").val() == ""){
-      					alert("비밀번호를 입력해주세요");
-      				}else{
-      					$("#loginform").submit();
-      				}
-      			});
-      			$("#idfind").click(function(){
-      				location.href="${contextPath}/idfind";
-      			});
-      			$("#pwfind").click(function(){
-      				location.href="${contextPath}/serachid";
-      			});
-      		</script>
       	</div>
       </div>
     </div>
-
+	<script type="text/javascript">
+		$("#next").click(function(){
+			var id = $("#id").val();
+			var paramData = {"id":id};
+			if(id == ""){
+				alert("아이디를 입력해주세요");
+				$("#id").focus();
+			}else{
+				$.ajax({
+					url:"${contextPath}/idchk",
+					data:paramData,
+					type:"POST",
+					dataType:"json",
+					success:function(result){
+						if(result.chk == true){
+							alert("입력하신 아이디는 찾을 수 없습니다.");
+							location.href="${contextPath}/serachid";
+						}else{
+							location.href="${contextPath}/pwfind";
+						}
+					},
+					error:function(){
+						alert("실패");
+					}
+				});
+			}
+		});
+	</script>
 	
 	<%@ include file="include/footer.jsp" %>
     <!-- /.site-footer -->

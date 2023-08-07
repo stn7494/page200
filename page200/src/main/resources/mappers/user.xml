@@ -26,6 +26,17 @@
 	select nick from user where nick = #{nick}
 	</select>
 	
+	<select id="idFind" parameterType="UserDTO" resultType="String">
+		select id from user
+		where name = #{name} and phone = #{phone}
+	</select>
+	
+	<select id="pwFind" parameterType="UserDTO" resultType="String">
+		select id from user
+		where id = #{id} and phone = #{phone}
+	</select>
+	
+	
 	<!-- sjs의 흔적 -->
 	<!-- 회원정보 하나 가져오기 -->
 	<select id="info" resultType="UserDTO" parameterType="Object">

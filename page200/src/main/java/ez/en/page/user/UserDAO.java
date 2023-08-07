@@ -13,6 +13,11 @@ public interface UserDAO {
 	public String idchk(String id);
 	
 	public String nickchk(String nick);
+	
+	public String idFind(UserDTO dto);
+	
+	public String pwFind(UserDTO dto);
+	
 	//sjs의 흔적
 	//회원정보수정
 	public int edit(Map<String, Object> map);

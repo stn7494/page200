@@ -82,7 +82,7 @@
 	      				</td>
 	      			</tr>
 	      			<tr>
-	      				<td colspan="2">
+	      				<td style="color: red" colspan="2">
 	      					${msg }
 	      				</td>
 	      			</tr>

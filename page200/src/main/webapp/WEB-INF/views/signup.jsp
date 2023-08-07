@@ -307,7 +307,7 @@
       			}
       		});//생일 작성여부체크 끝
       		
-      		
+      		// 핸드폰 번호 유효성 및 작성여부 체크
       		$("#phone").blur(function(){
       			var result = $("#userphonechk");
 				var htmls = "";
@@ -319,7 +319,8 @@
       			}else{
       				result.html("<p id = 'phoneok' style='color:green;'></p>");
       			}
-      		});//이름 작성여부체크 끝
+      		});// 핸드폰 번호 유효성 및 작성여부 체크끝
+      		
       		$("#signup").click(function(){
       			var move = $("#move");
       			var idchk = $("#idok");
