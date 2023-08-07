@@ -112,4 +112,10 @@ public class MypageDAOImpl implements MypageDAO {
 		return sqlSession.delete(namespace+"quit", dto);
 	}
 
+	@Override
+	public int nickcheck(String id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"nickcheck", id);
+	}
+
 }

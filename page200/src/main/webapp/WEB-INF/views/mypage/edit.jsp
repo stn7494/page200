@@ -76,7 +76,8 @@
       				<th>이름 : <input type="text" name="name" value="${user.name }"></th>
       			</tr>
       			<tr>
-      				<th>닉네임 : <input type="text" name="nick" value="${user.nick }"></th>
+      				<th>닉네임 : <input type="text" id="nick" name="nick" value="${user.nick }"></th>
+      				<td><input type="button" id="nickcheck" value="닉네임 중복 체크"></td>
       			</tr>
       			<tr>
       				<th>생일 : <input type="text" name="birth" value="${user.birth }"></th>
@@ -114,6 +115,35 @@
     		}else {
     			alert("체크해주셈.");
     		}
+    	});
+    	var nickck = 0;
+    	$("#nickcheck").click(function(){
+    		var usernick = $("#nick").val();
+    		var url = "nickcheck";
+    		var paramData = {
+    				"nick" : "${user.nick}"
+    		}
+    		$.ajax({
+    			url : url,
+    			data : usernick,
+    			dataType : "json",
+    			type : "POST",
+    			contentType: "application/json; charset=UTF-8",
+    			success : function(result) {
+    				if(result.cnt > 0) {
+    					alert("닉네임이 존재합니다. 다른 닉네임을 입력해주세요.");
+    					$("#nick").focus();
+    				}else {
+    					alert("사용가능한 닉네임입니다.");
+    					
+    					nickck = 1;
+    				}
+    			},
+    			error : function(error) {
+    				alert("error : " + error);
+    			}
+    			
+    		});
     	});
     </script>
 

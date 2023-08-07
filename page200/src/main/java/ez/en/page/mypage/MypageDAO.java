@@ -41,6 +41,8 @@ public interface MypageDAO {
 	public UserDTO info(Object id);
 //	비밀번호 수정
 	public int editpassword(UserDTO dto);
+//	닉네인 중복확인
+	public int nickcheck(String id);
 
 	
 

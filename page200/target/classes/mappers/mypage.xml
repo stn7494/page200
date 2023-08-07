@@ -117,5 +117,10 @@
 		update user set pw = #{pw}
 		where id = #{id}
 	</update>
+	<!-- 닉네임중복 -->
+	<select id="nickcheck" parameterType="String" resultType="Integer">
+		select count(*) from user
+		where nick = #{nick}
+	</select>
 	
 </mapper>

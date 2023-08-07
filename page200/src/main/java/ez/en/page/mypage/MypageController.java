@@ -1,5 +1,6 @@
 package ez.en.page.mypage;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,10 +10,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import ez.en.page.domain.Criteria;
@@ -176,6 +178,19 @@ public class MypageController {
 		session.invalidate();
 		mav.setViewName("index");
 		return mav;
+	}
+	@ResponseBody
+	@PostMapping(value = "nickcheck")
+	public Map<String, Object> nickcheck(@RequestBody String nick,HttpSession session,
+			HttpServletRequest request) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		int count = 0;
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		count = service.nickcheck(nick);
+		map.put("cnt", count);
+		
+		return map;
 	}
 	
 }
