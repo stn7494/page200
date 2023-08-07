@@ -10,7 +10,7 @@
             <ul
               class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
             >
-              <c:if test="${user == null }">
+              <c:if test="${user == null && admin == null}">
               <li><a href="${contextPath }/login">로그인</a></li>
               <li><a href="${contextPath }/signup">회원가입</a></li>
               </c:if>
@@ -19,6 +19,7 @@
               <li class="has-children">
               <a href="${contextPath }/edit">내 정보 수정</a>
                 <ul class="dropdown">
+
                   <li><a href="${contextPath }/revlistPage">내 예약조회</a></li>
                   <li><a href="${contextPath }/jjimlistPage">내 찜목록</a></li>
                   <li><a href="${contextPath }/reviewlistPage">내 리뷰목록</a></li>
@@ -36,12 +37,15 @@
               </li>
               
               </c:if>
+              <c:if test="${admin != null}">
+               	 <li><a href="logout">로그아웃</a></li>
+               	 <li><a href="${contextPath }/userchk">회원조회</a></li>
+             	 <li><a href="coupon">쿠폰</a></li>
+              </c:if>
               <li><a href="camping/list">캠핑장</a></li>
               <li><a href="review">리뷰</a></li>
               <li><a href ="notice/list">공지사항</a></li>
-               <c:if test="${user.admin == 1}">
-             	 <li><a href="coupon">쿠폰</a></li>
-              </c:if>
+               
 
             </ul>
 

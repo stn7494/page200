@@ -119,12 +119,13 @@ public class UserController {
 	
 	@PostMapping(value = "idchk")
 	@ResponseBody
-	public Map<String, Object> idmsg(@RequestParam("id") String id) {
+	public Map<String, Object> idmsg(@RequestParam("id") String id, HttpSession session) {
 		Map<String, Object>map = new HashMap<String, Object>();
 		if(userService.idchk(id) == null) {
 			map.put("chk", true);
 		}else {
 			map.put("chk", false);
+			session.setAttribute("id", userService.idchk(id));
 		}
 		
 		return map;
@@ -220,7 +221,46 @@ public class UserController {
 		userService.signup(dto);
 		return home();
 	}
+
+//	아이디 찾기 페이지 이동
+	@GetMapping(value = "idfind")
+	public ModelAndView idfind() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("idfind");
+		return mav;
+	}
 	
+//	아이디 찾기
+	@PostMapping(value = "idfind")
+	public ModelAndView idfind(UserDTO dto) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("result", userService.idFind(dto));
+		mav.setViewName("idfindResult");
+		return mav;
+	}
+	
+//	비밀번호 찾기 페이지 이동
+	@GetMapping(value = "serachid")
+	public ModelAndView serachid() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("serachid");
+		return mav;
+	}
+	
+	@GetMapping(value = "pwfind")
+	public ModelAndView pwfind() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("pwfind");
+		return mav;
+	}
+	
+	@PostMapping(value = "pwfind")
+	public ModelAndView pwfind(HttpSession session, UserDTO dto) {
+		ModelAndView mav = new ModelAndView();
+		logger.info("회원 수정할 아이디 : "+session.getAttribute("id"));
+		logger.info("회원의 이름 : " + dto.getName());
+		return null;
+	}
 	// sjs의 흔적
 	@GetMapping(value = "logout")
 	public String logout(HttpSession session) {

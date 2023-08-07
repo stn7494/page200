@@ -14,7 +14,7 @@
     <%@ include file="include/head.jsp" %>
 
     <title>
-      Property &mdash; Free Bootstrap 5 Website Template by Untree.co
+    	main템플렛
     </title>
   </head>
   <body>
