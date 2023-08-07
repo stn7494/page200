@@ -57,7 +57,6 @@
 					<strong><h3>▶ 쿠폰 리스트</h3></strong><br>
 					<table class="table">
 						<tr>
-							<td>선택</td>
 							<td>쿠폰코드</td>
 							<td>쿠폰이름</td>
 							<td>쿠폰내용</td>
@@ -65,11 +64,11 @@
 							<td>할인율</td>
 							<td>사용시작일</td>
 							<td>사용마감일</td>
+							<td>발급받기</td>
 						</tr>
 
 						<c:forEach var="coupon" items="${listAll }">
 							<tr>
-								<td><input type="checkbox"></td>
 								<td>${coupon.cp_code}</td>
 								<td>${coupon.cp_name}</td>
 								<td>${coupon.cp_content}</td>
@@ -77,12 +76,14 @@
 								<td>${coupon.cp_sale}</td>
 								<td>${coupon.cp_start_date}</td>
 								<td>${coupon.cp_end_date}</td>
+								<td colspan="5" align="center">
+								<input class="btn btn-but" type="button" value="발급받기" id="but" />
 							</tr>
 						</c:forEach>
 						<tr>
 							<td colspan="5" align="center">
 							<input class="btn btn-success" type="button" value="홈으로" id="main" />
-							<input class="btn btn-but" type="button" value="발급받기" id="but" />
+							
 						</tr>
 					</table>
 				</form>
@@ -94,12 +95,16 @@
 				});
 				//발급받기 버튼을 눌렀을 때 처리
 				$("#but").click(function() {
-					if(${checkbox == null}){
-						alert("발급받을 쿠폰을 체크해주세요.")
-					}else {
-						location.href = "/page/coupon";
-					}
+					alert("쿠폰이 발급되었습니다.");
+					location.href = "/page/couponlistPage";
 				});
+
+					//if($("input[name = checkbox]").is(':checked'){
+						//alert("발급받을 쿠폰을 체크해주세요.");
+//					if(${checkbox[0] != true}){
+					//}else {
+						//location.href = "/page/coupon";
+					//}
 			</script>
 		</div>
 

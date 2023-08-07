@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
+//@RequestMapping("/coupon/*")
 public class CouponController {
 	@Autowired
 	private CouponService service;
@@ -36,7 +37,7 @@ public class CouponController {
 	}
 	
 //	전체조회_유저
-	@GetMapping("coupon_user")
+	@GetMapping("/coupon_user")
 	public ModelAndView coupon_user(HttpServletRequest request) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		ModelAndView model = new ModelAndView();
