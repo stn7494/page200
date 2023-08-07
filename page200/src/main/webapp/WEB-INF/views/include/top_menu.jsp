@@ -22,7 +22,7 @@
                   <li><a href="${contextPath }/revlistPage">내 예약조회</a></li>
                   <li><a href="${contextPath }/jjimlistPage">내 찜목록</a></li>
                   <li><a href="${contextPath }/reviewlistPage">내 리뷰목록</a></li>
-                  <li><a href="${contextPath }/couponlist">내 쿠폰함</a></li>
+                  <li><a href="${contextPath }/couponlistPage">내 쿠폰함</a></li>
 
                 </ul>
               </li>

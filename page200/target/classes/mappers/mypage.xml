@@ -89,6 +89,7 @@
         order by cp_num desc limit #{pageStart},#{perPageNum}
 	]]>
 	</select>
+	<!-- 내 쿠폰함 페이지 번호 -->
 	<select id="couponcountPaging" resultType="int">
 	<![CDATA[
 		select count(cp_code)
