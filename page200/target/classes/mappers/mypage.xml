@@ -4,27 +4,6 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ez.en.page.mypageMapper">
 <!-- 마이페이지 -->
-	<!-- 내 예약조회 -->
-	<select id="revlist" resultType="ReservationDTO" parameterType="Object">
-		SELECT rev_code,rev_start_date,rev_finish_date 
-		FROM reservation
-		join user
-		on reservation.id = user.id
-		where user.id = #{id}
-	</select>
-	<!-- 예약 페이징 -->
-	<select id="revlistPage" resultType="ReservationDTO">
-	<![CDATA[
-		SELECT rev_code,rev_start_date,rev_finish_date 
-		FROM reservation
-		join user
-		on reservation.id = user.id
-		where user.id = #{id} and
-        rev_code > 'rev000'
-        order by rev_code desc, rev_start_date desc
-        limit #{page},10;
-	]]>
-	</select>
 	<!-- 예약 페이징 Criteria -->
 	<select id="revlistCriteria" resultType="ReservationDTO">
 	<![CDATA[
@@ -61,23 +40,6 @@
 		where rev_code = #{rev_code}
 	</delete>
 	
-	<!-- 내 찜목록 -->
-	<select id="jjimlist" resultType="JjimDTO" parameterType="Object">
-		select  j.j_num, c.cam_name, j.is_jjim from jjim as j join camping as c
-		on j.cam_code = c.cam_code
-		where j.id = #{id};
-	</select>
-	
-	<!-- 내 찜목록 페이징 밑에 더있음===============================-->
-	<select id="jjimlistPage" resultType="JjimDTO">
-	<![CDATA[
-		select  j.j_num, c.cam_name, j.is_jjim from jjim as j join camping as c
-		on j.cam_code = c.cam_code
-		where j.id = #{id} and
-        j.j_num > 0
-        order by j.j_num desc limit #{page},10
-	]]>
-	</select>
 	<!-- 내 찜목록 Criteria -->
 	<select id="jjimlistCriteria" resultType="JjimDTO">
 	<![CDATA[
@@ -96,27 +58,6 @@
 	]]>
 	</select>
 	
-	<!-- 내 리뷰목록 -->
-	<select id="reviewlist" resultType="ReviewDTO" parameterType="Object">
-		SELECT r_code,review.id,rev_code,review.f_code,r_w_date,r_content,r_star,r_declaration
-		FROM review
-		join user
-		on review.id = user.id
-		where user.id = #{id}
-	</select>
-	<!-- 내 리뷰목록 페이징 ==================== 여기까지-->
-	<select id="reviewlistPage" resultType="ReviewDTO">
-	<![CDATA[
-		SELECT r_code,review.id,rev_code,review.f_code,r_w_date,r_content,r_star,r_declaration
-		FROM review
-		join user
-		on review.id = user.id
-		where user.id = #{id} and
-        r_code > 'r000'
-        order by r_code desc, rev_code desc
-        limit #{page},10;
-	]]>
-	</select>
 	<!-- 내 리뷰목록 페이징 Criteria -->
 	<select id="reviewlistCriteria" resultType="ReviewDTO">
 	<![CDATA[
@@ -139,11 +80,21 @@
 	]]>
 	</select>
 	
-	<!-- 내 쿠폰함 -->
-	<select id="couponlist" resultType="CouponDTO" parameterType="Object">
+	<!-- 내 쿠폰함 페이징 Criteria -->
+	<select id="couponlistCriteria" resultType="CouponDTO">
+	<![CDATA[
 		select c.cp_name, my.use_coupon, c.cp_start_date , c.cp_end_date from my_coupon my join coupon c
 		on my.cp_code = c.cp_code
 		where my.id = #{id}
+        order by cp_num desc limit #{pageStart},#{perPageNum}
+	]]>
+	</select>
+	<select id="couponcountPaging" resultType="int">
+	<![CDATA[
+		select count(cp_code)
+		from my_coupon
+		where cp_num > 0;
+	]]>
 	</select>
 	<!-- 회원정보 하나 가져오기 -->
 	<select id="info" resultType="UserDTO" parameterType="Object">

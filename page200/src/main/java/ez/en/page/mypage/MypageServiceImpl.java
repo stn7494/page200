@@ -20,12 +20,6 @@ public class MypageServiceImpl implements MypageService {
 	private MypageDAO dao;
 	
 	@Override
-	public List<ReservationDTO> revlist(Object id) {
-		// TODO Auto-generated method stub
-		return dao.revlist(id);
-	}
-
-	@Override
 	public int revdelete(Object revcode) {
 		// TODO Auto-generated method stub
 		return dao.revdelete(revcode);
@@ -35,18 +29,6 @@ public class MypageServiceImpl implements MypageService {
 	public Map<String, Object> revdetail2(Object sitecode) {
 		// TODO Auto-generated method stub
 		return dao.revdetail2(sitecode);
-	}
-
-	@Override
-	public List<JjimDTO> jjimlist(Object id) {
-		// TODO Auto-generated method stub
-		return dao.jjimlist(id);
-	}
-
-	@Override
-	public List<ReviewDTO> reviewlist(Object id) {
-		// TODO Auto-generated method stub
-		return dao.reviewlist(id);
 	}
 
 	@Override
