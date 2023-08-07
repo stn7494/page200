@@ -21,7 +21,7 @@
                 <ul class="dropdown">
                   <li><a href="revlistPage">내 예약조회</a></li>
                   <li><a href="jjimlistPage">내 찜목록</a></li>
-                  <li><a href="reviewlist">내 리뷰목록</a></li>
+                  <li><a href="reviewlistPage">내 리뷰목록</a></li>
                   <li><a href="couponlist">내 쿠폰함</a></li>
 
                 </ul>

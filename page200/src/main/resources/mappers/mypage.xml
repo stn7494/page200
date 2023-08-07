@@ -117,7 +117,27 @@
         limit #{page},10;
 	]]>
 	</select>
-	
+	<!-- 내 리뷰목록 페이징 Criteria -->
+	<select id="reviewlistCriteria" resultType="ReviewDTO">
+	<![CDATA[
+		SELECT r_code,review.id,rev_code,review.f_code,r_w_date,r_content,r_star,r_declaration
+		FROM review
+		join user
+		on review.id = user.id
+		where user.id = #{id} and
+        r_code > 'r000'
+        order by r_code desc, rev_code desc
+        limit #{pageStart},#{perPageNum}
+	]]>
+	</select>
+	<!-- 내 리뷰목록 페이지 번호 -->
+	<select id="reviewcountPaging" resultType="int">
+	<![CDATA[
+		select count(r_code)
+		from review
+		where r_code > 'r000'
+	]]>
+	</select>
 	
 	<!-- 내 쿠폰함 -->
 	<select id="couponlist" resultType="CouponDTO" parameterType="Object">

@@ -30,6 +30,10 @@ public interface MypageService {
 	public int jjimlistcountCriteria(Criteria cri)throws Exception;
 //	내 리뷰목록 ============================
 	public List<ReviewDTO> reviewlist(Object id);
+//	내 리뷰목록 페이징
+	public List<ReviewDTO> reviewlistCriteria(Criteria cri) throws Exception;
+//	내 리뷰목록 페이지 번호
+	public int reviewcountPaging(Criteria cri)throws Exception;
 //	내 쿠폰함
 	public List<CouponDTO> couponlist(Object id);
 //	회원정보수정
