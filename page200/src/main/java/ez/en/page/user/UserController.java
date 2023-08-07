@@ -51,6 +51,7 @@ public class UserController {
 		model.addAttribute("file", fileService.myprofile(dto.getId()));
 		int count = rservice.reviewCount("cam001");
 		model.addAttribute("count",count);
+		System.out.println("테스트");
 		return "camdetail";
 	}
 	
