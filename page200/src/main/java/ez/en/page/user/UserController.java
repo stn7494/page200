@@ -53,6 +53,7 @@ public class UserController {
 		model.addAttribute("count",count);
 		System.out.println("테스트");
 		System.out.println("테스트2");
+		System.out.println("테스트3");
 		return "camdetail";
 	}
 	
