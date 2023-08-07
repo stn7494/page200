@@ -3,6 +3,7 @@ package ez.en.page.mypage;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import ez.en.page.domain.Criteria;
@@ -37,7 +39,7 @@ public class MypageController {
 		request.setCharacterEncoding("utf-8");
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("revdetail2", service.revdelete(map));
-		mav.setViewName("mypage/revlist");
+		mav.setViewName("mypage/revlistPage");
 		return mav;
 	}
 	// sjs의 흔적
@@ -47,18 +49,6 @@ public class MypageController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("revdetail2", service.revdetail2(map));
 		mav.setViewName("mypage/revdetail");
-		
-		return mav;
-	}
-	// sjs의 흔적
-	// 쿠폰 전체조회
-	@GetMapping(value = "couponlist")
-	public ModelAndView couponlist(HttpServletRequest request,
-			HttpSession session) throws Exception{
-		ModelAndView mav = new ModelAndView();
-		request.setCharacterEncoding("utf-8");
-		mav.addObject("couponlist", service.couponlist(session.getAttribute("user")));
-		mav.setViewName("mypage/couponlist");
 		
 		return mav;
 	}
@@ -179,6 +169,7 @@ public class MypageController {
 		mav.setViewName("index");
 		return mav;
 	}
+	// 닉네임중복체크
 	@ResponseBody
 	@PostMapping(value = "nickcheck")
 	public Map<String, Object> nickcheck(@RequestBody String nick,HttpSession session,
@@ -192,5 +183,4 @@ public class MypageController {
 		
 		return map;
 	}
-	
 }
