@@ -151,4 +151,19 @@ public class MypageController {
 		mav.setViewName("mypage/jjimlistPage");
 		return mav;
 	}
+	// 쿠폰 페이징
+	@GetMapping(value = "couponlistPage")
+	public ModelAndView couponlistPage(Criteria cri,HttpSession session)throws Exception {
+		ModelAndView mav = new ModelAndView();
+		UserDTO dto =  (UserDTO)session.getAttribute("user");
+		cri.setId(dto.getId());
+		logger.info(cri.toString());
+		mav.addObject("couponlist", service.reviewlistCriteria(cri));
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.reviewcountPaging(cri));
+		mav.addObject("pageMaker", pageMaker);
+		mav.setViewName("mypage/reviewlistPage");
+		return mav;
+	}
 }
