@@ -67,8 +67,11 @@
       <div class="container">
       	<!-- 여기에 내용을 작성 -->
       	<div>
-      		<form method="post" id="data">
+      		<form method="post" id="data" enctype="multipart/form-data">
       		<table class="table">
+      			<tr>
+      				<th>프로필 사진 : <input type="file" name="file"></th>
+      			</tr>
       			<tr>
       				<th>아이디 : <input type="text" id="id" name="id" readonly="readonly" value="${user.id}"></th>
       			</tr>
@@ -76,13 +79,14 @@
       				<th>이름 : <input type="text" name="name" value="${user.name }"></th>
       			</tr>
       			<tr>
-      				<th>닉네임 : <input type="text" name="nick" value="${user.nick }"></th>
+      				<th>닉네임 : <input type="text" id="nick" name="nick" value="${user.nick }"></th>
+      				<td><input type="button" id="nickcheck" value="닉네임 중복 체크"></td>
       			</tr>
       			<tr>
-      				<th>생일 : <input type="text" name="birth" value="${user.birth }"></th>
+      				<th>생일 : <input type="text" id="birth" name="birth" value="${user.birth }" readonly="readonly"></th>
       			</tr>
       			<tr>
-      				<th>연락처 : <input type="text" name="phone" value="${user.phone }"></th>
+      				<th>연락처 : <input type="text" id="phone" name="phone" value="${user.phone }">" - "하이픈은 제외하고 입력해주세요.</th>
       			</tr>
       			<tr>
       				<th>이메일 : <input type="text" name="email" value="${user.email }"></th>
@@ -96,16 +100,67 @@
       				<th><button type="button" id="btn2">비밀번호 변경</button></th>
       			</tr>
       	</form>
+      	<form action="freedom" method="post" id="out"></form>
+      			<th><input type="button" id="btn3" value="회원탈퇴">회원탈퇴 동의<input type="checkbox" name="getout" id="free"></th>
       	</div>
       </div>
     </div>
     <script>
-    	$("#btn").click(function(){
-    		$("#data").submit();
-    	});
     	$("#btn2").click(function(){
     		$("#word").submit();
     	});
+    	$("#btn3").click(function(){
+    		if($("#free").is(":checked") == true) {
+    			$("#out").submit();
+    		}else {
+    			alert("체크해주셈.");
+    		}
+    	});
+    	var nickck = 0;
+    	$("#nickcheck").click(function(){
+    		var usernick = $("#nick").val();
+    		var url = "nickcheck";
+    		var paramData = {
+    				"nick" : "${user.nick}"
+    		}
+    		$.ajax({
+    			url : url,
+    			data : usernick,
+    			dataType : "json",
+    			type : "POST",
+    			contentType: "application/json; charset=UTF-8",
+    			success : function(result) {
+    				if(result.cnt > 0) {
+    					alert("닉네임이 존재합니다. 다른 닉네임을 입력해주세요.");
+    					$("#nick").focus();
+    				}else {
+    					alert("사용가능한 닉네임입니다.");
+    					
+    					nickck = 1;
+    				}
+    			},
+    			error : function(error) {
+    				alert("error : " + error);
+    			}
+    			
+    		});
+    	});
+    	$("#btn").click(function(){
+    		checkBirth();
+    		
+    	});
+    	function checkBirth() {
+    		var phone = $("#phone").val();
+    		var phoneRules = /^01([0|1|6|7|8|9])([0-9]{3,4})([0-9]{4})$/;
+	    	if(!(phoneRules.test(phone))) {
+				alert("핸드폰번호를 잘못입력하였습니다.")
+	    		
+	    		return false;
+	    	}
+	    		$("#data").submit();
+    	}
+
+    	console.log(passwordRules .test(password));
     </script>
 
 	

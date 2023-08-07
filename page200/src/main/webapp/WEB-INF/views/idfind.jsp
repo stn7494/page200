@@ -14,7 +14,7 @@
     <%@ include file="include/head.jsp" %>
 
     <title>
-      로그인
+      아아디 찾기
     </title>
   </head>
   <body>
@@ -48,12 +48,12 @@
               data-aos-delay="200"
             >
               <ol class="breadcrumb text-center justify-content-center">
-                <li class="breadcrumb-item"><a href="${contextPath }">Home</a></li>
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                 <li
                   class="breadcrumb-item active text-white-50"
                   aria-current="page"
                 >
-                  로그인
+                  Properties
                 </li>
               </ol>
             </nav>
@@ -66,57 +66,55 @@
       <div class="container">
       	<!-- 여기에 내용을 작성 -->
       	<div>
-      		<form id="loginform" method="post">
+      		<form id="idfind" method="post">
 	      		<table>
 	      			<tr>
 	      				<td>
-	      					아이디 : <input type="text" id="id" name="id" placeholder="아이디">
+	      					이름 : 
 	      				</td>
-	      				<td rowspan="2">
-	      					<input type="button" value="로그인" id="login">
+	      				<td>
+	      					<input type="text" name="name" id="name" placeholder="이름을 입력해주세요">
 	      				</td>
 	      			</tr>
 	      			<tr>
 	      				<td>
-	      					비밀번호 : <input type="password" id="pw" name="pw" placeholder="비밀번호">
+	      					핸드폰 번호 : 
+	      				</td>
+	      				<td>
+	      					<input type="text" name="phone" id="phone" placeholder="핸드폰 번호는 - 빼고 입력해주세요">
 	      				</td>
 	      			</tr>
 	      			<tr>
-	      				<td style="color: red;" colspan="2">
-	      					${msg }
-	      				</td>
-	      			</tr>
-	      			<tr>
-	      				<td>
-	      					<input type="button" id="idfind" value="아이디 찾기">
-	      				</td>
-	      				<td>
-	      					<input type="button" id="pwfind" value="비밀번호 찾기">
+	      				<td colspan="2">
+	      					<input type="button" id="datachk" value="아이디 찾기">
 	      				</td>
 	      			</tr>
 	      		</table>
-      		</form>
-      		<script type="text/javascript">
-      			$("#login").click(function(){
-      				if($("#id").val()== ""){
-      					alert("아이디를 입력해주세요");
-      				}else if($("#pw").val() == ""){
-      					alert("비밀번호를 입력해주세요");
-      				}else{
-      					$("#loginform").submit();
-      				}
-      			});
-      			$("#idfind").click(function(){
-      				location.href="${contextPath}/idfind";
-      			});
-      			$("#pwfind").click(function(){
-      				location.href="${contextPath}/serachid";
-      			});
-      		</script>
+	      	</form>
       	</div>
       </div>
     </div>
-
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#datachk").click(function(){
+      			var reg = new RegExp("^01([0|1|6|7|8|9])([0-9]{3,4})([0-9]{4})$");
+				var move = $("#idfind");
+      			if($("#name").val() == ""){
+					alert("이름을 입력해주세요");
+					$("#name").focus();
+				}else if($("#phone").val() == ""){
+					alert("핸드폰 번호를 입력해주세요");
+					$("#phone").focus();
+				}else if(!(reg.test($("#phone").val()))){
+					alert("-을 뺀 올바른 핸드폰 번호를 입력해주세요");
+				}else{
+					move.submit();
+				}
+			});
+		});
+	</script>
+	
 	
 	<%@ include file="include/footer.jsp" %>
     <!-- /.site-footer -->

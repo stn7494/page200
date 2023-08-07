@@ -92,10 +92,21 @@
 				</div>
 		</div>
 
-		<a href="update2?rp_code=${onetoone_reply.rp_code }" role="button"
-			class="btn btnoutline-info">글 수정</a> <a
-			href="delete2?rp_code=${onetoone_reply.rp_code }" role="button"
+
+		<c:choose>
+
+			<c:when test="${admin == null }">
+					관리자만 답변 가능
+			</c:when>
+			<c:otherwise>
+					관리자님 환영합니다
+				<a href="update2?rp_code=${onetoone_reply.rp_code }" role="button"
+			class="btn btnoutline-info">글 수정</a> 
+				<a href="delete2?rp_code=${onetoone_reply.rp_code }" role="button"
 			class="btn btnoutline-info">글 삭제</a>
+			</c:otherwise>
+		</c:choose>
+		
 
 
 		<!-- /.content -->

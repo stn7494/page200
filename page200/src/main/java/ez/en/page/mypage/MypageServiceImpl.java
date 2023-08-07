@@ -103,4 +103,16 @@ public class MypageServiceImpl implements MypageService {
 		return dao.couponcountPaging(cri);
 	}
 
+	@Override
+	public int quit(UserDTO dto) {
+		// TODO Auto-generated method stub
+		return dao.quit(dto);
+	}
+
+	@Override
+	public int nickcheck(String id) {
+		// TODO Auto-generated method stub
+		return dao.nickcheck(id);
+	}
+
 }

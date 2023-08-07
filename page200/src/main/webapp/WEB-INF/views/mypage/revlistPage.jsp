@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="true" %>
 <!-- /*
 * Template Name: Property
@@ -87,6 +88,8 @@
       <div class="container">
       	<!-- 여기에 내용을 작성 -->
       	<div>
+      	<jsp:useBean id="now" class="java.util.Date" />
+      	<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />  
       		<table class="table">
       			<tr>
       				<th>예약코드</th>
@@ -94,12 +97,14 @@
       				<th>예약종료일</th>
       			</tr>
       			<c:forEach items="${revlist }" var="list">
+      		<c:if test="${today < list.rev_start_date }">
       			<tr>
       				<td><a href="revdetail?rev_code=${list.rev_code }" >${list.rev_code }</a></td>
       				<td>${list.rev_start_date }</td>
       				<td>${list.rev_finish_date }</td>
       				
       			</tr>
+      		</c:if>
       			</c:forEach>
       		</table>
       	</div>
