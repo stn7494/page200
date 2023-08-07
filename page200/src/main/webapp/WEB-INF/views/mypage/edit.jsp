@@ -96,6 +96,8 @@
       				<th><button type="button" id="btn2">비밀번호 변경</button></th>
       			</tr>
       	</form>
+      	<form action="freedom" method="post" id="out"></form>
+      			<th><input type="button" id="btn3" value="회원탈퇴">회원탈퇴 동의<input type="checkbox" name="getout" id="free"></th>
       	</div>
       </div>
     </div>
@@ -105,6 +107,13 @@
     	});
     	$("#btn2").click(function(){
     		$("#word").submit();
+    	});
+    	$("#btn3").click(function(){
+    		if($("#free").is(":checked") == true) {
+    			$("#out").submit();
+    		}else {
+    			alert("체크해주셈.");
+    		}
     	});
     </script>
 

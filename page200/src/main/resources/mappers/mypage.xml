@@ -107,6 +107,11 @@
 		update user set nick = #{nick},birth = #{birth},phone = #{phone},email = #{email}
 		where id = #{id}
 	</update>
+	<!-- 회원탈퇴 -->
+	<delete id="quit" parameterType="UserDTO">
+		delete from user
+		where id = #{id}
+	</delete>
 	<!-- 비밀번호수정 -->
 	<update id="editpassword" parameterType="UserDTO">
 		update user set pw = #{pw}

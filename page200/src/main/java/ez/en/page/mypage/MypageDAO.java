@@ -35,6 +35,8 @@ public interface MypageDAO {
 	public List<CouponDTO> couponlist(Object id);
 //	회원정보수정
 	public int edit(UserDTO dto);
+//	회원탈퇴
+	public int quit(UserDTO dto);
 //	회원정보 하나 가져오기
 	public UserDTO info(Object id);
 //	비밀번호 수정

@@ -158,12 +158,24 @@ public class MypageController {
 		UserDTO dto =  (UserDTO)session.getAttribute("user");
 		cri.setId(dto.getId());
 		logger.info(cri.toString());
-		mav.addObject("couponlist", service.reviewlistCriteria(cri));
+		mav.addObject("couponlist", service.couponlistCriteria(cri));
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(service.reviewcountPaging(cri));
+		pageMaker.setTotalCount(service.couponcountPaging(cri));
 		mav.addObject("pageMaker", pageMaker);
-		mav.setViewName("mypage/reviewlistPage");
+		mav.setViewName("mypage/couponlistPage");
 		return mav;
 	}
+	// 회원탈퇴
+	@PostMapping(value = "freedom")
+	public ModelAndView freedom(UserDTO dto,HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		dto = (UserDTO)session.getAttribute("user");
+		
+		service.quit(dto);
+		session.invalidate();
+		mav.setViewName("index");
+		return mav;
+	}
+	
 }
