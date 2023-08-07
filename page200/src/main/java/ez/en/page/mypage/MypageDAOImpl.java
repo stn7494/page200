@@ -23,12 +23,6 @@ public class MypageDAOImpl implements MypageDAO {
 	private final String namespace = "ez.en.page.mypageMapper.";
 	
 	@Override
-	public List<ReservationDTO> revlist(Object id) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace+"revlist",id);
-	}
-
-	@Override
 	public int revdelete(Object revcode) {
 		// TODO Auto-generated method stub
 		return sqlSession.delete(namespace+"revdelete", revcode);
@@ -38,18 +32,6 @@ public class MypageDAOImpl implements MypageDAO {
 	public Map<String, Object> revdetail2(Object sitecode) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace+"revdetail2", sitecode);
-	}
-
-	@Override
-	public List<JjimDTO> jjimlist(Object id) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace+"jjimlist", id);
-	}
-
-	@Override
-	public List<ReviewDTO> reviewlist(Object id) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace+"reviewlist", id);
 	}
 
 	@Override
@@ -77,17 +59,6 @@ public class MypageDAOImpl implements MypageDAO {
 	}
 
 	@Override
-	public List<ReservationDTO> revlistPage(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		int page = (int)(map.get("page"));
-		if(page <= 0) {
-			page = 1;
-		}
-		page = (page - 1) * 10;
-		return sqlSession.selectList(namespace+"revlistPage", map);
-	}
-
-	@Override
 	public List<ReservationDTO> revlistCriteria(Criteria cri) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace+"revlistCriteria", cri);
@@ -97,12 +68,6 @@ public class MypageDAOImpl implements MypageDAO {
 	public int countPaging(Criteria cri) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace+"countPaging", cri);
-	}
-	// 여기부터 밑에 전부다 =====================================
-	@Override
-	public List<JjimDTO> jjimlistPage(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace+"jjimlistPage", map);
 	}
 
 	@Override
@@ -118,12 +83,6 @@ public class MypageDAOImpl implements MypageDAO {
 	}
 
 	@Override
-	public List<ReviewDTO> reviewlistPage(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace+"reviewlistPage", map);
-	}
-
-	@Override
 	public List<ReviewDTO> reviewlistCriteria(Criteria cri) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace+"reviewlistCriteria", cri);
@@ -133,6 +92,18 @@ public class MypageDAOImpl implements MypageDAO {
 	public int reviewcountPaging(Criteria cri) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace+"reviewcountPaging", cri);
+	}
+
+	@Override
+	public List<CouponDTO> couponlistCriteria(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+"couponlistCriteria", cri);
+	}
+
+	@Override
+	public int couponcountPaging(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"couponcountPaging", cri);
 	}
 
 }

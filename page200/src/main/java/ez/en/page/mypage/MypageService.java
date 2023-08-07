@@ -12,8 +12,6 @@ import ez.en.page.user.UserDTO;
 
 public interface MypageService {
 	
-//	예약 전체조회
-	public List<ReservationDTO> revlist(Object id);
 //	예약 페이징
 	public List<ReservationDTO> revlistCriteria(Criteria cri)throws Exception;
 //	예약 페이징 페이지번호
@@ -22,14 +20,10 @@ public interface MypageService {
 	public int revdelete(Object revcode);
 //	예약 상세조회2
 	public Map<String, Object> revdetail2(Object sitecode);
-//	내 찜목록
-	public List<JjimDTO> jjimlist(Object id);
 //	내 찜목록 페이징 ==============================
 	public List<JjimDTO> jjimlistCriteria(Criteria cri)throws Exception;
 //	내 찜목록 페이지번호 ========================
 	public int jjimlistcountCriteria(Criteria cri)throws Exception;
-//	내 리뷰목록 ============================
-	public List<ReviewDTO> reviewlist(Object id);
 //	내 리뷰목록 페이징
 	public List<ReviewDTO> reviewlistCriteria(Criteria cri) throws Exception;
 //	내 리뷰목록 페이지 번호
