@@ -21,7 +21,7 @@
 	<select id="countPaging" resultType="int">
 	<![CDATA[
 		select count(case when rev_start_date > now() then 1 end)
-		from reservation where rev_code > 'rev000';
+		from reservation where rev_code > 'rev000' and id = #{id}
 	]]>
 	</select>
 	<!-- 예약 상세조회2 -->
