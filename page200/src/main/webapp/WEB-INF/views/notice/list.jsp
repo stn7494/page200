@@ -79,10 +79,18 @@
 			</div>
 			<div class="box">
 				<div class="box-header with-border">
-					<a href="insert" type=button><h6>글쓰기</h6></a>
+				
+							<c:choose>
+								<c:when test="${admin == null }">
+									관리자만 답변 가능
+								</c:when>
+								<c:otherwise>
+									관리자님 환영합니다
+									<a href="insert" type=button><h6>글쓰기</h6></a>
+								</c:otherwise>
+							</c:choose>	
 				</div>
 			</div>
-
 		</div>
 	</div>
 	</div>

@@ -83,12 +83,20 @@
 					</div>
 				</div>
 		</div>
+
 		
-		<a href="update?n_code=${notice.n_code }" role ="button" class="btn btnoutline-info">글 수정</a>
+	<c:choose>
+			<c:when test="${admin == null }">
+				관리자만 수정/삭제 가능
+			</c:when>
+	<c:otherwise>
+			관리자님 환영합니다
+			<a href="update?n_code=${notice.n_code }" role="button" class="btn btnoutline-info">글 수정</a>
+			<a href="delete?n_code=${notice.n_code }" role="button" class="btn btnoutline-info">글 삭제</a>
+	</c:otherwise>
+	</c:choose>
 		
-		<a href="delete?n_code=${notice.n_code }" role ="button" class="btn btnoutline-info">글 삭제</a>
-		
-		
+
 		<!-- /.content -->
 	</div>
 	<!-- /.content-wrapper -->
