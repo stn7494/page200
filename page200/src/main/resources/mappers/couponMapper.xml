@@ -32,8 +32,13 @@
 		delete from coupon where cp_code = #{cp_code}
 	</delete>
 	
+	<!-- 쿠폰발급 -->
+	<insert id="couponissue" parameterType="My_couponDTO">
+		insert into my_coupon(cp_code,id) VALUES(#{cp_code},#{id})
+	</insert>
+	
 	<!-- 쿠폰수량 감소 -->
-	<update id="">
+	<update id="" parameterType="String">
 		update coupon set cp_amount = cp_amount - 1
 		where cp_code = #{cp_code}
 	</update>
@@ -43,8 +48,6 @@
 		select cp_code, cp_amount from page200.coupon where cp_code = #{cp_code}
 	</select>
 	
-	<!-- 쿠폰 발급 -->
-
 	<!-- 차월 생일 회원조회 -->
 	
 	<!-- 중복 발급 확인 -->

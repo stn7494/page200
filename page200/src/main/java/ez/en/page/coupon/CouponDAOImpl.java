@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import ez.en.page.my_coupon.My_couponDTO;
+
 @Repository
 public class CouponDAOImpl implements CouponDAO {
 	@Autowired
@@ -45,5 +47,10 @@ public class CouponDAOImpl implements CouponDAO {
 	@Override
 	public int updatenum(String cp_code) {
 		return sqlSession.update(namepace + "updatenum", cp_code);
+	}
+
+	@Override
+	public int couponissue(My_couponDTO mydto) {
+		return sqlSession.insert(namepace + "couponissue", mydto);
 	}
 }

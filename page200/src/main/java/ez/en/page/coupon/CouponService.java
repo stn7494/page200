@@ -2,6 +2,8 @@ package ez.en.page.coupon;
 
 import java.util.List;
 
+import ez.en.page.my_coupon.My_couponDTO;
+
 public interface CouponService {
 
 	/**
@@ -49,4 +51,11 @@ public interface CouponService {
 	 * @return
 	 */
 	public int updatenum(String cp_code);
+	
+	/**
+	 * 쿠폰발급
+	 * @param mydto
+	 * @return
+	 */
+	public int couponissue(My_couponDTO mydto);
 }

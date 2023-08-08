@@ -83,7 +83,7 @@
 	<!-- 내 쿠폰함 페이징 Criteria -->
 	<select id="couponlistCriteria" resultType="CouponDTO">
 	<![CDATA[
-		select c.cp_name, my.use_coupon, c.cp_start_date , c.cp_end_date from my_coupon my join coupon c
+		select c.cp_code, c.cp_name, my.use_coupon, c.cp_start_date , c.cp_end_date from my_coupon my join coupon c
 		on my.cp_code = c.cp_code
 		where my.id = #{id}
         order by cp_num desc limit #{pageStart},#{perPageNum}

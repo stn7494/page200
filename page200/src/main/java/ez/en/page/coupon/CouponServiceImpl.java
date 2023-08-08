@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ez.en.page.my_coupon.My_couponDTO;
+
 @Service
 public class CouponServiceImpl implements CouponService {
 	@Autowired
@@ -42,5 +44,10 @@ public class CouponServiceImpl implements CouponService {
 	@Override
 	public int updatenum(String cp_code) {
 		return dao.updatenum(cp_code);
+	}
+
+	@Override
+	public int couponissue(My_couponDTO mydto) {
+		return dao.couponissue(mydto);
 	}
 }
