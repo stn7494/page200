@@ -2,7 +2,7 @@ package ez.en.page.notice;
 
 public class NoticeDTO {
 	
-	private String n_code; 
+	private int n_code; 
 	private String f_code;
 	private String n_title; 
 	private String n_content; 
@@ -11,11 +11,11 @@ public class NoticeDTO {
 	
 	public NoticeDTO() {}
 
-	public String getN_code() {
+	public int getN_code() {
 		return n_code;
 	}
 
-	public void setN_code(String n_code) {
+	public void setN_code(int n_code) {
 		this.n_code = n_code;
 	}
 
@@ -66,5 +66,4 @@ public class NoticeDTO {
 	}
 	
 	
-
 }

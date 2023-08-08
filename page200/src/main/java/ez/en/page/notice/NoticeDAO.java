@@ -10,8 +10,8 @@ public interface NoticeDAO {
 
 	public int update(NoticeDTO dto);
 
-	public NoticeDTO selectOne(String n_code);
+	public NoticeDTO selectOne(int n_code);
 
-	public int delete(String n_code);
+	public int delete(int n_code);
 
 }

@@ -10,9 +10,9 @@ public interface OnetooneDAO {
 	
 	public int update(OnetooneDTO dto);
 	
-	public OnetooneDTO selectOne(String o_code);
+	public OnetooneDTO selectOne(int o_code);
 	
-	public int delete(String o_code);
+	public int delete(int o_code);
 	
 	
 }

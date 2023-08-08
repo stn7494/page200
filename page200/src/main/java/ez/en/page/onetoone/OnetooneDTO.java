@@ -2,7 +2,7 @@ package ez.en.page.onetoone;
 
 public class OnetooneDTO {
 
-	private String o_code;
+	private int o_code;
 	private String id;
 	private String f_code;
 	private String o_title;
@@ -12,11 +12,11 @@ public class OnetooneDTO {
 	public OnetooneDTO() {
 	}
 
-	public String getO_code() {
+	public int getO_code() {
 		return o_code;
 	}
 
-	public void setO_code(String o_code) {
+	public void setO_code(int o_code) {
 		this.o_code = o_code;
 	}
 
@@ -65,5 +65,5 @@ public class OnetooneDTO {
 		return "OnetooneDTO [o_code=" + o_code + ", id=" + id + ", f_code=" + f_code + ", o_title=" + o_title
 				+ ", o_content=" + o_content + ", o_w_date=" + o_w_date + "]";
 	}
-
+	
 }

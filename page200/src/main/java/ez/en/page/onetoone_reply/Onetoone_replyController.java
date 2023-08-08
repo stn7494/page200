@@ -76,7 +76,7 @@ public class Onetoone_replyController {
 			mav.addObject("onetoone_reply", dtoo);
 		} else {
 			mav.addObject("list2", list2);
-			mav.setViewName("onetoone_reply/list2");
+			mav.setViewName("redirect:/onetoone_reply/list2");
 			service.update2(dto);
 
 		}

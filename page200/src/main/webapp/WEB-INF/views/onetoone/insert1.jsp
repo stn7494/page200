@@ -63,15 +63,10 @@
 
 				<form role="form" method="post">
 					<div class="box-body">
-
-						<div class="form-group">
-							<label>글코드</label> <input type="text" name="o_code"
-								class="form-control" placeholder="글 코드를 입력하세요.">
-						</div>
-						<div class="from-group">
-							<label>회원아이디</label><input type="text" name="id"
-								class="from-control" placeholder="회원 아이디를 입력해 주세요.">
-
+					
+					<div class="form-group">
+							<label>회원 아이디</label> <input type="text" name="id"
+								class="form-control" value="${onetoone.id }" readonly = "readonly">
 						</div>
 						<div class="form-group">
 							<label>제목</label> <input type="text" name="o_title"
@@ -85,7 +80,7 @@
 
 						<div class="form-group">
 							<label>작성일</label> <input type="text" name="o_w_date"
-								class="form-control" value="${onetoone.o_w_date }" readonly>
+								class="form-control" value="${onetoone.o_w_date }" readonly= "readonly">
 						</div>
 					</div>
 
