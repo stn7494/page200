@@ -70,7 +70,11 @@
       		<form method="post" id="data" enctype="multipart/form-data">
       		<table class="table">
       			<tr>
-      				<th>프로필 사진 : <input type="file" name="file"></th>
+      				<th>프로필 사진 : <input type="file" id="profile" name="profile" accept="image/*" ></th>
+      				<th><input type="button" id="thumnail" value="미리보기"></th>
+      			</tr>
+      			<tr id="showpro">
+      				
       			</tr>
       			<tr>
       				<th>아이디 : <input type="text" id="id" name="id" readonly="readonly" value="${user.id}"></th>
@@ -106,45 +110,107 @@
       </div>
     </div>
     <script>
-    	$("#btn2").click(function(){
-    		$("#word").submit();
-    	});
-    	$("#btn3").click(function(){
-    		if($("#free").is(":checked") == true) {
-    			$("#out").submit();
-    		}else {
-    			alert("체크해주셈.");
-    		}
-    	});
-    	var nickck = 0;
-    	$("#nickcheck").click(function(){
-    		var usernick = $("#nick").val();
-    		var url = "nickcheck";
-    		var paramData = {
-    				"nick" : "${user.nick}"
-    		}
-    		$.ajax({
-    			url : url,
-    			data : usernick,
-    			dataType : "json",
-    			type : "POST",
-    			contentType: "application/json; charset=UTF-8",
-    			success : function(result) {
-    				if(result.cnt > 0) {
-    					alert("닉네임이 존재합니다. 다른 닉네임을 입력해주세요.");
-    					$("#nick").focus();
-    				}else {
-    					alert("사용가능한 닉네임입니다.");
-    					
-    					nickck = 1;
-    				}
-    			},
-    			error : function(error) {
-    				alert("error : " + error);
-    			}
-    			
-    		});
-    	});
+    $(document).ready(function(){
+  		// 섬네일화면 띄우기
+			$("#thumnail").click(function(){
+				
+				var formData = new FormData();
+				
+				var inputFile = $("input[name='profile']");
+				
+				
+				
+				var files = inputFile[0].files;
+				
+					if(!imgchk(files[0].name)){
+						return false;
+					}
+					formData.append("uploadFile", files[0]);
+					
+				
+				
+      			$.ajax({
+      				url: "/page/myprofileUpload",
+      				processData: false,
+      				contentType: false,
+      				data: formData,
+      				type: "POST",
+      				dataType: "json",
+      				success:function(result){
+      					showproFile(result);
+      				},
+      				error:function(result){
+      					alert("실패");
+      				}
+      			});
+			});
+			
+		});
+	 // 이미지 파일만 업로드 가능하게 하는 함수
+			
+			function imgchk(fileName){
+				var regex = new RegExp("(.*?)\.(png|jpg)");
+				
+				if(!(regex.test(fileName))){
+					alert("png, jpg타입의 파일만 프로필이미지로 사용 가능합니다.");
+					return false;
+				}
+				return true;
+			}
+			
+			//섬네일 화면 만들어서 
+			function showproFile(uploadResultArr){
+				var showpro = $("#showpro");
+				var str = "";
+				showpro.html(str);
+	//			each의 경우 반복문이랑 같음
+				$(uploadResultArr).each(function(i, obj){
+					
+				var fileCallPath = encodeURIComponent("/s_"+obj.f_name);
+				str += "<td><img src='/page/showproFile?fileName=/"+fileCallPath+ "'></td>";
+				});
+				
+				showpro.append(str);
+			}
+	    	$("#btn2").click(function(){
+	    		$("#word").submit();
+	    	});
+	    	$("#btn3").click(function(){
+	    		if($("#free").is(":checked") == true) {
+	    			$("#out").submit();
+	    		}else {
+	    			alert("체크해주셈.");
+	    		}
+	    	});
+	    	var nickck = 0;
+	    	$("#nickcheck").click(function(){
+	    		var usernick = $("#nick").val();
+	    		var url = "nickcheck";
+	    		var paramData = {
+	    				"nick" : "${user.nick}"
+	    		}
+	    		$.ajax({
+	    			url : url,
+	    			data : usernick,
+	    			dataType : "json",
+	    			type : "POST",
+	    			contentType: "application/json; charset=UTF-8",
+	    			success : function(result) {
+	    				if(result.cnt > 0) {
+	    					alert("닉네임이 존재합니다. 다른 닉네임을 입력해주세요.");
+	    					$("#nick").focus();
+	    				}else {
+	    					alert("사용가능한 닉네임입니다.");
+	    					
+	    					nickck = 1;
+	    				}
+	    			},
+	    			error : function(error) {
+	    				alert("error : " + error);
+	    			}
+	    			
+	    		});
+	    	});
     	$("#btn").click(function(){
     		checkBirth();
     		
@@ -159,8 +225,7 @@
 	    	}
 	    		$("#data").submit();
     	}
-
-    	console.log(passwordRules .test(password));
+    	
     </script>
 
 	

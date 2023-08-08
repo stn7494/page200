@@ -1,5 +1,9 @@
 package ez.en.page.mypage;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,7 +14,11 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,13 +29,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ez.en.page.domain.Criteria;
 import ez.en.page.domain.PageMaker;
+import ez.en.page.file.FileDTO;
+import ez.en.page.file.FileService;
 import ez.en.page.user.UserDTO;
+import net.coobird.thumbnailator.Thumbnailator;
 
 @Controller
 public class MypageController {
 	
 	@Autowired
 	private MypageService service;
+	@Autowired
+	private FileService fservice;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
 	
@@ -65,10 +78,28 @@ public class MypageController {
 	// sjs의 흔적
 	// 회원정보수정 완료
 	@PostMapping(value = "edit")
-	public ModelAndView edit(HttpServletRequest request,
+	public ModelAndView edit(MultipartFile profile,HttpServletRequest request,
 		UserDTO dto, HttpSession session) throws Exception{
 		request.setCharacterEncoding("utf-8");
 		ModelAndView mav = new ModelAndView();
+//		mav.addObject("map", service.edit(dto));
+//		mav.addObject("list", service.info(session.getAttribute("user")));
+//		mav.setViewName("index");
+		
+		if(profile.getOriginalFilename() != "") {
+			
+			FileDTO fdto = new FileDTO();
+			String path = request.getServletContext().getRealPath("resources/images");
+			fdto.setF_root(request.getContextPath()+"/resources/images");
+			fdto.setF_realroot(path);
+			String file_code = dto.getId()+"_profile";
+			fdto.setF_name("s_"+dto.getId()+"_"+profile.getOriginalFilename());
+			fdto.setF_code(file_code);
+			fservice.fileupload(fdto);
+			dto.setF_code(file_code);
+			// 이미지 파일을 업로드 및 섬네일 생성
+			profile(profile, request, dto.getId());
+		}
 		mav.addObject("map", service.edit(dto));
 		mav.addObject("list", service.info(session.getAttribute("user")));
 		mav.setViewName("index");
@@ -182,5 +213,61 @@ public class MypageController {
 		map.put("cnt", count);
 		
 		return map;
+	}
+	// 파일 업로드
+	@ResponseBody
+	@PostMapping(value = "myprofileUpload")
+	public FileDTO profile(MultipartFile uploadFile, HttpServletRequest request, String userId) {
+		FileDTO dto = new FileDTO();
+		logger.info(uploadFile.getOriginalFilename()+"==========");
+		String fileName = uploadFile.getOriginalFilename();
+			if(userId != null) {
+				fileName = userId+"_"+uploadFile.getOriginalFilename();
+			}
+			String uploadFolder = request.getServletContext().getRealPath("resources/images");
+			dto.setF_name(fileName);
+			logger.info("파일이름 : "+ fileName);
+			logger.info("업로드 경로 : "+ uploadFolder);
+			File savaFile = new File(uploadFolder, fileName);
+			try {
+				uploadFile.transferTo(savaFile);
+				FileOutputStream thumbnail = new FileOutputStream(new File(uploadFolder, "s_" + fileName));
+				Thumbnailator.createThumbnail(uploadFile.getInputStream(), thumbnail, 100, 100);
+				
+				thumbnail.close();
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return dto;
+	}
+	
+	@ResponseBody
+	@GetMapping("myshowproFile")
+	public ResponseEntity<byte[]> showproFile(@RequestParam("fileName") String fileName, HttpServletRequest request) {
+		String folderPath = request.getServletContext().getRealPath("/")+"resources/images";
+		
+		logger.info("파일이름: " + fileName);
+		
+		ResponseEntity<byte[]> result = null;
+		
+		File file = new File(folderPath + fileName);
+		HttpHeaders header = new HttpHeaders();
+		
+		logger.info("경로가 지정된 파일명" + file);
+		try {
+			header.add("Content-Type", Files.probeContentType(file.toPath()));
+			result = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(file),
+					header, HttpStatus.OK);
+					
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 }

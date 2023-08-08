@@ -54,7 +54,7 @@
 	<select id="jjimcountPaging" resultType="int">
 	<![CDATA[
 	select count(j_num) from jjim
-	where j_num > 0;
+	where j_num > 0 and id = #{id}
 	]]>
 	</select>
 	
@@ -76,7 +76,7 @@
 	<![CDATA[
 		select count(r_code)
 		from review
-		where r_code > 'r000'
+		where r_code > 'r000' and id = #{id}
 	]]>
 	</select>
 	
@@ -94,7 +94,7 @@
 	<![CDATA[
 		select count(cp_code)
 		from my_coupon
-		where cp_num > 0;
+		where cp_num > 0 and id = #{id}
 	]]>
 	</select>
 	<!-- 회원정보 하나 가져오기 -->
