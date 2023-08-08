@@ -18,6 +18,11 @@ public interface UserDAO {
 	
 	public String pwFind(UserDTO dto);
 	
+	public int pwFind2(UserDTO dto);
+	
+	public int pwchange(UserDTO dto);
+	
+	
 	//sjs의 흔적
 	//회원정보수정
 	public int edit(Map<String, Object> map);

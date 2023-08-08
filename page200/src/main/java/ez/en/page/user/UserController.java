@@ -80,12 +80,15 @@ public class UserController {
 	@PostMapping(value = "login")
 	public ModelAndView login(UserDTO dto, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		if(userService.login(dto) == null) {
+		UserDTO udto = userService.login(dto);
+		if(udto == null) {
 			mav.addObject("msg", "아이디와 비밀번호를 다시 입력해주세요");
 			mav.setViewName("login");
+		}else if(udto.getStop() == 1) {
+			mav.addObject("msg", "stop");
+			mav.setViewName("index");
 		}else {
 			session.setAttribute("user", userService.login(dto));
-			
 			mav.setViewName("index");
 		}
 		return mav;
@@ -255,13 +258,37 @@ public class UserController {
 		return mav;
 	}
 	
-	@PostMapping(value = "pwfind")
-	public ModelAndView pwfind(HttpSession session, UserDTO dto) {
-		ModelAndView mav = new ModelAndView();
-		logger.info("회원 수정할 아이디 : "+session.getAttribute("id"));
-		logger.info("회원의 이름 : " + dto.getName());
-		return null;
+	@ResponseBody
+	@PostMapping(value = "userDataFind")
+	public Map<String, Object> pwfind(HttpSession session, UserDTO dto) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		dto.setId(session.getAttribute("id")+"");
+		int result = userService.pwFind2(dto);
+		if(result == 0) {
+			map.put("msg", "조회되는 정보가 없습니다.");
+		}else {
+			map.put("msg", "성공");
+		}
+		return map;
 	}
+	
+	@PostMapping(value = "pwfind")
+	public ModelAndView pwchange() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("pwchange");
+		return mav;
+	}
+	
+	@PostMapping(value = "pwchange")
+	public ModelAndView pwchange(@RequestParam("pw") String pw, HttpSession session) {
+		logger.info("pw : " + pw);
+		UserDTO dto = new UserDTO();
+		dto.setId(session.getAttribute("id")+"");
+		dto.setPw(pw);
+		userService.pwchange(dto);
+		return home();
+	}
+	
 	// sjs의 흔적
 	@GetMapping(value = "logout")
 	public String logout(HttpSession session) {
