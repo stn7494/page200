@@ -2,9 +2,12 @@ package ez.en.page.coupon;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +16,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import ez.en.page.domain.Criteria;
+import ez.en.page.domain.PageMaker;
+import ez.en.page.my_coupon.My_couponDTO;
+import ez.en.page.mypage.MypageController;
+import ez.en.page.mypage.MypageService;
+import ez.en.page.user.UserDTO;
 
 
 @Controller
@@ -21,6 +32,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class CouponController {
 	@Autowired
 	private CouponService service;
+	
+	@Autowired
+	private MypageService mService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(CouponController.class);
 	
@@ -31,6 +45,7 @@ public class CouponController {
 		ModelAndView model = new ModelAndView();
 		List<CouponDTO>listAll = service.listAll();
 		logger.info("전체조회" + listAll);
+		
 		model.addObject("listAll", listAll);
 		model.setViewName("coupon/list");
 		return model;
@@ -43,6 +58,7 @@ public class CouponController {
 		ModelAndView model = new ModelAndView();
 		List<CouponDTO>listAll = service.listAll();
 		logger.info("전체조회" + listAll);
+		
 		model.addObject("listAll", listAll);
 		model.setViewName("coupon/list_user");
 		return model;
@@ -123,8 +139,51 @@ public class CouponController {
 		return model;
 	}
 	
-//	쿠폰 수량 감소
+//	쿠폰 발급
+	@GetMapping("mypage/couponlistPage")
+	public ModelAndView couponlist(My_couponDTO mydto, HttpSession session, Criteria cri) throws Exception {
+		//logger.info("쿠폰 이름 : "+cp_name);
+		ModelAndView mav = new ModelAndView();
+		//logger.info("쿠폰코드 : " + mydto.getCp_code());
+		UserDTO udto = (UserDTO)session.getAttribute("user");
+		logger.info("아이디 : " + udto.getId());
+		
+		mydto.setId(udto.getId());
+		service.couponissue(mydto);  //쿠폰발급
+		
+		cri.setId(udto.getId());
+		logger.info(cri.toString());
+		List<CouponDTO> list = mService.couponlistCriteria(cri);
+		mav.addObject("couponlist", list);
+		for (CouponDTO couponDTO : list) {
+			logger.info("쿠폰 정보 : "+couponDTO);
+		}
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(mService.couponcountPaging(cri));
+		mav.addObject("pageMaker", pageMaker);
+		mav.setViewName("mypage/couponlistPage");
+		return mav;
+	}
 	
-
+//	쿠폰 발급확인(ajax)
+	@ResponseBody
+	@PostMapping(value = "couponchk")
+	public Map<String, Object> couponchk(@RequestParam("cp_code") String cp_code, HttpSession session, @RequestParam("cp_amount") int cp_amount){
+		My_couponDTO mydto = new My_couponDTO();
+		mydto.setCp_code(cp_code);
+		UserDTO dto = (UserDTO)session.getAttribute("user");
+		mydto.setId(dto.getId());
+		Map<String, Object> map = new HashMap<String, Object>();
+		if(cp_amount == 0) {
+			map.put("msg", "쿠폰 수량이 초과되서 발급이 불가합니다.");
+		} else {
+			service.couponissue(mydto);
+			logger.info("cp_code값 : " +cp_code);
+			map.put("msg", "쿠폰발급에 성공하셨습니다");
+		}
+		return map;
+	}
 	
 }

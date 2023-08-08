@@ -67,17 +67,18 @@
 							<td>발급받기</td>
 						</tr>
 
-						<c:forEach var="coupon" items="${listAll }">
+						<c:forEach var="coupon" items="${listAll }" varStatus="num">
 							<tr>
-								<td>${coupon.cp_code}</td>
-								<td>${coupon.cp_name}</td>
+								<td id="couponid${num.count }">${coupon.cp_code}</td>
+								<td id="data${num.count}">${coupon.cp_name}</td>
 								<td>${coupon.cp_content}</td>
-								<td>${coupon.cp_amount}</td>
+								<td id="amount${num.count }">${coupon.cp_amount}</td>
 								<td>${coupon.cp_sale}</td>
 								<td>${coupon.cp_start_date}</td>
 								<td>${coupon.cp_end_date}</td>
 								<td colspan="5" align="center">
-								<input class="btn btn-but" type="button" value="발급받기" id="but" />
+								<input class="btn btn-but" type="button" value="발급받기" id="but${num.count}" />
+								
 							</tr>
 						</c:forEach>
 						<tr>
@@ -94,17 +95,34 @@
 					location.href = "${contextPath }";
 				});
 				//발급받기 버튼을 눌렀을 때 처리
-				$("#but").click(function() {
-					alert("쿠폰이 발급되었습니다.");
-					location.href = "/page/couponlistPage";
+				$("#but1").click(function() {
+					var couponid = $("#couponid1").text();
+					//var data = $("#data1").text();
+					var cp_code = $("#couponid1").text();
+					
+					var cp_amount = $("#amount1").text();
+					//alert(cp_code);
+					var insertData = {"cp_code":cp_code, "cp_amount":cp_amount};
+					alert($("#couponid1").text());
+					console.log(insertData);
+					//alert("쿠폰이 발급되었습니다.");
+					//location.href = "/page/mypage/couponlistPage?cp_code="+couponid;
+					
+					$.ajax({
+						url:"${contextPath}/couponchk",
+						data:insertData,
+						dataType:"json",
+						type:"POST",
+						success:function(map){ // 컨트롤러에 성공 메세지가 뜸.
+							alert(map.msg);
+						},
+						error:function(){
+							alert("실패");
+						}
+						
+					});
 				});
-
-					//if($("input[name = checkbox]").is(':checked'){
-						//alert("발급받을 쿠폰을 체크해주세요.");
-//					if(${checkbox[0] != true}){
-					//}else {
-						//location.href = "/page/coupon";
-					//}
+				
 			</script>
 		</div>
 

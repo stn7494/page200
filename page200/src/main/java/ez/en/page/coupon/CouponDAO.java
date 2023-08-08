@@ -2,6 +2,8 @@ package ez.en.page.coupon;
 
 import java.util.List;
 
+import ez.en.page.my_coupon.My_couponDTO;
+
 public interface CouponDAO {
 
 //	쿠폰 전체조회
@@ -18,4 +20,6 @@ public interface CouponDAO {
 	public int birthlist(String birth);
 //	쿠폰수량 감소
 	public int updatenum(String cp_code);
+//	쿠폰발급
+	public int couponissue(My_couponDTO mydto);
 }

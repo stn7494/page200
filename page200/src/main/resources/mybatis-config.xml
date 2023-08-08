@@ -20,5 +20,6 @@
 		<typeAlias alias="RegionDTO" type="ez.en.page.dto.RegionDTO"/>
 		<typeAlias alias="OptionDTO" type="ez.en.page.dto.OptionDTO"/>
 		<typeAlias alias="ThemaDTO" type="ez.en.page.dto.ThemaDTO"/>
+		<typeAlias alias="My_couponDTO" type="ez.en.page.my_coupon.My_couponDTO"/>
 	</typeAliases>
 </configuration>
