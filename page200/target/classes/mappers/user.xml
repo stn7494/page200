@@ -6,7 +6,7 @@
 	<!-- 로그인 처리를 위한 SQL -->
 	
 	<select id="login" resultType="UserDTO" parameterType="UserDTO">
-	SELECT id, nick, f_code FROM user where id =#{id} AND pw =#{pw} AND admin is null
+	SELECT id, nick, f_code, stop FROM user where id =#{id} AND pw =#{pw} AND admin is null
 	</select>
 	
 	<select id="adminLogin" parameterType="UserDTO" resultType="UserDTO">
@@ -36,6 +36,15 @@
 		where id = #{id} and phone = #{phone}
 	</select>
 	
+	<select id="pwFind2" parameterType="UserDTO" resultType="int">
+		select count(*) from user
+		where id = #{id} and phone = #{phone} and name = #{name}
+	</select>
+	
+	<update id="pwchange" parameterType="UserDTO">
+		update user set pw = #{pw}
+		where id = #{id}
+	</update>
 	
 	<!-- sjs의 흔적 -->
 	<!-- 회원정보 하나 가져오기 -->

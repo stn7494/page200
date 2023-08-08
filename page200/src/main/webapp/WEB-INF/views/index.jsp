@@ -9,6 +9,7 @@
 * License: https://creativecommons.org/licenses/by/3.0/
 */ -->
 <!DOCTYPE html>
+
 <html lang="ko">
   <head>
     <%@ include file="include/head.jsp" %>
@@ -17,6 +18,13 @@
       Property &mdash; Free Bootstrap 5 Website Template by Untree.co
     </title>
   </head>
+<script type="text/javascript">
+	$(document).ready(function(){
+		if("${msg}" == "stop"){
+			alert("정지당한 계정입니다.");
+		}
+	});
+</script>
   <body>
     <div class="site-mobile-menu site-navbar-target">
       <div class="site-mobile-menu-header">

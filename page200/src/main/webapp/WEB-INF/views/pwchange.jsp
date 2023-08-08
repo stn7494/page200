@@ -14,22 +14,8 @@
     <%@ include file="include/head.jsp" %>
 
     <title>
-    	비밀번호 찾기
+    	main템플렛
     </title>
-   <style type="text/css">
-   a:link {
-  color : green;
-}
-a:visited {
-  color : green;
-}
-a:hover {
-  color : green;
-}
-a:active {
-  color : green;
-}
-   </style>
   </head>
   <body>
     <div class="site-mobile-menu site-navbar-target">
@@ -80,58 +66,60 @@ a:active {
       <div class="container">
       	<!-- 여기에 내용을 작성 -->
       	<div>
-      		<form action="pwfind" method="post">
-	      		<table style="margin: auto;">
-	      			<tr>
-	      				<td><p>비밀번호를 찾고자하는 아이디를 입력해주세요.</p></td>
-	      			</tr>
-	      			<tr>
-	      				<td>
-	      					<input type="text" id="id" name="id" placeholder="아이디">
-	      				</td>
-	      			</tr>
-	      			<tr>
-	      				<td>
-	      					<input type="button" value="다음" id="next">
-	      				</td>
-	      			</tr>
-	      			<tr>
-	      				<td>아이디가 기억나지 않는다면? <a href="${contextPath}/idfind">아이디 찾기</a>></td>
-	      			</tr>
+      		<form id="next" action="pwchange" method="post">
+    	  		<table>
+    	  			<tr>
+    	  				<td>비밀번호 : </td>
+    	  				<td><input type="password" id="pw" name="pw" placeholder="비밀번호"></td>
+    	  			</tr>
+    	  			<tr>
+    	  				<td colspan="2">
+    	  					<p style="color: gray;" id="pwregchk">비밀번호는 영문 숫자 특수기호 조합 8자리 이상자리 사이로 입력해주세요.</p>
+    	  				</td>
+    	  			</tr>
+    	  			<tr>
+    	  				<td>비밀번호 확인 : </td>
+    	  				<td><input type="password" id="pwchk" name="pwchk" placeholder="비밀번호 확인"></td>
+    	  			</tr>
+    	  			<tr>
+    	  				<td colspan="2">
+    	  					<p id="pwchk2"></p>
+    	  				</td>
+    	  			</tr>
+    	  			<tr>
+    	  				<td colspan="2"><input type="button" value="비밀번호 변경하기" id="chk"></td>
+    	  			</tr>
 	      		</table>
       		</form>
       	</div>
       </div>
     </div>
+	
 	<script type="text/javascript">
-		$("#next").click(function(){
-			var id = $("#id").val();
-			var paramData = {"id":id};
-			if(id == ""){
-				alert("아이디를 입력해주세요");
-				$("#id").focus();
+		$("#pw").blur(function(){
+			var pwregchk = $("#pwregchk");
+			var pw = $("#pw").val();
+			
+			var reg = new RegExp("^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$");
+			if(!(reg.test(pw))){
+				pwregchk.css("color", "red");
+				pwregchk.text("비밀번호는 영문 숫자 특수기호 조합 8자리 이상자리 사이로 입력해주세요.");
+				$("#pw").focus();
+			}else if(reg.test(pw)){
+				pwregchk.css("color", "green");
+				pwregchk.text("사용가능한 비밀번호 입니다.");
+			}
+		});
+		$("#chk").click(function(){
+			if($("#pw").val() != $("#pwchk").val()){
+				alert("비밀번호 확인이 다릅니다.");
 			}else{
-				$.ajax({
-					url:"${contextPath}/idchk",
-					data:paramData,
-					type:"POST",
-					dataType:"json",
-					success:function(result){
-						if(result.chk == true){
-							alert("입력하신 아이디는 찾을 수 없습니다.");
-							$("#id").focus();
-							//location.href="${contextPath}/serachid";
-						}else{
-							location.href="${contextPath}/pwfind";
-						}
-					},
-					error:function(){
-						alert("실패");
-					}
-				});
+				alert("비밀번호가 변경되었습니다.");
+				$("#next").submit();
 			}
 		});
 	</script>
+	
 	
 	<%@ include file="include/footer.jsp" %>
     <!-- /.site-footer -->

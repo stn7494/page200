@@ -54,6 +54,18 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
+	public int pwFind2(UserDTO dto) {
+		// TODO Auto-generated method stub
+		return dao.pwFind2(dto);
+	}
+	
+	@Override
+	public int pwchange(UserDTO dto) {
+		// TODO Auto-generated method stub
+		return dao.pwchange(dto);
+	}
+	
+	@Override
 	public int edit(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		return dao.edit(map);
@@ -64,6 +76,10 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return dao.info(id);
 	}
+
+	
+
+	
 
 	
 

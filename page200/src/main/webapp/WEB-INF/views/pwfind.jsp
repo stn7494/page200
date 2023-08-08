@@ -81,7 +81,7 @@
 	      					핸드폰 번호 : 
 	      				</td>
 	      				<td><input type="text" name="phone" id="phone" placeholder="핸드폰 번호는 - 빼고 입력해주세요"></td>
-	      				<td><input type="button" value="조회하기" id="chk"></td>
+	      				<td><input type="button" value="인증하기" id="chk"></td>
 	      			</tr>
 	      			<tr>
 	      				<td colspan="2">
@@ -111,20 +111,31 @@
 				}else if(!(reg.test($("#phone").val()))){
 					alert("-을 뺀 올바른 핸드폰 번호를 입력해주세요");
 				}else{
-					var data = {"name":$("#name").val()
-							,"phone":$("#phone").val()
+					var formData = {
+						"name" : $("#name").val(),
+						"phone" : $("#phone").val()
 					};
+					
 					$.ajax({
-						url:,
-						data:,
-						dataType:,
-						type:,
-						success:,
-						error:
+						url:"${contextPath}/userDataFind",
+						data:formData,
+						dataType:"json",
+						type:"POST",
+						success:function(result){
+							if(result.msg == "성공"){
+								alert("인증에 성공하셨습니다. 다음버튼을 눌러주세요");
+								$("#next").css("display","block");
+							}else{
+								alert(result.msg);
+							}
+						},
+						error:function(result){
+							alert("실패");
+						}
 					});
 				}
-			});
-		});
+			}); // 유효성 끝
+		}); // 함수 끝
 	</script>
 	<%@ include file="include/footer.jsp" %>
     <!-- /.site-footer -->

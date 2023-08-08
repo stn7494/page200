@@ -14,22 +14,8 @@
     <%@ include file="include/head.jsp" %>
 
     <title>
-    	비밀번호 찾기
+    	main템플렛
     </title>
-   <style type="text/css">
-   a:link {
-  color : green;
-}
-a:visited {
-  color : green;
-}
-a:hover {
-  color : green;
-}
-a:active {
-  color : green;
-}
-   </style>
   </head>
   <body>
     <div class="site-mobile-menu site-navbar-target">
@@ -80,58 +66,33 @@ a:active {
       <div class="container">
       	<!-- 여기에 내용을 작성 -->
       	<div>
-      		<form action="pwfind" method="post">
-	      		<table style="margin: auto;">
-	      			<tr>
-	      				<td><p>비밀번호를 찾고자하는 아이디를 입력해주세요.</p></td>
-	      			</tr>
-	      			<tr>
-	      				<td>
-	      					<input type="text" id="id" name="id" placeholder="아이디">
-	      				</td>
-	      			</tr>
-	      			<tr>
-	      				<td>
-	      					<input type="button" value="다음" id="next">
-	      				</td>
-	      			</tr>
-	      			<tr>
-	      				<td>아이디가 기억나지 않는다면? <a href="${contextPath}/idfind">아이디 찾기</a>></td>
-	      			</tr>
-	      		</table>
-      		</form>
+      		<table class="table">
+      			<tr>
+      				<th>체크박스</th>
+      				<th>회원 아이디</th>
+      				<th>회원 닉네임</th>
+      				<th>회원 정지여부</th>
+      			</tr>
+      			<c:forEach items="${list }" var="list">
+      			<tr>
+      				<td><input type="checkbox" name="chk"></td>
+      				<td>${list.id }</td>
+      				<td>${list.nick }</td>
+      				<c:choose>
+      					<c:when test="${list.stop == 1 }">
+      						<td style="color: red">회원정지</td>
+      					</c:when>
+      					<c:when test="${list.stop == 0 }">
+      						<td style="color: green;">이용가능</td>
+      					</c:when>
+      				</c:choose>
+      			</tr>
+      			</c:forEach>
+      		</table>
       	</div>
       </div>
     </div>
-	<script type="text/javascript">
-		$("#next").click(function(){
-			var id = $("#id").val();
-			var paramData = {"id":id};
-			if(id == ""){
-				alert("아이디를 입력해주세요");
-				$("#id").focus();
-			}else{
-				$.ajax({
-					url:"${contextPath}/idchk",
-					data:paramData,
-					type:"POST",
-					dataType:"json",
-					success:function(result){
-						if(result.chk == true){
-							alert("입력하신 아이디는 찾을 수 없습니다.");
-							$("#id").focus();
-							//location.href="${contextPath}/serachid";
-						}else{
-							location.href="${contextPath}/pwfind";
-						}
-					},
-					error:function(){
-						alert("실패");
-					}
-				});
-			}
-		});
-	</script>
+
 	
 	<%@ include file="include/footer.jsp" %>
     <!-- /.site-footer -->
