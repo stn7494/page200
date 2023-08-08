@@ -64,10 +64,6 @@
 						<div class="box-body">
 
 							<div class="form-group">
-								<label>글번호</label> <input type="text" name="n_code"
-									class="form-control" placeholder="글 번호를 입력하세요.">
-							</div>
-							<div class="form-group">
 								<label>제목</label> <input type="text" name="n_title"
 									class="form-control" placeholder="제목을 입력하세요">
 							</div>
@@ -76,17 +72,12 @@
 								<textarea class="form-control" name="n_content" rows="3"
 									placeholder="내용을 입력하세요"></textarea>
 							</div>
-
-							<div class="form-group">
-								<label>작성자</label> <input type="text" name="n_writer"
-									class="form-control" value="${notice.n_writer}"
-									readonly="readonly">
-							</div>
 						</div>
 
 						<div class="box-footer">
 							<button type="submit" class="btn btn-primary">작성완료</button>
 						</div>
+						<input type="hidden" name="n_writer"	class="form-control" value="${user.id}">
 					</form>
 			</section>
 			<!-- /.content -->

@@ -32,13 +32,13 @@ public class OnetooneDAOImpl implements OnetooneDAO {
 	}
 
 	@Override
-	public OnetooneDTO selectOne(String o_code) {
+	public OnetooneDTO selectOne(int o_code) {
 		// TODO Auto-generated method stub
 		return sqlsession.selectOne(namespace + "selectOne1",o_code);
 	}
 
 	@Override
-	public int delete(String o_code) {
+	public int delete(int o_code) {
 		// TODO Auto-generated method stub
 		return sqlsession.delete(namespace + "delete1",o_code);
 	}

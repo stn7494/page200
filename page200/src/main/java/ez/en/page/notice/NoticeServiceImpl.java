@@ -30,13 +30,13 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public NoticeDTO selectOne(String n_code) {
+	public NoticeDTO selectOne(int n_code) {
 		// TODO Auto-generated method stub
 		return dao.selectOne(n_code);
 	}
 
 	@Override
-	public int delete(String n_code) {
+	public int delete(int n_code) {
 		// TODO Auto-generated method stub
 		return dao.delete(n_code);
 	}

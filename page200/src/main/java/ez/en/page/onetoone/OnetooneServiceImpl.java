@@ -30,13 +30,13 @@ public class OnetooneServiceImpl implements OnetooneService {
 	}
 
 	@Override
-	public OnetooneDTO selectOne(String o_code) {
+	public OnetooneDTO selectOne(int o_code) {
 		// TODO Auto-generated method stub
 		return dao.selectOne(o_code);
 	}
 
 	@Override
-	public int delete(String o_code) {
+	public int delete(int o_code) {
 		// TODO Auto-generated method stub
 		return dao.delete(o_code);
 	}

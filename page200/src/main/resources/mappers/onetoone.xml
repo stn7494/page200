@@ -9,7 +9,7 @@
 		select o_code, id, f_code, o_title, o_content, o_w_date from
 		onetoone
 	</select>
-	<select id="selectOne1" parameterType="String"
+	<select id="selectOne1" parameterType="int"
 		resultType="OnetooneDTO">
 		<!-- 1 대 1 게시판 선택 조회 -->
 		select o_code, id, f_code, o_title, o_content, o_w_date from
@@ -27,7 +27,7 @@
 		o_w_date = now() where
 		o_code=#{o_code}
 	</update>
-	<delete id="delete1" parameterType="OnetooneDTO">
+	<delete id="delete1" parameterType="int">
 		<!-- 1 대 1 게시판 삭제 -->
 		delete from page200.onetoone where o_code = #{o_code}
 	</delete>

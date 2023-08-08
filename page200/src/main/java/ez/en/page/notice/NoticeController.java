@@ -28,7 +28,7 @@ public class NoticeController {
 	// kws의 흔적
 	// 공지사항 상세조회
 	@GetMapping("notice/selectOne")
-	public ModelAndView selectOne(@RequestParam("n_code") String n_code) {
+	public ModelAndView selectOne(@RequestParam("n_code") int n_code) {
 		ModelAndView mav = new ModelAndView();
 		NoticeDTO dto = service.selectOne(n_code);
 		mav.addObject("notice", dto);
@@ -58,7 +58,7 @@ public class NoticeController {
 
 	// 공지사항 수정
 	@GetMapping("notice/update")
-	public ModelAndView update(@RequestParam("n_code") String n_code) {
+	public ModelAndView update(@RequestParam("n_code") int n_code) {
 		ModelAndView mav = new ModelAndView();
 		NoticeDTO dto = service.selectOne(n_code);
 		mav.addObject("notice", dto);
@@ -77,7 +77,7 @@ public class NoticeController {
 			mav.addObject("notice", dtoo);
 		} else {
 			mav.addObject("list", list);
-			mav.setViewName("notice/list");
+			mav.setViewName("redirect:/notice/list");
 			service.update(dto);
 		}
 		return mav;
@@ -85,7 +85,7 @@ public class NoticeController {
 
 	// 공지사항 삭제
 	@GetMapping("notice/delete")
-	public ModelAndView delete(String n_code) {
+	public ModelAndView delete(int n_code) {
 		service.delete(n_code);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list", service.listAll());

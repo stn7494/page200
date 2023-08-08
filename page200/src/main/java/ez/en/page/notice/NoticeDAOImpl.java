@@ -33,15 +33,15 @@ public class NoticeDAOImpl implements NoticeDAO {
 	}
 
 	@Override
-	public NoticeDTO selectOne(String n_code) {
+	public NoticeDTO selectOne(int n_code) {
 		// TODO Auto-generated method stub
-		return sqlsession.selectOne(namespace + "selectOne", n_code);
+		return sqlsession.selectOne(namespace + "selectOne",n_code);
 	}
 
 	@Override
-	public int delete(String n_code) {
+	public int delete(int n_code) {
 		// TODO Auto-generated method stub
-		return sqlsession.delete(namespace + "delete", n_code);
+		return sqlsession.delete(namespace + "delete",n_code);
 	}
 
 }

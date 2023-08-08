@@ -82,7 +82,7 @@
 				
 							<c:choose>
 								<c:when test="${admin == null }">
-									관리자만 답변 가능
+									관리자만 추가/수정 가능
 								</c:when>
 								<c:otherwise>
 									관리자님 환영합니다

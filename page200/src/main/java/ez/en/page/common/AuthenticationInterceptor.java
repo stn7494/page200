@@ -16,7 +16,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 //		클라이넌트의 부여한 세션을 가져온다
 		HttpSession session = request.getSession();
 
-		if (session.getAttribute("user") == null) {
+		if (session.getAttribute("user") == null && session.getAttribute("admin") == null) {
 //			로그인 으로 이동시키키
 			response.sendRedirect(request.getContextPath() + "/login");
 			return false;

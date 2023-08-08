@@ -31,8 +31,8 @@
               <li class="has-children">
               <a>고객센터</a>
               <ul class = "dropdown">
-              	  <li><a href ="onetoone/list1">1대1 문의사항</a></li>
-              	  <li><a href ="onetoone_reply/list2">1대1 문의사항 답변</a></li>
+              	  <li><a href ="${contextPath }/onetoone/list1">1대1 문의사항</a></li>
+              	  <li><a href ="${contextPath }/onetoone_reply/list2">1대1 문의사항 답변</a></li>
               </ul>
               </li>
               
@@ -52,8 +52,8 @@
              	 <li><a href="coupon">쿠폰</a></li>
               </c:if>
               <li><a href="camping/list">캠핑장</a></li>
-              <li><a href="review">리뷰</a></li>
-              <li><a href ="notice/list">공지사항</a></li>
+              <li><a href="${contextPath }/review">리뷰</a></li>
+              <li><a href ="${contextPath }/notice/list">공지사항</a></li>
 
 
             </ul>
