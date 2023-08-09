@@ -6,8 +6,6 @@ public interface UserService {
 
 	public UserDTO login(UserDTO dto);
 	
-	public UserDTO adminLogin(UserDTO dto);
-	
 	public int signup(UserDTO dto);
 	
 	public String idchk(String id);

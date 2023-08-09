@@ -40,7 +40,7 @@
       <div class="container">
         <div class="row justify-content-center align-items-center">
           <div class="col-lg-9 text-center mt-5">
-            <h1 class="heading" data-aos="fade-up">매인템플렛</h1>
+            <h1 class="heading" data-aos="fade-up">비밀번호 찾기</h1>
 
             <nav
               aria-label="breadcrumb"
@@ -53,7 +53,7 @@
                   class="breadcrumb-item active text-white-50"
                   aria-current="page"
                 >
-                  Properties
+                  비밀번호 찾기
                 </li>
               </ol>
             </nav>
@@ -67,25 +67,19 @@
       	<!-- 여기에 내용을 작성 -->
       	<div>
       		<form id="pwfind" method="post">
-	      		<table>
+	      		<table class="table table-borderless" style="width: 50%; margin: auto; ">
 	      			<tr>
 	      				<td>
-	      					이름 : 
-	      				</td>
-	      				<td colspan="2">
-	      					<input type="text" name="name" id="name" placeholder="이름을 입력해주세요">
+	      					<input class="form-control" type="text" name="name" id="name" placeholder="이름">
 	      				</td>
 	      			</tr>
 	      			<tr>
-	      				<td>
-	      					핸드폰 번호 : 
-	      				</td>
-	      				<td><input type="text" name="phone" id="phone" placeholder="핸드폰 번호는 - 빼고 입력해주세요"></td>
-	      				<td><input type="button" value="인증하기" id="chk"></td>
+	      				<td><input class="form-control" type="text" name="phone" id="phone" placeholder="핸드폰 번호는 - 빼고 입력해주세요"></td>
+	      				<td><input class="btn btn-outline-info" type="button" value="인증하기" id="chk"></td>
 	      			</tr>
 	      			<tr>
-	      				<td colspan="2">
-	      					<input style="display: none;" type="button" id="next" value="다음" >
+	      				<td>
+	      					<input class="btn btn-outline-info" style="display: none; width: 100%" type="button" id="next" value="다음" >
 	      				</td>
 	      			</tr>
 	      		</table>

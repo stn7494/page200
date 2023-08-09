@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
-    <%@ include file="include/head.jsp" %>
+    <%@ include file="/WEB-INF/views/include/head.jsp" %>
 
     <title>
     	main템플렛
@@ -28,7 +28,7 @@
     </div>
 
 	<!-- 상단에 네비게이션 -->
-    <%@ include file="include/top_menu.jsp" %>
+    <%@ include file="/WEB-INF/views/include/top_menu.jsp" %>
 	
 	
 	
@@ -68,33 +68,63 @@
       	<div>
       		<table class="table">
       			<tr>
-      				<th>체크박스</th>
       				<th>회원 아이디</th>
       				<th>회원 닉네임</th>
       				<th>회원 정지여부</th>
+      				<th>체크박스</th>
       			</tr>
       			<c:forEach items="${list }" var="list">
       			<tr>
-      				<td><input type="checkbox" name="chk"></td>
       				<td>${list.id }</td>
       				<td>${list.nick }</td>
       				<c:choose>
       					<c:when test="${list.stop == 1 }">
-      						<td style="color: red">회원정지</td>
+      						<td colspan="2" style="color: red; font-weight: bold;">회원정지</td>
       					</c:when>
       					<c:when test="${list.stop == 0 }">
-      						<td style="color: green;">이용가능</td>
+      						<td style="color: green; font-weight: bold;">이용가능</td>
+      						<td><input type="checkbox" name="chk" value="${list.id }"></td>
       					</c:when>
       				</c:choose>
       			</tr>
       			</c:forEach>
+      			<tr>
+      			</tr>
       		</table>
+      		<input class="btn btn-outline-danger" type="button" id="stop" value="회원정지">
       	</div>
       </div>
     </div>
-
+	<script type="text/javascript">
+		$("#stop").click(function(){
+			var arr = [];
+			$("input[name=chk]:checked").each(function(){
+				arr.push($(this).val());
+			});
+			if(arr == ""){
+				alert("선택된 회원이 없습니다");
+			}else{
+			var data = {"userList":arr}
+				$.ajax({
+					url:"${contextPath}/userStop",
+					data:data,
+					dataType:"json",
+					type:"POST",
+					success:function(result){
+						if(result != null){
+							alert(result.result);
+							location.href="${contextPath}/userList";
+						}
+					},
+					error:function(){
+						alert("실패");
+					}
+				});
+			}
+		});
+	</script>
 	
-	<%@ include file="include/footer.jsp" %>
+	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
     <!-- /.site-footer -->
 
     <!-- Preloader -->
@@ -106,6 +136,6 @@
     </div>
 
 	<!-- 플러그인 -->
-    <%@ include file="include/plugin.jsp" %>
+    <%@ include file="/WEB-INF/views/include/plugin.jsp" %>
   </body>
 </html>

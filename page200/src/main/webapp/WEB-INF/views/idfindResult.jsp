@@ -40,7 +40,7 @@
       <div class="container">
         <div class="row justify-content-center align-items-center">
           <div class="col-lg-9 text-center mt-5">
-            <h1 class="heading" data-aos="fade-up">매인템플렛</h1>
+            <h1 class="heading" data-aos="fade-up">아이디 찾기 결과</h1>
 
             <nav
               aria-label="breadcrumb"
@@ -53,7 +53,7 @@
                   class="breadcrumb-item active text-white-50"
                   aria-current="page"
                 >
-                  Properties
+                  아이디 찾기 결과
                 </li>
               </ol>
             </nav>
@@ -66,27 +66,27 @@
       <div class="container">
       	<!-- 여기에 내용을 작성 -->
       	<div>
-	      	<table>
+	      	<table class="table table-borderless" style="width: 40%; margin: auto; ">
 	      		<c:choose>
 	      			<c:when test="${result == null }">
 	      				<tr>
 	      					<td>
-	      					 	<h1 style="color: gray;">입력하신 정보의 아이디가 존재하지 않습니다.</h1>
+	      					 	<h3 style="color: gray;">입력하신 정보의 <br> 아이디가 존재하지 않습니다.</h3>
 	      					</tr>
 	      					<tr>
-	      					 	<td><input type="button" id="idfind" value="아이디 찾기"></td>
-	      					 	<td><input type="button" id="back" value="홈으로">	</td>
+	      					 	<td><input class="btn btn-outline-success" type="button" id="idfind" value="아이디 찾기"></td>
+	      					 	<td><input class="btn btn-outline-success" type="button" id="back" value="홈으로">	</td>
 	      					</tr>
 	      					 </c:when>
 	      					 <c:otherwise>
 	      					 <tr>
 	      						<td>
-	      					 	<h1 style="color: green;">회원님의 아이디는 ${result } 입니다.</h1>
+	      					 	<h3 style="color: green;">회원님의 아이디는<br>${result } 입니다.</h3>
 	      					 	</td>
 	      					</tr>
 	      					<tr>
-	      					 	<td><input type="button" id="pwfind" value="비밀번호 찾기"></td>
-	      					 	<td><input type="button" id="back" value="홈으로">	</td>
+	      					 	<td><input class="btn btn-outline-success" type="button" id="pwfind" value="비밀번호 찾기"></td>
+	      					 	<td><input class="btn btn-outline-success" type="button" id="back" value="홈으로">	</td>
 	      					 </tr>
 	      				 </c:otherwise>
 	      			</c:choose>

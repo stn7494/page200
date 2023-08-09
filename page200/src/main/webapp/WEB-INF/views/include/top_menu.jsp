@@ -15,6 +15,7 @@
               <li><a href="${contextPath }/signup">회원가입</a></li>
               </c:if>
               <c:if test="${user != null }">
+              <li style="color: white;">${user.nick }님 환영합니다.</li>
               <li><a href="${contextPath }/logout">로그아웃</a></li>
               <li class="has-children">
               <a href="${contextPath }/edit">내 정보 수정</a>

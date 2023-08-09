@@ -40,7 +40,7 @@
       <div class="container">
         <div class="row justify-content-center align-items-center">
           <div class="col-lg-9 text-center mt-5">
-            <h1 class="heading" data-aos="fade-up">매인템플렛</h1>
+            <h1 class="heading" data-aos="fade-up">비밀번호 찾기</h1>
 
             <nav
               aria-label="breadcrumb"
@@ -53,7 +53,7 @@
                   class="breadcrumb-item active text-white-50"
                   aria-current="page"
                 >
-                  Properties
+                  비밀번호 찾기
                 </li>
               </ol>
             </nav>
@@ -67,27 +67,25 @@
       	<!-- 여기에 내용을 작성 -->
       	<div>
       		<form id="next" action="pwchange" method="post">
-    	  		<table>
+    	  		<table class="table table-borderless" style="width: 50%; margin: auto; ">
     	  			<tr>
-    	  				<td>비밀번호 : </td>
-    	  				<td><input type="password" id="pw" name="pw" placeholder="비밀번호"></td>
+    	  				<td><input class="form-control" type="password" id="pw" name="pw" placeholder="비밀번호"></td>
     	  			</tr>
     	  			<tr>
-    	  				<td colspan="2">
+    	  				<td>
     	  					<p style="color: gray;" id="pwregchk">비밀번호는 영문 숫자 특수기호 조합 8자리 이상자리 사이로 입력해주세요.</p>
     	  				</td>
     	  			</tr>
     	  			<tr>
-    	  				<td>비밀번호 확인 : </td>
-    	  				<td><input type="password" id="pwchk" name="pwchk" placeholder="비밀번호 확인"></td>
+    	  				<td><input class="form-control" type="password" id="pwchk" name="pwchk" placeholder="비밀번호 확인"></td>
     	  			</tr>
     	  			<tr>
-    	  				<td colspan="2">
+    	  				<td>
     	  					<p id="pwchk2"></p>
     	  				</td>
     	  			</tr>
     	  			<tr>
-    	  				<td colspan="2"><input type="button" value="비밀번호 변경하기" id="chk"></td>
+    	  				<td colspan="2"><input style="width: 100%" class="btn btn-outline-info" type="button" value="비밀번호 변경하기" id="chk"></td>
     	  			</tr>
 	      		</table>
       		</form>
