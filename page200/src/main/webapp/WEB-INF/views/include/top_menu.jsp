@@ -15,6 +15,7 @@
               <li><a href="${contextPath }/signup">회원가입</a></li>
               </c:if>
               <c:if test="${user != null }">
+              <li style="color: white;">${user.nick }님 환영합니다.</li>
               <li><a href="${contextPath }/logout">로그아웃</a></li>
               <li class="has-children">
               <a href="${contextPath }/edit">내 정보 수정</a>
@@ -43,8 +44,8 @@
               <li class="has-children">
               <a>고객센터</a>
               <ul class = "dropdown">
-              	  <li><a href ="onetoone/list1">1대1 문의사항</a></li>
-              	  <li><a href ="onetoone_reply/list2">1대1 문의사항 답변</a></li>
+              	  <li><a href ="${contextPath }/onetoone/list1">1대1 문의사항</a></li>
+              	  <li><a href ="${contextPath }/onetoone_reply/list2">1대1 문의사항 답변</a></li>
               </ul>
               </li>
                	 <li><a href="logout">로그아웃</a></li>

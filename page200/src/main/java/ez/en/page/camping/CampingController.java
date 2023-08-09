@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+
 import ez.en.page.camping_thema.ThemaDTO;
 import ez.en.page.camping_thema.ThemaService;
 import ez.en.page.domain.Criteria;
 import ez.en.page.domain.PageMaker;
+
 
 
 @Controller
@@ -31,6 +34,10 @@ public class CampingController {
 	private CampingService campingService;
 	private ThemaService themaService;
 	private static final Logger logger = LoggerFactory.getLogger(CampingController.class);
+	
+	// kdj 추가함
+	@Autowired
+	private ReviewService rservice;
 	
 	//1.캠핑장 등록 (캠핑장 등록 버튼은 admin의 캠핑장 전체목록(list)view -> register) -> 등록 후 list목록으로 (registerPost)
 	//캠핑장 등록 폼 (registerGET)
@@ -85,6 +92,7 @@ public class CampingController {
 		model.addAttribute("camping", campingService.detail(cam_code));
 //		model.addAttribute(campingService.detail(cam_code));
 	}
+
 	
 //	//캠핑장 상세조회에 thema_name들어갈수 있게 추가
 //	@GetMapping("/detail")
@@ -211,6 +219,13 @@ public class CampingController {
 //	
 	
 	//5.캠핑장 상세 페이지 (캠핑장 전체 목록에서 캠핑장 이름(cam_name)을 클릭 했을 경우 -> 상세페이지(detail)로 이동
+	@GetMapping("camping/detail")
+	public String detail(@RequestParam ("cam_code") String cam_code, Model model, HttpServletRequest request) throws Exception {
+		int count = rservice.reviewCount(cam_code);
+		model.addAttribute("count",count);
+		
+		return "camping/detail";
+	}
 	
 	//6.캠핑장 예약 정보(캠핑장 상세페이지에서 보여줄 각 캠핑장별 예약 정보)
 }

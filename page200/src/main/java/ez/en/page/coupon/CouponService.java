@@ -3,6 +3,7 @@ package ez.en.page.coupon;
 import java.util.List;
 
 import ez.en.page.my_coupon.My_couponDTO;
+import ez.en.page.user.UserDTO;
 
 public interface CouponService {
 
@@ -58,4 +59,16 @@ public interface CouponService {
 	 * @return
 	 */
 	public int couponissue(My_couponDTO mydto);
+	/**
+	 * 쿠폰함에 해당쿠폰 있는지 여부 조회
+	 * @return
+	 */
+	public int mycouponCheck(My_couponDTO mydto);
+	
+	/**
+	 * 차월 생일 회원조회
+	 * @param udto
+	 * @return
+	 */
+	public int birthday(String id);
 }

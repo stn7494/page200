@@ -16,6 +16,21 @@
     <title>
       Property &mdash; Free Bootstrap 5 Website Template by Untree.co
     </title>
+<style type="text/css">
+input[type=file]::file-selector-button {
+  width: 150px;
+  height: 30px;
+  background: #fff;
+  border: 1px solid rgb(77,77,77);
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover {
+    background: rgb(77,77,77);
+    color: #fff;
+  }
+}
+}
+</style>
   </head>
   <body>
     <div class="site-mobile-menu site-navbar-target">
@@ -66,69 +81,62 @@
       	<!-- 여기에 내용을 작성 -->
       	<div>
       		<form id="move" method="post" enctype="multipart/form-data">
-      		<table class="table">
+      		<table class="table table-borderless" style="width: 60%; margin: auto; ">
       			<tr>
-      				<td>프로필사진</td>
+      				<td colspan="3">프로필사진</td>
+      			</tr>
+      			<tr>
       				<td><input type="file" id="profile" name="profile" accept="image/*" ></td>
-      				<td><input type="button" id="thumnail" value="미리보기"></td>
+      				<td><input class="btn btn-outline-info" type="button" id="thumnail" value="미리보기"></td>
       			</tr>
       			<tr id="showpro">
       				
       			</tr>
       			<tr>
-      				<td>아이디</td>
-      				<td><input type="text" id="id" name="id" placeholder="아이디"></td>
-      				<td><input type="button" id="idchk" value="아이디 중복 체크"> </td>
+      				<td><input class="form-control" type="text" id="id" name="id" placeholder="아이디"></td>
+      				<td><input class="btn btn-outline-info" type="button" id="idchk" value="아이디 중복 체크"> </td>
       			</tr>
       			<tr>
-      				<td>비밀번호</td>
-      				<td colspan="2"><input type="password" id="pw" name="pw" placeholder="비밀번호"></td>
+      				<td><input class="form-control" type="password" id="pw" name="pw" placeholder="비밀번호"></td>
+      			</tr>
+      			<tr>
+      				<td colspan="3" id="useridchk"></td>
+      			</tr>
+      			<tr>
+      				<td colspan="3" id="userpwchk"></td>
+      			</tr>
+      			<tr>
+      				<td><input class="form-control" type="text" id="name" name="name" placeholder="이름"></td>
+      			</tr>
+      			<tr>
+      				<td><input class="form-control" type="text" id="nick" name="nick" placeholder="닉네임"></td>
+      				<td><input class="btn btn-outline-info" type="button" id="nickchk" value="닉네임 중복 체크"></td>
+      			</tr>
+      			<tr>
+      				<td><input class="form-control" type="date" id="birth" name="birth"></td>
+      			</tr>
+      			<tr>
+      				<td><input class="form-control" type="text" id="phone" name="phone" placeholder="핸드폰번호"></td>
+      			</tr>
+      			<tr>
+      				<td><input class="form-control" type="text" id="email" name="email" placeholder="이메일"></td>
+      			</tr>
+      			<tr>
+      				<td id="usernamechk" colspan="2"></td>
+      			</tr>
+      			<tr>
+      				<td id="usernickchk" colspan="2"></td>
+      			</tr>
+      			<tr>
+      				<td id="userbrithchk" colspan="2"></td>
+      			</tr>
+      				<tr>
+      				<td id="userphonechk" colspan="2"></td>
+      			</tr>
+      			<tr>
+      				<td colspan="2"><input class="btn btn-outline-success" style="width: 100%" type="button" id="signup" value="회원가입"></td>
       			</tr>
       		</table>
-      		<div id="useridchk">
-      			
-      		</div>
-      		<div id="userpwchk">
-      			
-      		</div>
-      		<table class="table">
-      			<tr>
-      				<td>이름</td>
-      				<td colspan="2"><input type="text" id="name" name="name" placeholder="이름"></td>
-      			</tr>
-      			<tr>
-      				<td>닉네임</td>
-      				<td><input type="text" id="nick" name="nick" placeholder="닉네임"></td>
-      				<td><input type="button" id="nickchk" value="닉네임 중복 체크"></td>
-      			</tr>
-      			<tr>
-      				<td>생일</td>
-      				<td colspan="2"><input type="date" id="birth" name="birth"></td>
-      			</tr>
-      			<tr>
-      				<td>핸드폰</td>
-      				<td colspan="2"><input type="text" id="phone" name="phone" placeholder="핸드폰번호"></td>
-      			</tr>
-      			<tr>
-      				<td>이메일</td>
-      				<td colspan="2"><input type="text" id="email" name="email" placeholder="이메일"></td>
-      			</tr>
-      		</table>
-      		<div id="usernamechk">
-      			
-      		</div>
-      		<div id="usernickchk">
-      		
-      		</div>
-      		<div id="userbrithchk">
-      		
-      		</div>
-      		<div id="userphonechk">
-      		
-      		</div>
-      		<div>
-      			<input type="button" id="signup" value="회원가입">
-      		</div>
       		<script type="text/javascript">
       		$(document).ready(function(){
       			// 아이디 중복 체크

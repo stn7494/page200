@@ -64,9 +64,8 @@
 				<form role="form" method="post">
 					<div class="box-body">
 					
-					<div class="form-group">
-							<label>회원 아이디</label> <input type="text" name="id"
-								class="form-control" value="${onetoone.id }" readonly = "readonly">
+					
+ 							<input type="hidden" name="id" class="form-control" value="${user.id }" >
 						</div>
 						<div class="form-group">
 							<label>제목</label> <input type="text" name="o_title"
@@ -78,10 +77,7 @@
 								placeholder="내용을 입력하세요"></textarea>
 						</div>
 
-						<div class="form-group">
-							<label>작성일</label> <input type="text" name="o_w_date"
-								class="form-control" value="${onetoone.o_w_date }" readonly= "readonly">
-						</div>
+							 <input type="hidden" name="o_w_date" class="form-control" value="${onetoone.o_w_date }" readonly= "readonly">
 					</div>
 
 					<div class="box-footer">

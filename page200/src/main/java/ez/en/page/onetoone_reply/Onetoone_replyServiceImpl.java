@@ -18,7 +18,7 @@ public class Onetoone_replyServiceImpl implements Onetoone_replyService {
 	}
 
 	@Override
-	public Onetoone_replyDTO selectOne2(String rp_code) {
+	public Onetoone_replyDTO selectOne2(int rp_code) {
 		// TODO Auto-generated method stub
 		return dao.selectOne2(rp_code);
 	}
@@ -36,9 +36,8 @@ public class Onetoone_replyServiceImpl implements Onetoone_replyService {
 	}
 
 	@Override
-	public int delete2(String rp_code) {
+	public int delete2(int rp_code) {
 		// TODO Auto-generated method stub
 		return dao.delete2(rp_code);
 	}
-
 }

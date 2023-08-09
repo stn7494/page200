@@ -37,7 +37,7 @@
 		<div class="container">
 			<div class="row justify-content-center align-items-center">
 				<div class="col-lg-9 text-center mt-5">
-					<h1 class="heading" data-aos="fade-up">상세보기</h1>
+					<h1 class="heading" data-aos="fade-up">내 문의 조회</h1>
 
 					<nav aria-label="breadcrumb" data-aos="fade-up"
 						data-aos-delay="200">
@@ -60,35 +60,33 @@
 				<div class="box-head with-notice"></div>
 				<div class="box">
 					<div class="box-head">
-						<h3 class="box-title">상세보기</h3>
+						<h3 class="box-title">내 문의 조회</h3>
 					</div>
 					<div class="box-body">
-						<div class="form-group">
-							<label>제목</label> <input type="text" name="n_title"
-								class="form-control" value="${notice.n_title}"
-								readonly="readonly" />
-						</div>
-
-						<div class="form-group">
-							<label>내용</label>
-							<textarea name="n_content" rows="5" readonly="readonly"
-								class="form-control">${notice.n_content}</textarea>
-						</div>
-						 <input type="hidden" name="n_writer" class="form-control" value="${user.nick}" />
+					<div>
+				<table class="table">
+					<tr>
+						<th>글번호</th>
+						<th>회원아이디</th>
+						<th>글제목</th>
+						<th>글내용</th>
+						<th>작성일</th>
+					</tr>
+					<c:forEach items="${onetoone}" var="oto">
+					<tr>
+					<td><a href="selectOne1?o_code=${oto.o_code}">${oto.o_code }
+							</a></td>
+						<td>${oto.id }</td>
+						<td>${oto.o_title }</td>
+						<td>${oto.o_content }</td>
+						<td>${oto.o_w_date }</td>
+					</tr>
+					</c:forEach>
+				</table>
+			</div>
 					</div>
 				</div>
 		</div>
-	<c:choose>
-			<c:when test="${admin == null }">
-				관리자만 수정/삭제 가능
-			</c:when>
-	<c:otherwise>
-			관리자님 환영합니다
-			<a href="update?n_code=${notice.n_code }" role="button" class="btn btnoutline-info">글 수정</a>
-			<a href="delete?n_code=${notice.n_code }" role="button" class="btn btnoutline-info">글 삭제</a>
-	</c:otherwise>
-	</c:choose>
-		
 
 		<!-- /.content -->
 	</div>

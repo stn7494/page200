@@ -99,7 +99,7 @@
       			</tr>
       			<c:forEach items="${reviewlist }" var="list">
       			<tr>
-      				<td><a href="reviewdetail?r_code=${list.r_code}" >${list.r_code }</a></td>
+      				<td><a href="reviewDetail?r_code=${list.r_code}&rev_code=${list.rev_code}" >${list.r_code }</a></td>
       				<td>${list.id }</td>
       				<td>${list.r_w_date }</td>
       				<td>${list.r_content }</td>
@@ -113,7 +113,7 @@
     </div>
     <div class="pagination">
 		<ul class="pagination">
-			<c:if test="${pageMaker.prev }">
+			<c:if test="${pageMaker.prev && pageMaker.startPage > 0 }">
 				<li><a href="reviewlistPage?page=${pageMaker.startPage - 1 }">&laquo;</a></li>
 			</c:if>
 			

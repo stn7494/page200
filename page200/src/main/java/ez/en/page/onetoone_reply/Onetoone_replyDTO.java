@@ -2,8 +2,8 @@ package ez.en.page.onetoone_reply;
 
 public class Onetoone_replyDTO {
 	
-	private String rp_code; 
-	private String o_code;
+	private int rp_code; 
+	private int o_code;
 	private String id;
 	private String f_code; 
 	private String rp_content;
@@ -12,19 +12,19 @@ public class Onetoone_replyDTO {
 	
 	public Onetoone_replyDTO() {}
 
-	public String getRp_code() {
+	public int getRp_code() {
 		return rp_code;
 	}
 
-	public void setRp_code(String rp_code) {
+	public void setRp_code(int rp_code) {
 		this.rp_code = rp_code;
 	}
 
-	public String getO_code() {
+	public int getO_code() {
 		return o_code;
 	}
 
-	public void setO_code(String o_code) {
+	public void setO_code(int o_code) {
 		this.o_code = o_code;
 	}
 
@@ -73,6 +73,6 @@ public class Onetoone_replyDTO {
 		return "Onetoone_replyDTO [rp_code=" + rp_code + ", o_code=" + o_code + ", id=" + id + ", f_code=" + f_code
 				+ ", rp_content=" + rp_content + ", rp_depth=" + rp_depth + ", rp_w_date=" + rp_w_date + "]";
 	}
-	
 
+	
 }
