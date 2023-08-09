@@ -69,17 +69,12 @@
 								<label>내용</label>
 								<textarea class="form-control" name="n_content" rows="3">${notice.n_content}</textarea>
 							</div>
-
-							<div class="form-group">
-								<label>작성자</label> <input type="text" name="n_writer"
-									class="form-control" readonly="readonly"
-									value="${notice.n_writer}">
-							</div>
 						</div>
 
 						<div class="box-footer">
 							<button type="submit" class="btn btn-primary">수정완료</button>
 						</div>
+						<input type="hidden" name="n_writer" class="form-control" value="${user.nick }}">
 					</form>
 				</div>
 			</section>

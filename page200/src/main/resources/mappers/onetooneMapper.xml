@@ -13,8 +13,16 @@
 		resultType="OnetooneDTO">
 		<!-- 1 대 1 게시판 선택 조회 -->
 		select o_code, id, f_code, o_title, o_content, o_w_date from
-		onetoone where
+		onetoone
+		where
 		o_code = #{o_code}
+	</select>
+	<select id="SELECTONE" parameterType="String"
+		resultType="OnetooneDTO">
+		<!-- 1 대 1 게시판 자기 아이디로 조회 -->
+		select o_code, id, f_code, o_title, o_content, o_w_date from
+		onetoone where
+		id = #{id}
 	</select>
 	<insert id="insert1" parameterType="OnetooneDTO">
 		<!-- 1 대 1 게시판 추가 -->
@@ -23,7 +31,8 @@
 	</insert>
 	<update id="update1" parameterType="OnetooneDTO">
 		<!-- 1 대 1 게시판 수정 -->
-		update onetoone set id = #{id},o_title=#{o_title},o_content = #{o_content},
+		update onetoone set id = #{id},o_title=#{o_title},o_content =
+		#{o_content},
 		o_w_date = now() where
 		o_code=#{o_code}
 	</update>

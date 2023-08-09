@@ -63,18 +63,12 @@
 
 				<form role="form" method="post">
 					<div class="box-body">
-
-						<div class="form-group">
-							<label>답변번호</label> <input type="text" name="rp_code"
-								class="form-control" placeholder="답변번호를 입력하세요.">
-						</div>
-						<div class="form-group">
-							<label>글코드</label> <input type="text" name="o_code"
-								class="form-control" placeholder="글 코드를 입력하세요.">
-						</div>
-						<div class="from-group">
-							<label>회원아이디</label><input type="text" name="id"
-								class="from-control" placeholder="회원 아이디를 입력해 주세요.">
+							 <input type = "hidden" name="rp_code"
+								class="form-control" />
+						 	<input type = "hidden" name="o_code"
+								class="form-control" />
+							<input type="hidden" name="id"
+								class="from-control" value = "${onetoone.id}" />
 
 						</div>
 						<div class="form-group">
@@ -82,11 +76,8 @@
 							<textarea class="form-control" name="rp_content" rows="3"
 								placeholder="내용을 입력하세요"></textarea>
 						</div>
-
-						<div class="form-group">
-							<label>작성일</label> <input type="text" name="now()"
-								class="form-control" value="${onetoone_reply.now()}" readonly>
-						</div>
+						 <input type="hidden" name="now()"
+								class="form-control" value="${onetoone_reply.now()}" />
 					</div>
 
 					<div class="box-footer">
