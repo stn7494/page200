@@ -70,14 +70,14 @@
       		<form method="post" id="data" enctype="multipart/form-data">
       		<table class="table">
       			<tr>
-      				<th>프로필 사진 : <input type="file" id="profile" name="profile" accept="image/*" ></th>
+      				<th>프로필 사진 : <input type="file" id="profile" name="profile" accept="image/*"></th>
       				<th><input type="button" id="thumnail" value="미리보기"></th>
       			</tr>
       			<tr id="showpro">
       				
       			</tr>
       			<tr>
-      				<th>아이디 : <input type="text" id="id" name="id" readonly="readonly" value="${user.id}"></th>
+      				<th>아이디 : <input type="text" name="id" id="id" value="${user.id }" readonly="readonly"></th>
       			</tr>
       			<tr>
       				<th>이름 : <input type="text" name="name" value="${user.name }"></th>
@@ -87,7 +87,7 @@
       				<td><input type="button" id="nickcheck" value="닉네임 중복 체크"></td>
       			</tr>
       			<tr>
-      				<th>생일 : <input type="text" id="birth" name="birth" value="${user.birth }" readonly="readonly"></th>
+      				<th>생일 : <input type="text" name="birth" id="birth" value="${user.birth }" readonly="readonly"></th>
       			</tr>
       			<tr>
       				<th>연락처 : <input type="text" id="phone" name="phone" value="${user.phone }">" - "하이픈은 제외하고 입력해주세요.</th>
@@ -109,7 +109,8 @@
       	</div>
       </div>
     </div>
-    <script>
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript">
     $(document).ready(function(){
   		// 섬네일화면 띄우기
 			$("#thumnail").click(function(){
@@ -212,10 +213,14 @@
 	    		});
 	    	});
     	$("#btn").click(function(){
-    		checkBirth();
+    		if($("#profile").val() != "") {
+    			
+    			checkPhone();
+    		}
+    		checkPhone();
     		
     	});
-    	function checkBirth() {
+    	function checkPhone() {
     		var phone = $("#phone").val();
     		var phoneRules = /^01([0|1|6|7|8|9])([0-9]{3,4})([0-9]{4})$/;
 	    	if(!(phoneRules.test(phone))) {

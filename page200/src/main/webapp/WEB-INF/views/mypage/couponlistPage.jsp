@@ -108,7 +108,7 @@
     </div>
     <div class="pagination">
 		<ul class="pagination">
-			<c:if test="${pageMaker.prev }">
+			<c:if test="${pageMaker.prev && pageMaker.startPage > 0 }">
 				<li><a href="couponlistPage?page=${pageMaker.startPage - 1 }">&laquo;</a></li>
 			</c:if>
 			

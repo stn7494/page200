@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="true" %>
 <!-- /*
 * Template Name: Property
@@ -67,13 +68,17 @@
       <div class="container">
       	<!-- 여기에 내용을 작성 -->
       	<div>
+      	<jsp:useBean id="now" class="java.util.Date" />
+      	<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
       		<table class="table">
       			<tr>
       				<th>캠핑장이름</th>
       				<th>데크</th>
       				<th>최대인원</th>
       				<th>캠핑장가격</th>
+      				<c:if test="${today < revdetail2.rev_start_date }">
       				<th>예약취소</th>
+      				</c:if>
       			</tr>
       			<tr>
       				<td>${revdetail2.cam_name }</td>
@@ -81,8 +86,10 @@
       				<td>${revdetail2.cri_max }</td>
       				<td>${revdetail2.cri_price }</td>
       				<form action="revdelete" method="post" id="sub">
-      				<td><input type="checkbox" name="check" id="box"></td>
+      				<c:if test="${today < revdetail2.rev_start_date }">
+      				<td><input type="button" name="check" id="box" value="예약취소"></td>
       				<td><input type="hidden" name="rev_code" value="${revdetail2.rev_code }"></td>
+      				</c:if>
       				</form>
       			</tr>
       		</table>
@@ -94,12 +101,8 @@
       </div>
     </div>
     <script>
-    	$("#btn").click(function(){
-    		if($("#box").is(":checked") == true) {
-    			$("#sub").submit();
-    		}else {
-    			alert("체크해주셈.");
-    		}
+    	$("#box").click(function(){
+    		$("#sub").submit();
     	});
     </script>
 
