@@ -11,12 +11,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import ez.en.page.review.ReviewService;
+
+import ez.en.page.camping_thema.ThemaDTO;
+import ez.en.page.camping_thema.ThemaService;
+import ez.en.page.domain.Criteria;
+import ez.en.page.domain.PageMaker;
+
 
 
 @Controller
@@ -25,6 +32,7 @@ public class CampingController {
 	
 	@Inject
 	private CampingService campingService;
+	private ThemaService themaService;
 	private static final Logger logger = LoggerFactory.getLogger(CampingController.class);
 	
 	// kdj 추가함
@@ -66,7 +74,7 @@ public class CampingController {
 		
 		campingService.register(campingDTO);
 		
-		rttr.addFlashAttribute("msg", "success");
+		rttr.addFlashAttribute("msg", "SUCCESS");
 		
 		return "redirect:/camping/list";
 	}
@@ -77,18 +85,33 @@ public class CampingController {
 		model.addAttribute("list", campingService.list());
 	}
 	
-//	@GetMapping("/detail")
-//	public void read(@RequestParam("cam_code") String cam_code, Model model) throws Exception{
-//		
+	@GetMapping("/detail")
+	public void read(@RequestParam("cam_code") String cam_code, Model model) throws Exception{
+//		CampingDTO campingDTO = new CampingDTO();
+//		model.addAttribute("camping", campingDTO);
+		model.addAttribute("camping", campingService.detail(cam_code));
 //		model.addAttribute(campingService.detail(cam_code));
+	}
+
+	
+//	//캠핑장 상세조회에 thema_name들어갈수 있게 추가
+//	@GetMapping("/detail")
+//	public void read(@RequestParam("cam_code") String cam_code, Model model, @RequestParam("thema_code") String thema_code) throws Exception{
+//		model.addAttribute(campingService.detail(cam_code));
+//		
+////		cam_code로 찾은 상세페이지의 themaCode
+////		ThemaDTO themaDTO= themaService.selectOne(thema_code);	//thema_code로 themaDTO선택 ----> thema_name가져오기
+////		model.addAttribute("tmName", themaDTO);	//view에서 사용할 이름 tmName
 //	}
+	
+	
 	
 	@PostMapping("/remove")
 	public String remove(@RequestParam("cam_code") String cam_code,
 			RedirectAttributes rttr) throws Exception{
 		
 		campingService.remove(cam_code);
-		rttr.addAttribute("msg", "SUCCESS");
+		rttr.addFlashAttribute("msg", "SUCCESS");
 		
 		return "redirect:/camping/list";
 	}
@@ -96,7 +119,7 @@ public class CampingController {
 	@GetMapping("/modify")
 	public void modifyGET(String cam_code, Model model) throws Exception{
 		
-		model.addAttribute(campingService.detail(cam_code));
+		model.addAttribute("camping", campingService.detail(cam_code));
 	}
 	
 	@PostMapping("/modify")
@@ -104,12 +127,75 @@ public class CampingController {
 		logger.info("modify post ================>");
 		
 		campingService.modify(campingDTO);
-		rttr.addAttribute("msg", "SUCCESS");
+		rttr.addFlashAttribute("msg", "SUCCESS");
 		
 		return "redirect:/camping/list";
 	}
+	
+//	@PostMapping("/modify/{cam_code}")
+//	public String modifyPOST(CampingDTO campingDTO, RedirectAttributes rttr, @PathVariable("cam_code") String cam_code) throws Exception{
+//		logger.info("modify post ================>");
+//		
+//		CampingDTO campingTemp = campingService.detail("cam_code");
+//		
+////		campingTemp.setCam_code(campingDTO.getCam_code());
+////		campingTemp.setRegion_code(campingDTO.getRegion_code());
+////		campingTemp.setF_code(campingDTO.getF_code());
+//		campingTemp.setCam_name(campingDTO.getCam_name());
+////		campingTemp.setCam_address(campingDTO.getCam_address());
+////		campingTemp.setCam_tel(campingDTO.getCam_tel());
+////		campingTemp.setCam_start_time(campingDTO.getCam_start_time());
+////		campingTemp.setCam_finish_time(campingDTO.getCam_finish_time());
+////		campingTemp.setThema_code(campingDTO.getThema_code());
+////		campingTemp.setOption_code(campingDTO.getOption_code());
+////		campingTemp.setCam_hide(campingDTO.getCam_hide());
+////		campingTemp.setCam_regdate(campingDTO.getCam_regdate());
+//		
+//		campingService.modify(campingTemp);
+//		
+//		rttr.addFlashAttribute("msg", "SUCCESS");
+//		
+//		return "redirect:/camping/list";
+//	}
 
-
+	//페이징
+	@GetMapping("/listCri")
+	public void list(Criteria cri, Model model) throws Exception{
+		
+		logger.info("show list page with Criteria......................");
+		
+		model.addAttribute("list", campingService.listCriteria(cri));
+	}
+	
+//	@GetMapping("/listPage")
+//	public void listPage(Criteria cri, Model model) throws Exception{
+//		
+//		logger.info(cri.toString());
+//		
+//		model.addAttribute("list", campingService.listCriteria(cri));
+//		PageMaker pageMaker = new PageMaker();
+//		pageMaker.setCri(cri);
+//		pageMaker.setTotalCount(131);	//임의의 값 넣고 테스트
+//		
+//		model.addAttribute("pageMaker", pageMaker);
+//		
+//	}
+	
+	@GetMapping("/listPage")
+	public void listPage(@ModelAttribute("cri") Criteria cri, Model model) throws Exception{
+		
+		logger.info(cri.toString());
+		
+		model.addAttribute("list", campingService.listCriteria(cri));
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		//pageMager.setTotalCount(131);
+		
+		pageMaker.setTotalCount(campingService.listCountCriteria(cri));
+		
+		model.addAttribute("pageMaker", pageMaker);
+		
+	}
 	
 	
 

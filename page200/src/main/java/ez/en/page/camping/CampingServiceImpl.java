@@ -1,11 +1,12 @@
 package ez.en.page.camping;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+
+import ez.en.page.domain.Criteria;
 
 @Service
 public class CampingServiceImpl implements CampingService {
@@ -41,6 +42,16 @@ public class CampingServiceImpl implements CampingService {
 	@Override
 	public CampingDTO detail(String cam_code) {
 		return campingDAO.detail(cam_code);
+	}
+
+	@Override
+	public List<CampingDTO> listCriteria(Criteria cri) throws Exception {
+		return campingDAO.listCriteria(cri);
+	}
+
+	@Override
+	public int listCountCriteria(Criteria cri) throws Exception {
+		return campingDAO.countPaging(cri);
 	}
 
 //	//캠핑장 예약 정보

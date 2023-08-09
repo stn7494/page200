@@ -101,9 +101,9 @@
 
 			</script>
 			<script>
-				var result = '%{msg}';
+				var result = '${msg}';
 				
-				if(result == 'SUCCCESS'){
+				if(result == 'SUCCESS'){
 					alert("처리가 완료되었습니다.")
 				}
 			</script>

@@ -18,10 +18,11 @@
       Property &mdash; Free Bootstrap 5 Website Template by Untree.co
     </title>
   </head>
+  
       
     <!-- 리뷰까지 같이 적용하려면 <body>밖에? -->
   <form role="form" method="post">
-  
+
   	<input type='hidden' name='cam_code' value="${camping.cam_code}" >
   	
   </form> 
@@ -89,7 +90,7 @@
           <div class="col-lg-4">
             <div class="d-flex feature-h">
               <span class="wrap-icon me-3">
-                <span><img style="width: 80px; height: 80px;" alt="" src="${contextPath }/resources/images/camping_icon.png"> </span>
+                <span class="icon-fire"></span>
               </span>
               <div class="feature-text">
                 <h3 class="heading">
@@ -108,7 +109,8 @@
               <div class="feature-text">
                 <h3 class="heading">캠핑장 주소</h3>
                 <p class="text-black-50">
-                  <input type="text" name='cam_address' value="${camping.cam_address }" readonly />
+                  ${camping.cam_address }
+               
                 </p>
               </div>
             </div>
@@ -140,8 +142,8 @@
           <div class="col-lg-4">
             <div class="d-flex feature-h">
               <span class="wrap-icon me-3">
-                <span><img style="width: 80px; height: 80px;" alt="" src="${contextPath }/resources/images/camping_thema_icon.png"> </span>
-              </span>
+                <span class="icon-leaf"></span>
+                </span>
               <div class="feature-text">
                 <h3 class="heading">캠핑 테마</h3>
                 <p class="text-black-50">
@@ -230,9 +232,9 @@
           >
             <div class="counter-wrap mb-5 mb-lg-0">
               <span class="number"
-                ><span style="color: black;">
-                	<input type="text" name='cam_start_time' value="${camping.cam_start_time}" readonly /><br>
-                
+                ><span style="color: black; size=70%">
+                	${camping.cam_start_time}
+
                 </span></span>
               <span class="caption text-black-50">입실 시간</span>
             </div>
@@ -246,8 +248,8 @@
             <div class="counter-wrap mb-5 mb-lg-0">
               <span class="number"
                 ><span style="color: black;">
-                	<input type="text" name='cam_finish_time' value="${camping.cam_finish_time}" readonly />
-                
+                	${camping.cam_finish_time}
+
                 </span></span>
               <span class="caption text-black-50">퇴실 시간</span>
             </div>
@@ -258,9 +260,9 @@
     
     <!-- 관리자용 -->
     <div class="box-footer">
-	    <button type="submit" id="modify" class="btn btn-warning">MODIFY</button>
-    	<button type="submit" id="remove" class="btn btn-danger">REMOVE</button>
-    	<button type="submit" id="list" class="btn btn-primary">LIST</button>
+	    <button type="submit" class="btn btn-warning">MODIFY</button>
+    	<button type="submit" class="btn btn-danger">REMOVE</button>
+    	<button type="submit" class="btn btn-primary">LIST</button>
     </div>
     
     <script>
@@ -270,19 +272,19 @@
     	
     	console.log(formObj);
     	
-    	$("#modify").on("click", function(){
-    		formObj.attr("action", "/camping/modify");
+    	$(".btn-warning").on("click", function(){
+    		formObj.attr("action", "/page/camping/modify");
     		formObj.attr("method", "get");
     		formObj.submit();
     	});
     	
-    	$("remove").on("click", function(){
-    		formObj.attr("action", "/camping/remove");
+    	$(".btn-danger").on("click", function(){
+    		formObj.attr("action", "/page/camping/remove");
     		formObj.submit();
     	});
     	
-    	$("list").on("click", function(){
-    		self.location = "/camping/list";
+    	$(".btn-primary").on("click", function(){
+    		self.location = "/page/camping/list";
     	});
     
     
