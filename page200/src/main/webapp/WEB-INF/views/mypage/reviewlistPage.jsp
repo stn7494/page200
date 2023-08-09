@@ -99,7 +99,7 @@
       			</tr>
       			<c:forEach items="${reviewlist }" var="list">
       			<tr>
-      				<td><a href="reviewdetail?r_code=${list.r_code}" >${list.r_code }</a></td>
+      				<td><a href="reviewDetail?r_code=${list.r_code}&rev_code=${list.rev_code}" >${list.r_code }</a></td>
       				<td>${list.id }</td>
       				<td>${list.r_w_date }</td>
       				<td>${list.r_content }</td>

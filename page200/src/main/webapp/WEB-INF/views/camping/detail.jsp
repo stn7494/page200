@@ -93,7 +93,7 @@
               </span>
               <div class="feature-text">
                 <h3 class="heading">
-                	${camping.cam_name }
+                	<input type="text" name='cam_name' value="${camping.cam_name }" readonly />
                 </h3>
                 <p class="text-black-50">
                   대충 캠핑장 소개글 (캠핑장 소개글 게시판 필요?)
@@ -108,7 +108,7 @@
               <div class="feature-text">
                 <h3 class="heading">캠핑장 주소</h3>
                 <p class="text-black-50">
-                  ${camping.cam_address }
+                  <input type="text" name='cam_address' value="${camping.cam_address }" readonly />
                 </p>
               </div>
             </div>
@@ -120,7 +120,7 @@
               <div class="feature-text">
                 <h3 class="heading">캠핑장 연락처</h3>
                 <p class="text-black-50">
-                  ${camping.cam_tel}
+                  <input type="text" name='cam_tel' value="${camping.cam_tel}" readonly />
                 </p>
               </div>
             </div>
@@ -145,7 +145,7 @@
               <div class="feature-text">
                 <h3 class="heading">캠핑 테마</h3>
                 <p class="text-black-50">
-                  ${camping.thema_code }
+                  테마코드로 찾은 테마명 들어갈거임
                 </p>
               </div>
             </div>
@@ -157,7 +157,7 @@
               <div class="feature-text">
                 <h3 class="heading">캠핑 옵션</h3>
                 <p class="text-black-50">
-                  ${camping.option_code }
+                  옵션코드로 찾은 옵션명 들어갈거임
                 </p>
               </div>
             </div>
@@ -204,7 +204,7 @@
           >
             <div class="counter-wrap mb-5 mb-lg-0">
               <span class="number"
-                ><span class="countup text-primary">1291</span></span
+                ><span class="countup text-primary">${count}</span></span
               >
               <span class="caption text-black-50">리뷰 개수</span>
             </div>
@@ -231,7 +231,8 @@
             <div class="counter-wrap mb-5 mb-lg-0">
               <span class="number"
                 ><span style="color: black;">
-                	${camping.cam_start_time}
+                	<input type="text" name='cam_start_time' value="${camping.cam_start_time}" readonly /><br>
+                
                 </span></span>
               <span class="caption text-black-50">입실 시간</span>
             </div>
@@ -245,7 +246,7 @@
             <div class="counter-wrap mb-5 mb-lg-0">
               <span class="number"
                 ><span style="color: black;">
-                	${camping.cam_finish_time}
+                	<input type="text" name='cam_finish_time' value="${camping.cam_finish_time}" readonly />
                 
                 </span></span>
               <span class="caption text-black-50">퇴실 시간</span>
