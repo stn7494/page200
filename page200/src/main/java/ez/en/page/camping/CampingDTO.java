@@ -28,9 +28,35 @@ public class CampingDTO {
 	private String option_code;
 	private char cam_hide;
 	private String cam_regdate;
+//	private String thema_name;
+//	private String option_name;
 	
 	public CampingDTO() {}
+
 	
+
+//	public CampingDTO(String cam_code, String region_code, String f_code, String cam_name, String cam_address,
+//			String cam_tel, String cam_start_time, String cam_finish_time, String thema_code, String option_code,
+//			char cam_hide, String cam_regdate, String thema_name, String option_name) {
+//		super();
+//		this.cam_code = cam_code;
+//		this.region_code = region_code;
+//		this.f_code = f_code;
+//		this.cam_name = cam_name;
+//		this.cam_address = cam_address;
+//		this.cam_tel = cam_tel;
+//		this.cam_start_time = cam_start_time;
+//		this.cam_finish_time = cam_finish_time;
+//		this.thema_code = thema_code;
+//		this.option_code = option_code;
+//		this.cam_hide = cam_hide;
+//		this.cam_regdate = cam_regdate;
+//		this.thema_name = thema_name;
+//		this.option_name = option_name;
+//	}
+//	
+	
+
 	public CampingDTO(String cam_code, String region_code, String f_code, String cam_name, String cam_address,
 			String cam_tel, String cam_start_time, String cam_finish_time, String thema_code, String option_code,
 			char cam_hide, String cam_regdate) {
@@ -48,6 +74,8 @@ public class CampingDTO {
 		this.cam_hide = cam_hide;
 		this.cam_regdate = cam_regdate;
 	}
+
+
 
 	public String getCam_code() {
 		return cam_code;
@@ -145,6 +173,8 @@ public class CampingDTO {
 		this.cam_regdate = cam_regdate;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "CampingDTO [cam_code=" + cam_code + ", region_code=" + region_code + ", f_code=" + f_code
@@ -155,7 +185,43 @@ public class CampingDTO {
 	}
 	
 	
+
+//	public String getThema_name() {
+//		return thema_name;
+//	}
+//
+//
+//
+//	public void setThema_name(String thema_name) {
+//		this.thema_name = thema_name;
+//	}
+//
+//
+//
+//	public String getOption_name() {
+//		return option_name;
+//	}
+//
+//
+//
+//	public void setOption_name(String option_name) {
+//		this.option_name = option_name;
+//	}
+
+
+
+//	@Override
+//	public String toString() {
+//		return "CampingDTO [cam_code=" + cam_code + ", region_code=" + region_code + ", f_code=" + f_code
+//				+ ", cam_name=" + cam_name + ", cam_address=" + cam_address + ", cam_tel=" + cam_tel
+//				+ ", cam_start_time=" + cam_start_time + ", cam_finish_time=" + cam_finish_time + ", thema_code="
+//				+ thema_code + ", option_code=" + option_code + ", cam_hide=" + cam_hide + ", cam_regdate="
+//				+ cam_regdate + ", thema_name=" + thema_name + ", option_name=" + option_name + "]";
+//	}
 	
+	
+
+
 	
 	
 }

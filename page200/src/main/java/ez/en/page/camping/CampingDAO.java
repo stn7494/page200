@@ -1,7 +1,8 @@
 package ez.en.page.camping;
 
 import java.util.List;
-import java.util.Map;
+
+import ez.en.page.domain.Criteria;
 
 public interface CampingDAO {
 	
@@ -15,6 +16,13 @@ public interface CampingDAO {
 	public List<CampingDTO> list();
 	//캠핑장 상세페이지
 	public CampingDTO detail(String cam_code);
+	//캠핑장 찾기
+	public List<CampingDTO> listPage(int page) throws Exception;
+	
+	public List<CampingDTO> listCriteria(Criteria cri) throws Exception;
+	
+	public int countPaging(Criteria cri) throws Exception;
+	
 //	//캠핑장 상세페이지 정보 조회
 //	public Map selectAll(Map<String, Object> map);
 	
