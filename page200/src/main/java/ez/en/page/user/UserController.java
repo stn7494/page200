@@ -55,8 +55,9 @@ public class UserController {
 		System.out.println("테스트2");
 		System.out.println("테스트3");
 		System.out.println("테스트4");
-	  System.out.println("테스트5");
 		System.out.println("테스트6");
+		
+		
 		return "camdetail";
 	}
 	
