@@ -94,7 +94,7 @@
 				$("#main").click(function() {
 					location.href = "${contextPath }";
 				});
-				//발급받기 버튼을 눌렀을 때 처리
+				//발급받기 버튼을 눌렀을 때 처리(cp001)
 				$("#but1").click(function() {
 					var couponid = $("#couponid1").text();
 					//var data = $("#data1").text();
@@ -103,17 +103,63 @@
 					var cp_amount = $("#amount1").text();
 					//alert(cp_code);
 					var insertData = {"cp_code":cp_code, "cp_amount":cp_amount};
-					alert($("#couponid1").text());
-					console.log(insertData);
-					//alert("쿠폰이 발급되었습니다.");
-					//location.href = "/page/mypage/couponlistPage?cp_code="+couponid;
-					
+					//location.href = "/page/mypage/couponlistPage"
 					$.ajax({
 						url:"${contextPath}/couponchk",
 						data:insertData,
 						dataType:"json",
 						type:"POST",
 						success:function(map){ // 컨트롤러에 성공 메세지가 뜸.
+							alert(map.msg);
+						},
+						error:function(){
+							alert("실패");
+						}
+						
+					});
+				});
+				
+				//발급받기 버튼을 눌렀을 때 처리(cp002)
+				$("#but2").click(function() {
+					var couponid = $("#couponid2").text();
+					
+					var cp_code = $("#couponid2").text();
+					
+					var cp_amount = $("#amount2").text();
+
+					var insertData = {"cp_code":cp_code, "cp_amount":cp_amount};
+
+					$.ajax({
+						url:"${contextPath}/couponchk",
+						data:insertData,
+						dataType:"json",
+						type:"POST",
+						success:function(map){ 
+							alert(map.msg);
+						},
+						error:function(){
+							alert("실패");
+						}
+						
+					});
+				});
+				
+				//발급받기 버튼을 눌렀을 때 처리(cp003)
+				$("#but3").click(function() {
+					var couponid = $("#couponid3").text();
+					
+					var cp_code = $("#couponid3").text();
+					
+					var cp_amount = $("#amount3").text();
+
+					var insertData = {"cp_code":cp_code, "cp_amount":cp_amount};
+
+					$.ajax({
+						url:"${contextPath}/couponchk",
+						data:insertData,
+						dataType:"json",
+						type:"POST",
+						success:function(map){ 
 							alert(map.msg);
 						},
 						error:function(){
