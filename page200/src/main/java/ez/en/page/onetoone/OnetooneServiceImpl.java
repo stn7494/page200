@@ -41,4 +41,10 @@ public class OnetooneServiceImpl implements OnetooneService {
 		return dao.delete(o_code);
 	}
 
+	@Override
+	public List<OnetooneDTO> SELECTONE(String id) {
+		// TODO Auto-generated method stub
+		return dao.SELECTONE(id);
+	}
+	
 }

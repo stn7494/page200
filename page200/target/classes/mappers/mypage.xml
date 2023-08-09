@@ -20,7 +20,7 @@
 	<!-- 예약 페이징 페이지 번호 -->
 	<select id="countPaging" resultType="int">
 	<![CDATA[
-		select count(case when rev_start_date > now() then 1 end)
+		select count(rev_code)
 		from reservation where rev_code > 'rev000' and id = #{id}
 	]]>
 	</select>

@@ -2,6 +2,7 @@ package ez.en.page.onetoone_reply;
 
 import java.util.List;
 
+import org.apache.ibatis.jdbc.SQL;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,7 +21,7 @@ public class Onetoone_replyDAOImpl implements Onetoone_replyDAO {
 	}
 
 	@Override
-	public Onetoone_replyDTO selectOne2(String rp_code) {
+	public Onetoone_replyDTO selectOne2(int rp_code) {
 		// TODO Auto-generated method stub
 		return sqlsession.selectOne(namespace + "selectOne2", rp_code);
 	}
@@ -38,9 +39,12 @@ public class Onetoone_replyDAOImpl implements Onetoone_replyDAO {
 	}
 
 	@Override
-	public int delete2(String rp_code) {
+	public int delete2(int rp_code) {
 		// TODO Auto-generated method stub
 		return sqlsession.delete(namespace + "delete2", rp_code);
 	}
 
+	
+
+	
 }

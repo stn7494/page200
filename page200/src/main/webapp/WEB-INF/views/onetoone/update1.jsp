@@ -61,10 +61,8 @@
 					<h3 class="box-title">게시판 글수정</h3>
 					<form role="form" method="post">
 						<div class="box-body">
-							<div class="form-group">
-								<label>회원아이디</label> <input type="text" name='id'
-									class="form-control" value="${onetoone.id}">
-							</div>
+							<input type="hidden" name='id' class="form-control"
+								value="${onetoone.id}">
 							<div class="form-group">
 								<label>제목</label> <input type="text" name='o_title'
 									class="form-control" value="${onetoone.o_title}">
@@ -73,12 +71,8 @@
 								<label>내용</label>
 								<textarea class="form-control" name="o_content" rows="3">${onetoone.o_content}</textarea>
 							</div>
-
-							<div class="form-group">
-								<label>작성일</label> <input type="text" name="o_w_date"
-									class="form-control" readonly="readonly"
-									value="${onetoone.o_w_date}">
-							</div>
+							<input type="hidden" name="o_w_date" class="form-control"
+								value="${onetoone.o_w_date}">
 						</div>
 
 						<div class="box-footer">

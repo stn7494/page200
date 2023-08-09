@@ -43,4 +43,10 @@ public class OnetooneDAOImpl implements OnetooneDAO {
 		return sqlsession.delete(namespace + "delete1",o_code);
 	}
 
+	@Override
+	public List<OnetooneDTO> SELECTONE(String id) {
+		// TODO Auto-generated method stub
+		return sqlsession.selectList(namespace + "SELECTONE",id);
+	}
+
 }

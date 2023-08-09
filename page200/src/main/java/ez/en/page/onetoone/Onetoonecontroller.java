@@ -2,6 +2,10 @@ package ez.en.page.onetoone;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,8 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ez.en.page.user.UserDTO;
+
 @Controller
 public class Onetoonecontroller {
+	
+	private static final Logger logger = LoggerFactory.getLogger(Onetoonecontroller.class);
 
 	@Autowired
 	private OnetooneService service;
@@ -32,6 +40,25 @@ public class Onetoonecontroller {
 		mav.setViewName("onetoone/selectOne1");
 		return mav;
 	}
+	@GetMapping("onetoone/SELECTONE")
+	public ModelAndView SELECTONE(HttpSession session) {
+	logger.info(session.getAttribute("user") + "===============================");
+	ModelAndView mav= new ModelAndView();
+	UserDTO dto = (UserDTO)session.getAttribute("user");
+	List<OnetooneDTO> list2 = service.SELECTONE(dto.getId());
+	mav.addObject("onetoone",list2);
+	mav.setViewName("onetoone/SELECTONE");
+	return mav;
+	}
+//	@PostMapping("onetoone/SELECTONE")
+//	public ModelAndView SELECTONE(@RequestParam("id")String id) {
+//		ModelAndView mav= new ModelAndView();
+//		service.SELECTONE(id);
+//		List<OnetooneDTO> list1 = service.listAll();
+//		mav.addObject("list1",list1);
+//		mav.setViewName("onetoone/SELECTONE");
+//		return mav;
+//	}
 
 	@GetMapping("onetoone/insert1")
 	public ModelAndView insert1() {
@@ -46,7 +73,7 @@ public class Onetoonecontroller {
 		service.insert(dto);
 		List<OnetooneDTO> list1 = service.listAll();
 		mav.addObject("list1", list1);
-		mav.setViewName("onetoone/list1");
+		mav.setViewName("redirect:/onetoone/list1");
 		return mav;
 	}
 

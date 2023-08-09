@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import ez.en.page.my_coupon.My_couponDTO;
+import ez.en.page.user.UserDTO;
 
 @Repository
 public class CouponDAOImpl implements CouponDAO {
@@ -52,5 +53,15 @@ public class CouponDAOImpl implements CouponDAO {
 	@Override
 	public int couponissue(My_couponDTO mydto) {
 		return sqlSession.insert(namepace + "couponissue", mydto);
+	}
+
+	@Override
+	public int mycouponCheck(My_couponDTO mydto) {
+		return sqlSession.selectOne(namepace + "mycouponCheck" , mydto);
+	}
+
+	@Override
+	public int birthday(String id) {
+		return sqlSession.selectOne(namepace + "birthday", id);
 	}
 }

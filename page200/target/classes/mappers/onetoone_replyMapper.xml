@@ -12,7 +12,7 @@
 	<select id="selectOne2" resultType="Onetoone_replyDTO"
 		parameterType="String">
 		<!-- 1 대 1 예약 답변 선택 조회 -->
-		select rp_code,o_code,id,f_code,rp_content,rp_depth,rp_w_date FROM
+		select rp_code,o_code,id,f_code,rp_content,rp_w_date FROM
 		page200.onetoone_reply
 		where
 		rp_code=#{rp_code}
@@ -25,10 +25,10 @@
 	<update id="update2" parameterType="Onetoone_replyDTO">
 	update page200.onetoone_reply set 
 	o_code = #{o_code},id=#{id},rp_content=#{rp_content},
-	rp_w_date= now() where rp_code = #{rp_code} ;
+	rp_w_date= now() where rp_code = #{rp_code}
 	</update>
-	<delete id="delete2" parameterType="Onetoone_replyDTO" >
-	delete  from page200.onetoone_reply where rp_code =#{rp_code}; 
+	<delete id="delete2" parameterType="Onetoone_replyDTO">
+	delete  from page200.onetoone_reply where rp_code =#{rp_code}
 	</delete>
 </mapper>
   
