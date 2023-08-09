@@ -3,6 +3,7 @@ package ez.en.page.coupon;
 import java.util.List;
 
 import ez.en.page.my_coupon.My_couponDTO;
+import ez.en.page.user.UserDTO;
 
 public interface CouponDAO {
 
@@ -22,4 +23,8 @@ public interface CouponDAO {
 	public int updatenum(String cp_code);
 //	쿠폰발급
 	public int couponissue(My_couponDTO mydto);
+//	쿠폰함에 해당쿠폰 있는지 여부 조회
+	public int mycouponCheck(My_couponDTO mydto);
+//	차월 생일 회원
+	public int birthday(String id);
 }

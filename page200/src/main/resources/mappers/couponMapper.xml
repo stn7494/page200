@@ -38,17 +38,20 @@
 	</insert>
 	
 	<!-- 쿠폰수량 감소 -->
-	<update id="" parameterType="String">
+	<update id="updatenum" parameterType="String">
 		update coupon set cp_amount = cp_amount - 1
 		where cp_code = #{cp_code}
 	</update>
 	
-	<!-- 현재 쿠폰 수량 확인 -->
-	<select id="now" parameterType="String">
-		select cp_code, cp_amount from page200.coupon where cp_code = #{cp_code}
+	<!-- 쿠폰함에 해당쿠폰 있는지 여부 조회 -->
+	<select id="mycouponCheck" parameterType="My_couponDTO" resultType="int">
+		select count(*) from my_coupon where id = #{id} and cp_code = #{cp_code}
 	</select>
 	
 	<!-- 차월 생일 회원조회 -->
+	<select id="birthday" parameterType="String" resultType="int">
+		select count(*) from user where id = #{id} and mid(birth, 6 , 2) =(MONTH(NOW())+1)
+	</select>
 	
-	<!-- 중복 발급 확인 -->
+	
 </mapper>

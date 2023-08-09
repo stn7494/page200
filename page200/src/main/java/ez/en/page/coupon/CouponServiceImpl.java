@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ez.en.page.my_coupon.My_couponDTO;
+import ez.en.page.user.UserDTO;
 
 @Service
 public class CouponServiceImpl implements CouponService {
@@ -49,5 +50,15 @@ public class CouponServiceImpl implements CouponService {
 	@Override
 	public int couponissue(My_couponDTO mydto) {
 		return dao.couponissue(mydto);
+	}
+
+	@Override
+	public int mycouponCheck(My_couponDTO mydto) {
+		return dao.mycouponCheck(mydto);
+	}
+
+	@Override
+	public int birthday(String id) {
+		return dao.birthday(id);
 	}
 }
