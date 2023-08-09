@@ -40,7 +40,7 @@
       <div class="container">
         <div class="row justify-content-center align-items-center">
           <div class="col-lg-9 text-center mt-5">
-            <h1 class="heading" data-aos="fade-up">매인템플렛</h1>
+            <h1 class="heading" data-aos="fade-up">아이디 찾기</h1>
 
             <nav
               aria-label="breadcrumb"
@@ -53,7 +53,7 @@
                   class="breadcrumb-item active text-white-50"
                   aria-current="page"
                 >
-                  Properties
+                  아이디 찾기
                 </li>
               </ol>
             </nav>
@@ -67,26 +67,20 @@
       	<!-- 여기에 내용을 작성 -->
       	<div>
       		<form id="idfind" method="post">
-	      		<table>
+	      		<table class="table table-borderless" style="width: 30%; margin: auto; ">
 	      			<tr>
 	      				<td>
-	      					이름 : 
-	      				</td>
-	      				<td>
-	      					<input type="text" name="name" id="name" placeholder="이름을 입력해주세요">
+	      					<input class="form-control" type="text" name="name" id="name" placeholder="이름">
 	      				</td>
 	      			</tr>
 	      			<tr>
 	      				<td>
-	      					핸드폰 번호 : 
-	      				</td>
-	      				<td>
-	      					<input type="text" name="phone" id="phone" placeholder="핸드폰 번호는 - 빼고 입력해주세요">
+	      					<input class="form-control" type="text" name="phone" id="phone" placeholder="핸드폰 번호는 - 빼고 입력해주세요">
 	      				</td>
 	      			</tr>
 	      			<tr>
-	      				<td colspan="2">
-	      					<input type="button" id="datachk" value="아이디 찾기">
+	      				<td>
+	      					<input style="width: 100%" class="btn btn-success" type="button" id="datachk" value="아이디 찾기">
 	      				</td>
 	      			</tr>
 	      		</table>

@@ -40,7 +40,7 @@
       <div class="container">
         <div class="row justify-content-center align-items-center">
           <div class="col-lg-9 text-center mt-5">
-            <h1 class="heading" data-aos="fade-up">매인템플렛</h1>
+            <h1 class="heading" data-aos="fade-up">로그인</h1>
 
             <nav
               aria-label="breadcrumb"
@@ -67,31 +67,36 @@
       	<!-- 여기에 내용을 작성 -->
       	<div>
       		<form id="loginform" method="post">
-	      		<table>
+	      		<table class="table table-borderless" style="width: 30%; margin: auto; ">
 	      			<tr>
-	      				<td>
-	      					아이디 : <input type="text" id="id" name="id" placeholder="아이디">
-	      				</td>
-	      				<td rowspan="2">
-	      					<input type="button" value="로그인" id="login">
+	      				<td colspan="3">
+	      					<input class="form-control" type="text" id="id" name="id" placeholder="아이디">
 	      				</td>
 	      			</tr>
 	      			<tr>
-	      				<td>
-	      					비밀번호 : <input type="password" id="pw" name="pw" placeholder="비밀번호">
+	      				<td colspan="3">
+	      					<input class="form-control" type="password" id="pw" name="pw" placeholder="비밀번호">
 	      				</td>
 	      			</tr>
 	      			<tr>
-	      				<td style="color: red;" colspan="2">
+	      				<td style="color: red;" colspan="3">
 	      					${msg }
 	      				</td>
 	      			</tr>
 	      			<tr>
+	      				<td colspan="3">
+	      					<input style="width: 100%" class="btn btn-success" type="button" value="로그인" id="login">
+	      				</td>
+	      			</tr>
+	      			<tr>
 	      				<td>
-	      					<input type="button" id="idfind" value="아이디 찾기">
+	      					<input class="btn btn-link" type="button" id="pwfind" value="비밀번호 찾기">
 	      				</td>
 	      				<td>
-	      					<input type="button" id="pwfind" value="비밀번호 찾기">
+	      					<input class="btn btn-link" type="button" id="idfind" value="아이디 찾기">
+	      				</td>
+	      				<td>
+	      					<input class="btn btn-link" type="button" id="signpu" value="회원가입">
 	      				</td>
 	      			</tr>
 	      		</table>
@@ -111,6 +116,9 @@
       			});
       			$("#pwfind").click(function(){
       				location.href="${contextPath}/serachid";
+      			});
+      			$("#signup").click(function(){
+      				location.href="${contextPath}/signup";
       			});
       		</script>
       	</div>

@@ -9,10 +9,6 @@
 	SELECT id, nick, f_code, stop FROM user where id =#{id} AND pw =#{pw} AND admin is null
 	</select>
 	
-	<select id="adminLogin" parameterType="UserDTO" resultType="UserDTO">
-	SELECT id, nick FROM user where id =#{id} AND pw =#{pw} AND admin is not null
-	</select>
-	
 	<insert id="signup" parameterType="UserDTO">
 		insert into user(id, f_code, pw, name, nick, birth, phone, email)
 		values(#{id}, #{f_code}, #{pw}, #{name},#{nick}, #{birth}, #{phone}, #{email})

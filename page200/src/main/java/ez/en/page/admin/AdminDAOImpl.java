@@ -17,15 +17,21 @@ public class AdminDAOImpl implements AdminDAO {
 	private final String NS = "ez.en.page.adminMapper.";
 	
 	@Override
+	public UserDTO adminLogin(UserDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NS+"adminLogin", dto);
+	}
+	
+	@Override
 	public List<UserDTO> userList() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(NS+"userList");
 	}
 
 	@Override
-	public int userStop(String id) {
+	public int userStop(List<String> userList) {
 		// TODO Auto-generated method stub
-		return sqlSession.update(NS+"userStop", id);
+		return sqlSession.update(NS+"userStop", userList);
 	}
 
 }

@@ -21,12 +21,6 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public UserDTO adminLogin(UserDTO dto) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne(NS+"adminLogin", dto);
-	}
-
-	@Override
 	public String idchk(String id) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NS+"idchk", id);

@@ -15,15 +15,21 @@ public class AdminServiceImpl implements AdminService {
 	private AdminDAO dao;
 	
 	@Override
+	public UserDTO adminLogin(UserDTO dto) {
+		// TODO Auto-generated method stub
+		return dao.adminLogin(dto);
+	}
+	
+	@Override
 	public List<UserDTO> userList() {
 		// TODO Auto-generated method stub
 		return dao.userList();
 	}
 
 	@Override
-	public int userStop(String id) {
+	public int userStop(List<String> userList) {
 		// TODO Auto-generated method stub
-		return dao.userStop(id);
+		return dao.userStop(userList);
 	}
 
 }

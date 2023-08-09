@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
-    <%@ include file="include/head.jsp" %>
+    <%@ include file="/WEB-INF/views/include/head.jsp" %>
 
     <title>
      관리자 로그인
@@ -28,7 +28,7 @@
     </div>
 
 	<!-- 상단에 네비게이션 -->
-    <%@ include file="include/top_menu.jsp" %>
+    <%@ include file="/WEB-INF/views/include/top_menu.jsp" %>
 	
 	
 	
@@ -40,7 +40,7 @@
       <div class="container">
         <div class="row justify-content-center align-items-center">
           <div class="col-lg-9 text-center mt-5">
-            <h1 class="heading" data-aos="fade-up">매인템플렛</h1>
+            <h1 class="heading" data-aos="fade-up">관리자 로그인</h1>
 
             <nav
               aria-label="breadcrumb"
@@ -53,7 +53,7 @@
                   class="breadcrumb-item active text-white-50"
                   aria-current="page"
                 >
-                  관리자로그인
+                  관리자 로그인
                 </li>
               </ol>
             </nav>
@@ -67,23 +67,25 @@
       	<!-- 여기에 내용을 작성 -->
       	<div>
       		<form id="loginform" method="post">
-	      		<table>
+	      		<table class="table table-borderless" style="width: 30%; margin: auto; ">
 	      			<tr>
 	      				<td>
-	      					아이디 : <input type="text" id="id" name="id" placeholder="아이디">
-	      				</td>
-	      				<td rowspan="2">
-	      					<input type="button" value="로그인" id="login">
+	      					<input class="form-control" type="text" id="id" name="id" placeholder="아이디">
 	      				</td>
 	      			</tr>
 	      			<tr>
 	      				<td>
-	      					비밀번호 : <input type="password" id="pw" name="pw" placeholder="비밀번호">
+	      					<input class="form-control" type="password" id="pw" name="pw" placeholder="비밀번호">
 	      				</td>
 	      			</tr>
 	      			<tr>
-	      				<td style="color: red" colspan="2">
+	      				<td style="color: red">
 	      					${msg }
+	      				</td>
+	      			</tr>
+	      			<tr>
+	      				<td>
+	      					<input style="width: 100%" class="btn btn-success" type="button" value="로그인" id="login">
 	      				</td>
 	      			</tr>
 	      		</table>
@@ -104,7 +106,7 @@
     </div>
 
 	
-	<%@ include file="include/footer.jsp" %>
+	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
     <!-- /.site-footer -->
 
     <!-- Preloader -->
@@ -116,6 +118,6 @@
     </div>
 
 	<!-- 플러그인 -->
-    <%@ include file="include/plugin.jsp" %>
+    <%@ include file="/WEB-INF/views/include/plugin.jsp" %>
   </body>
 </html>
