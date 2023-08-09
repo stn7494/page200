@@ -93,7 +93,7 @@
               </span>
               <div class="feature-text">
                 <h3 class="heading">
-                	<input type="text" name='cam_name' value="${camping.cam_name }" readonly />
+                	${camping.cam_name }
                 </h3>
                 <p class="text-black-50">
                   대충 캠핑장 소개글 (캠핑장 소개글 게시판 필요?)
@@ -108,7 +108,7 @@
               <div class="feature-text">
                 <h3 class="heading">캠핑장 주소</h3>
                 <p class="text-black-50">
-                  <input type="text" name='cam_address' value="${camping.cam_address }" readonly />
+                  ${camping.cam_address }
                 </p>
               </div>
             </div>
@@ -120,7 +120,7 @@
               <div class="feature-text">
                 <h3 class="heading">캠핑장 연락처</h3>
                 <p class="text-black-50">
-                  <input type="text" name='cam_tel' value="${camping.cam_tel}" readonly />
+                  ${camping.cam_tel}
                 </p>
               </div>
             </div>
@@ -145,7 +145,7 @@
               <div class="feature-text">
                 <h3 class="heading">캠핑 테마</h3>
                 <p class="text-black-50">
-                  테마코드로 찾은 테마명 들어갈거임
+                  ${camping.thema_code }
                 </p>
               </div>
             </div>
@@ -157,7 +157,7 @@
               <div class="feature-text">
                 <h3 class="heading">캠핑 옵션</h3>
                 <p class="text-black-50">
-                  옵션코드로 찾은 옵션명 들어갈거임
+                  ${camping.option_code }
                 </p>
               </div>
             </div>
@@ -231,8 +231,7 @@
             <div class="counter-wrap mb-5 mb-lg-0">
               <span class="number"
                 ><span style="color: black;">
-                	<input type="text" name='cam_start_time' value="${camping.cam_start_time}" readonly /><br>
-                
+                	${camping.cam_start_time}
                 </span></span>
               <span class="caption text-black-50">입실 시간</span>
             </div>
