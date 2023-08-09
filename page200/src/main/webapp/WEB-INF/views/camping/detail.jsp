@@ -245,7 +245,7 @@
             <div class="counter-wrap mb-5 mb-lg-0">
               <span class="number"
                 ><span style="color: black;">
-                	<input type="text" name='cam_finish_time' value="${camping.cam_finish_time}" readonly />
+                	${camping.cam_finish_time}
                 
                 </span></span>
               <span class="caption text-black-50">퇴실 시간</span>
