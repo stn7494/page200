@@ -97,14 +97,12 @@
       				<th>예약종료일</th>
       			</tr>
       			<c:forEach items="${revlist }" var="list">
-      		<c:if test="${today < list.rev_start_date }">
       			<tr>
       				<td><a href="revdetail?rev_code=${list.rev_code }" >${list.rev_code }</a></td>
       				<td>${list.rev_start_date }</td>
       				<td>${list.rev_finish_date }</td>
       				
       			</tr>
-      		</c:if>
       			</c:forEach>
       		</table>
       	</div>
@@ -112,7 +110,7 @@
     </div>
     <div class="pagination">
 		<ul class="pagination">
-			<c:if test="${pageMaker.prev }">
+			<c:if test="${pageMaker.prev && pageMaker.startPage > 0 }">
 				<li><a href="revlistPage?page=${pageMaker.startPage - 1 }">&laquo;</a></li>
 			</c:if>
 			

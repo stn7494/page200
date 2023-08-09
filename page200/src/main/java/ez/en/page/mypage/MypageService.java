@@ -5,6 +5,7 @@ import java.util.Map;
 
 import ez.en.page.coupon.CouponDTO;
 import ez.en.page.domain.Criteria;
+import ez.en.page.file.FileDTO;
 import ez.en.page.jjim.JjimDTO;
 import ez.en.page.reservation.ReservationDTO;
 import ez.en.page.review.ReviewDTO;
@@ -44,4 +45,6 @@ public interface MypageService {
 	public int editpassword(UserDTO dto);
 //	닉네인 중복확인
 	public int nickcheck(String id);
+//	프로필 사진 바꿀시 파일이름 바꾸기
+	public int editProfile(FileDTO dto);
 }

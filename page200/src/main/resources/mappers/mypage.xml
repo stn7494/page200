@@ -20,13 +20,13 @@
 	<!-- 예약 페이징 페이지 번호 -->
 	<select id="countPaging" resultType="int">
 	<![CDATA[
-		select count(case when rev_start_date > now() then 1 end)
+		select count(rev_code)
 		from reservation where rev_code > 'rev000' and id = #{id}
 	]]>
 	</select>
 	<!-- 예약 상세조회2 -->
 	<select id="revdetail2" resultType="Map" parameterType="Object">
-		select d.rev_code ,c.cam_name, d.cri_area_code, d.cri_price, d.cri_max  from camping c join (select camping_rev_info.cri_area_code, cam_code, cri_max, cri_price, r.rev_code
+		select d.rev_start_date,d.rev_code ,c.cam_name, d.cri_area_code, d.cri_price, d.cri_max  from camping c join (select camping_rev_info.cri_area_code, cam_code, cri_max, cri_price, r.rev_code,r.rev_start_date
 		from camping_rev_info
 		join reservation as r
 		on r.cri_area_code = camping_rev_info.cri_area_code
@@ -105,7 +105,7 @@
 	</select>
 	<!-- 회원정보수정 -->
 	<update id="edit" parameterType="UserDTO">
-		update user set nick = #{nick},birth = #{birth},phone = #{phone},email = #{email}
+		update user set f_code = #{f_code},nick = #{nick},birth = #{birth},phone = #{phone},email = #{email}
 		where id = #{id}
 	</update>
 	<!-- 회원탈퇴 -->
@@ -123,5 +123,10 @@
 		select count(*) from user
 		where nick = #{nick}
 	</select>
+	<!-- 프로필 사진 바꿀시 파일이름 바꾸기 -->
+	<update id="editProfile" parameterType="FIleDTO">
+		update file set f_name = #{f_name}
+		where f_code = #{f_code}
+	</update>
 	
 </mapper>
