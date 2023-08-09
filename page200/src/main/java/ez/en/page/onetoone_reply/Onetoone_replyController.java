@@ -30,7 +30,7 @@ public class Onetoone_replyController {
 	}
 
 	@GetMapping("onetoone_reply/selectOne2")
-	public ModelAndView selectOne2(@RequestParam("rp_code") String rp_code) {
+	public ModelAndView selectOne2(@RequestParam("rp_code") int rp_code) {
 		ModelAndView mav = new ModelAndView();
 		Onetoone_replyDTO dto = service.selectOne2(rp_code);
 		mav.addObject("onetoone_reply", dto);
@@ -57,14 +57,14 @@ public class Onetoone_replyController {
 	}
 
 	@GetMapping("onetoone_reply/update2")
-	public ModelAndView update2(@RequestParam("rp_code") String rp_code) {
+	public ModelAndView update2(@RequestParam("rp_code") int rp_code) {
 		ModelAndView mav = new ModelAndView();
 		Onetoone_replyDTO dto = service.selectOne2(rp_code);
 		mav.addObject("onetoone_reply", dto);
 		mav.setViewName("onetoone_reply/update2");
 		return mav;
 	}
-
+	
 	@PostMapping("onetoone_reply/update2")
 	public ModelAndView update2(Onetoone_replyDTO dto) {
 		System.out.println(dto + "나는 오류종자다.");
@@ -83,7 +83,7 @@ public class Onetoone_replyController {
 		return mav;
 	}
 	@GetMapping("onetoone_reply/delete2")
-	public ModelAndView delete2(String rp_code) {
+	public ModelAndView delete2(int rp_code) {
 		service.delete2(rp_code);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list2",service.listAll());

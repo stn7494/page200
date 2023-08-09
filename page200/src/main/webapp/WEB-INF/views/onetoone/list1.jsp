@@ -79,7 +79,8 @@
 			</div>
 			<div class="box">
 				<div class="box-header with-border">
-					<a href="insert1" type=button><h6>글쓰기</h6></a>
+					<a href = "insert1" type=button><h6>글쓰기</h6></a>
+					<a href = "SELECTONE" type=button><h6>내 문의조회</a>
 				</div>
 			</div>
 

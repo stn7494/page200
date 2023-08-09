@@ -77,7 +77,7 @@
 						<div class="box-footer">
 							<button type="submit" class="btn btn-primary">작성완료</button>
 						</div>
-						<input type="hidden" name="n_writer"	class="form-control" value="${user.id}">
+						<input type="hidden" name="n_writer" class="form-control" value="${user.nick}">
 					</form>
 			</section>
 			<!-- /.content -->
