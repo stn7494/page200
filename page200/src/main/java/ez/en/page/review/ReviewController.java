@@ -75,6 +75,7 @@ public class ReviewController {
 	public ModelAndView reviewInsert(ReviewDTO dto, HttpServletRequest request) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		ModelAndView mav = new ModelAndView();
+		System.out.println(dto);
 		logger.info(dto.getId() + "아이디입니다.");
 		service.insert(dto);
 		List<ReviewDTO> list = service.listAll();
