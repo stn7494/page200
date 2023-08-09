@@ -18,12 +18,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDTO adminLogin(UserDTO dto) {
-		// TODO Auto-generated method stub
-		return dao.adminLogin(dto);
-	}
-
-	@Override
 	public String idchk(String id) {
 		// TODO Auto-generated method stub
 		return dao.idchk(id);

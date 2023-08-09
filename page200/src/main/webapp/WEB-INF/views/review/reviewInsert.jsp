@@ -75,6 +75,10 @@
 						class="form-control" value="${userNick3.nick}" readonly>
 				</div>
 				<div class="form-group">
+					<label>리뷰글번호 (직접입력 ex)예약번호가 rev010일경우 리뷰글번호는 r010으로 작성))</label>
+					<input type="text" name='r_code' class="form-control" placeholder="리뷰글번호를 입력하세요">
+				</div>
+				<div class="form-group">
 					<label>내용</label>
 					<textarea class="form-control" name="r_content" rows="10"
 						placeholder="내용을 입력하세요"></textarea>
@@ -87,6 +91,11 @@
 				<tr>
 					<td colspan="5"><input type="file" name="fileName"></td>
 				</tr>
+				<div class="form-group">
+					<label>별점</label>
+					<input type="text" class="form-control" name="r_star" rows="4"
+						placeholder="별점을 입력하세요">
+				</div>
 			</div>
 
 			<div class="box-footer">

@@ -36,6 +36,9 @@ public class CouponController {
 	@Autowired
 	private MypageService mService;
 	
+//	@Autowired
+//	private My_couponDTO mydto;
+	
 	private static final Logger logger = LoggerFactory.getLogger(CouponController.class);
 	
 //	전체조회_관리자
@@ -167,22 +170,49 @@ public class CouponController {
 		return mav;
 	}
 	
-//	쿠폰 발급확인(ajax)
+//	쿠폰 발급(ajax)
 	@ResponseBody
 	@PostMapping(value = "couponchk")
 	public Map<String, Object> couponchk(@RequestParam("cp_code") String cp_code, HttpSession session, @RequestParam("cp_amount") int cp_amount){
 		My_couponDTO mydto = new My_couponDTO();
-		mydto.setCp_code(cp_code);
 		UserDTO dto = (UserDTO)session.getAttribute("user");
+		mydto.setCp_code(cp_code);
 		mydto.setId(dto.getId());
 		Map<String, Object> map = new HashMap<String, Object>();
-		if(cp_amount == 0) {
-			map.put("msg", "쿠폰 수량이 초과되서 발급이 불가합니다.");
-		} else {
-			service.couponissue(mydto);
-			logger.info("cp_code값 : " +cp_code);
+		int result = service.mycouponCheck(mydto);
+//		int birth = service.birthday(cp_code);
+		if(cp_amount == 0) { // 쿠폰 수량 0일때
+			
+			map.put("msg", "쿠폰 수량이 초과되었거나, 중복발급되어 발급이 불가합니다.");  
+			
+		}else if(result == 1) { // 중복 발급시
+			map.put("msg", "이미 발급된 쿠폰입니다.");
+			
+//		}else if(birth == 1) {
+//			map.put("msg", "차월이 생일인 회원만 발급 가능한 쿠폰입니다.");
+			
+		} else{ // 쿠폰 수량 0이 아닐때 && 쿠폰함에 중복이 없을 때 발급 + 수량 감소
 			map.put("msg", "쿠폰발급에 성공하셨습니다");
+			service.couponissue(mydto);
+//			logger.info("cp_code값 : " +cp_code);
+//			updatenum(수량 감소 id)
+			service.updatenum(cp_code); // 수량감소
 		}
+		return map;
+	}
+	
+//	차월 회원조회(ajax)
+	@ResponseBody
+	@PostMapping(value = "birthdaylist")
+	public Map<String, Object> birthdaylist(String id){
+		Map<String, Object> map = new HashMap<String, Object>();
+		//logger.info("생일회원 조회 : "+id);
+		if(service.birthday(id) == 0) {
+			map.put("msg", "차월이 생일인 회원만 발급 가능한 쿠폰입니다.");
+		} else {
+			service.birthday(id);
+		}
+		
 		return map;
 	}
 	

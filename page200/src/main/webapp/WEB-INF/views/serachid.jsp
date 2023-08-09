@@ -19,6 +19,7 @@
    <style type="text/css">
    a:link {
   color : green;
+  font-weight: bold;
 }
 a:visited {
   color : green;
@@ -54,7 +55,7 @@ a:active {
       <div class="container">
         <div class="row justify-content-center align-items-center">
           <div class="col-lg-9 text-center mt-5">
-            <h1 class="heading" data-aos="fade-up">매인템플렛</h1>
+            <h1 class="heading" data-aos="fade-up">비밀번호 찾기</h1>
 
             <nav
               aria-label="breadcrumb"
@@ -67,7 +68,7 @@ a:active {
                   class="breadcrumb-item active text-white-50"
                   aria-current="page"
                 >
-                  Properties
+                  비밀번호 찾기
                 </li>
               </ol>
             </nav>
@@ -81,22 +82,22 @@ a:active {
       	<!-- 여기에 내용을 작성 -->
       	<div>
       		<form action="pwfind" method="post">
-	      		<table style="margin: auto;">
+	      		<table class="table table-borderless" style="width: 30%; margin: auto; ">
 	      			<tr>
 	      				<td><p>비밀번호를 찾고자하는 아이디를 입력해주세요.</p></td>
 	      			</tr>
 	      			<tr>
 	      				<td>
-	      					<input type="text" id="id" name="id" placeholder="아이디">
+	      					<input class="form-control" type="text" id="id" name="id" placeholder="아이디">
 	      				</td>
 	      			</tr>
 	      			<tr>
 	      				<td>
-	      					<input type="button" value="다음" id="next">
+	      					<input style="width: 100%" class="btn btn-success" type="button" value="다음" id="next">
 	      				</td>
 	      			</tr>
 	      			<tr>
-	      				<td>아이디가 기억나지 않는다면? <a href="${contextPath}/idfind">아이디 찾기</a>></td>
+	      				<td>아이디가 기억나지 않는다면? <a href="${contextPath}/idfind">아이디 찾기</a></td>
 	      			</tr>
 	      		</table>
       		</form>

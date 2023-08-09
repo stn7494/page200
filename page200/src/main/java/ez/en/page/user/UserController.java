@@ -55,6 +55,9 @@ public class UserController {
 		System.out.println("테스트2");
 		System.out.println("테스트3");
 		System.out.println("테스트4");
+		System.out.println("테스트6");
+		
+		
 		return "camdetail";
 	}
 	
@@ -89,26 +92,6 @@ public class UserController {
 			mav.setViewName("index");
 		}else {
 			session.setAttribute("user", userService.login(dto));
-			mav.setViewName("index");
-		}
-		return mav;
-	}
-	
-	@GetMapping(value = "admin")
-	public ModelAndView adminLogin() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("adminLogin");
-		return mav;
-	}
-	
-	@PostMapping(value = "admin")
-	public ModelAndView adminLogin(UserDTO dto, HttpSession session) {
-		ModelAndView mav = new ModelAndView();
-		if(userService.adminLogin(dto) == null) {
-			mav.addObject("msg", "아이디와 비밀번호를 다시 입력해주세요");
-			mav.setViewName("adminLogin");
-		}else {
-			session.setAttribute("admin", userService.adminLogin(dto));
 			mav.setViewName("index");
 		}
 		return mav;
