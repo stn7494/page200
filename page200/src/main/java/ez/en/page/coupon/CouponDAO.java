@@ -25,6 +25,8 @@ public interface CouponDAO {
 	public int couponissue(My_couponDTO mydto);
 //	쿠폰함에 해당쿠폰 있는지 여부 조회
 	public int mycouponCheck(My_couponDTO mydto);
-//	차월 생일 회원
+//	차월 생일 회원조회
 	public int birthday(String id);
+//	ID 별 예약 갯수 조회
+	public int reservationNom(String id);
 }

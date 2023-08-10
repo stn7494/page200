@@ -13,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
-import ez.en.page.camping_thema.ThemaDTO;
 import ez.en.page.camping_thema.ThemaService;
 import ez.en.page.domain.Criteria;
 import ez.en.page.domain.PageMaker;
@@ -93,10 +91,10 @@ public class CampingController {
 	
 //	@GetMapping("/detail")
 //	public void read(@RequestParam("cam_code") String cam_code, Model model) throws Exception{
-////		CampingDTO campingDTO = new CampingDTO();
-////		model.addAttribute("camping", campingDTO);
+//		CampingDTO campingDTO = new CampingDTO();
+//		model.addAttribute("camping", campingDTO);
 //		model.addAttribute("camping", campingService.detail(cam_code));
-////		model.addAttribute(campingService.detail(cam_code));
+//		model.addAttribute(campingService.detail(cam_code));
 //	}
 
 	

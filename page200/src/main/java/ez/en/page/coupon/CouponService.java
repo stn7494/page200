@@ -71,4 +71,10 @@ public interface CouponService {
 	 * @return
 	 */
 	public int birthday(String id);
+	/**
+	 * ID 별 예약 갯수 조회
+	 * @param id
+	 * @return
+	 */
+	public int reservationNom(String id);
 }

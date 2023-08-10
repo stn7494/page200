@@ -52,7 +52,9 @@
                	 <li><a href="${contextPath }/userList">회원조회</a></li>
              	 <li><a href="coupon">쿠폰</a></li>
               </c:if>
-              <li><a href="camping/list">캠핑장</a></li>
+              
+              <!-- sy수정 -->
+              <li><a href="${contextPath}/scamping/list">캠핑장</a></li>
               <li><a href="${contextPath }/review">리뷰</a></li>
               <li><a href ="${contextPath }/notice/list">공지사항</a></li>
 
