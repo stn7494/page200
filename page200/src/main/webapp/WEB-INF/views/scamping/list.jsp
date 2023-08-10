@@ -120,24 +120,13 @@
 				</table>
 				
 		<!-- 검색기능 추가 -->
-   			 <div class='box-body'>
-				<select name="searchType">
-					<option value="n" 
-						<c:out value="${cri.searchType == null ? 'selected' : '' }" />>---</option>
-					<option value="c" 
-						<c:out value="${cri.searchType eq 'c' ? 'selected' : '' }"/>>Name</option>
-					<option value="r" 
-						<c:out value="${cri.searchType eq 'r' ? 'selected' : '' }"/>>Region</option>
-					<option value="q" 
-						<c:out value="${cri.searchType eq 'q' ? 'selected' : '' }"/>>Name Or Region</option>
-				</select>
-				
-				<!-- keyword -->
-      		 	<input type="text" name='keyword' id="keywordInput" value='${cri.keyword }'>
-      		 	<button id='searchBtn'>Search</button>
-      		 	<button id='newBtn'>New Camping</button>
-      		 </div>
-      		 
+   			 
+		   	<div class="search_wrap">
+		        <div class="search_area">
+		            <input type="text" name='keyword' id="keywordInput" value='${cri.keyword }'>
+		            <button id='searchBtn'>Search</button>
+		        </div>
+		    </div>  
  	
 			<div class="text-center">
 				<input class="btn btn-success"
@@ -170,26 +159,23 @@
 			</ul>
 		</div>
 		
+			<form role="moveForm" action="modifyPage" method="post">
+				<input type='hidden' name='page' value="${cri.page }">
+				<input type='hidden' name='perPageNum' value="${cri.perPageNum }">
+				<input type='hidden' name='searchType' value="${cri.searchType }">
+				<input type='hidden' name='keyword' value="${cri.keyword }">
+			</form>
 		
 		
 		<!-- 검색script -->
 		<script>
-			$(document).ready(function(){
-				
-				$('#searchBtn').on("click", function(event){
-					
-					self.location = "list" 
-						+ '${pageMaker.makeQuery(1)}'
-						+ "&searchType="
-						+ $("select option:selected").val()
-						+ "&keyword=" + encodeURIComponent($('#keywordInput').val());
-				});
-				
-				$('#newBtn').on("click", function(evt){
-				
-					self.location = "register";
-				});
-			});
+			$("#searchBtn").on("click", function(e){
+		        e.preventDefault();
+		        let val = $("input[name='keyword']").val();
+		        moveForm.find("input[name='keyword']").val(val);
+		        moveForm.find("input[name='pageNum']").val(1);
+		        moveForm.submit();
+		    });
 		
 		</script>
 
