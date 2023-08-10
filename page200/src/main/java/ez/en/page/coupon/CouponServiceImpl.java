@@ -61,4 +61,9 @@ public class CouponServiceImpl implements CouponService {
 	public int birthday(String id) {
 		return dao.birthday(id);
 	}
+
+	@Override
+	public int reservationNom(String id) {
+		return dao.reservationNom(id);
+	}
 }

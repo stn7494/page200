@@ -180,16 +180,20 @@ public class CouponController {
 		mydto.setId(dto.getId());
 		Map<String, Object> map = new HashMap<String, Object>();
 		int result = service.mycouponCheck(mydto);
-//		int birth = service.birthday(cp_code);
+		int birth = service.birthday(dto.getId());
+		int reservation = service.reservationNom(dto.getId());
 		if(cp_amount == 0) { // 쿠폰 수량 0일때
 			
-			map.put("msg", "쿠폰 수량이 초과되었거나, 중복발급되어 발급이 불가합니다.");  
+			map.put("msg", "쿠폰 수량이 초과되어 발급 불가합니다.");  
 			
 		}else if(result == 1) { // 중복 발급시
 			map.put("msg", "이미 발급된 쿠폰입니다.");
 			
-//		}else if(birth == 1) {
-//			map.put("msg", "차월이 생일인 회원만 발급 가능한 쿠폰입니다.");
+		}else if(birth == 0 && cp_code.equals("cp002") ) {
+			map.put("msg", "차월이 생일인 회원만 발급 가능한 쿠폰입니다.");
+			
+		}else if(reservation < 4 && cp_code.equals("cp003")) {
+			map.put("msg", "5회 이상 예약 시 발급 가능한 쿠폰입니다.");
 			
 		} else{ // 쿠폰 수량 0이 아닐때 && 쿠폰함에 중복이 없을 때 발급 + 수량 감소
 			map.put("msg", "쿠폰발급에 성공하셨습니다");
@@ -215,5 +219,19 @@ public class CouponController {
 		
 		return map;
 	}
+	
+//	ID 별 예약 갯수 조회(ajax)
+	@ResponseBody
+	@PostMapping(value = "reservationlist")
+	public Map<String, Object> reservationlist(String id){
+		Map<String, Object> map = new HashMap<String, Object>();
+		if(service.reservationNom(id) < 4) {
+			map.put("msg", "5회 이상 예약 시 발급 가능한 쿠폰입니다.");
+		} else {
+			service.reservationNom(id);
+		}
+		return map;
+	}
+	
 	
 }

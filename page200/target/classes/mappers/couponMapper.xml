@@ -53,5 +53,10 @@
 		select count(*) from user where id = #{id} and mid(birth, 6 , 2) =(MONTH(NOW())+1)
 	</select>
 	
+	<!-- ID 별 예약 갯수 조회 -->
+	<select id="reservationNom" parameterType="String" resultType="int">
+		SELECT count(*) from page200.reservation where id = #{id};
+	</select>
+	
 	
 </mapper>
