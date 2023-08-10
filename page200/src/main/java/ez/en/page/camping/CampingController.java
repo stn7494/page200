@@ -1,6 +1,7 @@
 package ez.en.page.camping;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -15,12 +16,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import ez.en.page.camping_thema.ThemaService;
 import ez.en.page.domain.Criteria;
 import ez.en.page.domain.PageMaker;
+import ez.en.page.review.ReviewDTO;
 import ez.en.page.review.ReviewService;
 
 
@@ -31,7 +34,9 @@ public class CampingController {
 	
 	@Inject
 	private CampingService campingService;
+	@Inject
 	private ThemaService themaService;
+	
 	private static final Logger logger = LoggerFactory.getLogger(CampingController.class);
 	
 	// kdj 추가함
@@ -218,13 +223,36 @@ public class CampingController {
 //	
 	
 	//5.캠핑장 상세 페이지 (캠핑장 전체 목록에서 캠핑장 이름(cam_name)을 클릭 했을 경우 -> 상세페이지(detail)로 이동
-	@GetMapping("camping/detail")
+	// kdj가 수정
+	@GetMapping("/detail")
 	public String detail(@RequestParam ("cam_code") String cam_code, Model model, HttpServletRequest request) throws Exception {
+		request.setCharacterEncoding("utf-8");
 		int count = rservice.reviewCount(cam_code);
+		List<ReviewDTO> rdto = rservice.camReviewAll(cam_code);
+//		List<Map<String, Object>> camReview = rservice.camReviewList(cam_code);
+//		for(int i=0; i<camReview.size(); i++) {
+//			System.out.println(camReview.get(i));
+//		}
 		model.addAttribute("count",count);
-		
+		model.addAttribute("rrdto", rdto);
 		return "camping/detail";
 	}
 	
+	
+	
+	
+	
+	
+	
+//	리뷰화면 캠핑장 상세에서 보여주기
+//	@GetMapping("camping/detail")
+//	public ModelAndView camReviewList(@RequestParam("cam_code") String cam_code, HttpServletRequest request) throws Exception {
+//		ModelAndView mav = new ModelAndView();
+//		mav.addObject("cR", camReview);
+//		mav.setViewName("/include/review");
+//		return mav;
+//	}
+	
+
 	//6.캠핑장 예약 정보(캠핑장 상세페이지에서 보여줄 각 캠핑장별 예약 정보)
 }

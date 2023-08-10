@@ -111,6 +111,6 @@
 	<select id="selectMaxCode" resultType="int">
 		select MAX(cam_code) from camping
 	</select>
-	
+
 
 </mapper>
