@@ -23,7 +23,8 @@
         </div>
         <div class="testimonial-slider-wrap">
           <div class="testimonial-slider">
-          	<c:forEach var="list" items="${camReviewList}">
+          
+          	<c:forEach var="list" items="${rrdto}">
           	
           	
             <div class="item">
@@ -34,22 +35,22 @@
                   class="img-fluid rounded-circle w-25 mb-4"
                 />
                 <div class="rate">
+                <c:forEach begin="1" end="${list.r_star}">
                   <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
+                </c:forEach>
+       
                 </div>
-                <h3 class="h5 text-primary mb-4">${list.nick }</h3>
+                <h3 class="h5 text-primary mb-4">${list.id }</h3>
                 <blockquote>
                   <p>
                     ${list.r_content}
                   </p>
                 </blockquote>
-                <p class="text-black-50">Designer, Co-founder</p>
+                <p class="text-black-50">${list.r_w_date}</p>
               </div>
             </div>
 			</c:forEach>
+			
           </div>
         </div>
       </div>

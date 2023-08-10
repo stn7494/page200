@@ -55,7 +55,7 @@
 		r_code=#{r_code}
 	</delete>
 
-	<!-- 캠핑장 예약한 사람 이름 조회 -->
+	<!-- 캠핑장 예약한 사람 닉네임 조회 -->
 	<select id="userNick" parameterType="String"
 		resultType="UserDTO">
 		select s.nick from reservation r join user s
@@ -66,20 +66,40 @@
 	<!-- 리뷰갯수 count 구하기 -->
 	<select id="reviewCount" parameterType="String" resultType="int">
 		select COUNT(cam.cam_code) from camping_rev_info cam JOIN
-		(SELECT rev.cri_area_code FROM review r INNER JOIN reservation rev ON
+		(SELECT
+		rev.cri_area_code FROM review r INNER JOIN reservation rev ON
 		r.rev_code=rev.rev_code) j
 		ON cam.cri_area_code=j.cri_area_code
-		GROUP BY cam.cam_code HAVING cam.cam_code=#{cam_code}
+		GROUP BY
+		cam.cam_code HAVING cam.cam_code=#{cam_code}
 	</select>
-	
+
 	<!-- 리뷰화면 캠핑장 상세에서 보여주기 -->
-	<select id="camReviewList" parameterType="String" resultType="Map">
-		select u.nick, j.* from user u join (select r.id, r.rev_code, r.r_code, r.r_w_date, r.r_content, r.r_star 
-		from review r join (select re.rev_code from camping_rev_info ci join reservation re
+	<select id="camReviewList" parameterType="String"
+		resultType="Map">
+		select u.nick, j.* from user u join (select r.id,
+		r.rev_code, r.r_code, r.r_w_date, r.r_content, r.r_star
+		from review r
+		join (select re.rev_code from camping_rev_info ci join
+		reservation re
+		on ci.cri_area_code = re.cri_area_code
+		where ci.cam_code
+		= #{cam_code})
+		j
+		on r.rev_code = j.rev_code) j
+		on u.id = j.id
+	</select>
+
+	<!-- 리뷰화면 캠핑장 상세에서 보여주기22 -->
+	<select id="camReviewAll" parameterType="String"
+		resultType="ReviewDTO">
+		select id, r_w_date, r_content, r_star, r_declaration from
+		review r join (select re.rev_code from camping_rev_info ci join
+		reservation re
 		on ci.cri_area_code = re.cri_area_code
 		where ci.cam_code = #{cam_code}) j
-		on r.rev_code = j.rev_code) j
-		on u.id = j.id;
+		on r.rev_code = j.rev_code
 	</select>
+
 
 </mapper>

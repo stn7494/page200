@@ -59,9 +59,23 @@ public class ReviewServiceImpl implements ReviewService{
 		return dao.userNick(rev_code);
 	}
 
+//	리뷰 수 카운트
 	@Override
 	public int reviewCount(String cam_code) {
 		// TODO Auto-generated method stub
 		return dao.reviewCount(cam_code);
+	}
+
+//	캠핑장 상세보기 리뷰보여주는것
+	@Override
+	public List<Map<String, Object>> camReviewList(String cam_code) {
+		// TODO Auto-generated method stub
+		return dao.camReviewList(cam_code);
+	}
+
+	@Override
+	public List<ReviewDTO> camReviewAll(String cam_code) {
+		// TODO Auto-generated method stub
+		return dao.camReviewAll(cam_code);
 	}
 }
