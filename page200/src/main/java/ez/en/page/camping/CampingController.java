@@ -23,6 +23,7 @@ import ez.en.page.camping_thema.ThemaDTO;
 import ez.en.page.camping_thema.ThemaService;
 import ez.en.page.domain.Criteria;
 import ez.en.page.domain.PageMaker;
+import ez.en.page.review.ReviewService;
 
 
 
@@ -85,13 +86,13 @@ public class CampingController {
 		model.addAttribute("list", campingService.list());
 	}
 	
-	@GetMapping("/detail")
-	public void read(@RequestParam("cam_code") String cam_code, Model model) throws Exception{
+//	@GetMapping("/detail")
+//	public void read(@RequestParam("cam_code") String cam_code, Model model) throws Exception{
 //		CampingDTO campingDTO = new CampingDTO();
 //		model.addAttribute("camping", campingDTO);
-		model.addAttribute("camping", campingService.detail(cam_code));
+//		model.addAttribute("camping", campingService.detail(cam_code));
 //		model.addAttribute(campingService.detail(cam_code));
-	}
+//	}
 
 	
 //	//캠핑장 상세조회에 thema_name들어갈수 있게 추가
