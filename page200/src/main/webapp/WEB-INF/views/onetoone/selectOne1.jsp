@@ -12,10 +12,51 @@
 <html lang="ko">
 <head>
 <%@ include file="../include/head.jsp"%>
-
+<%@ include file="../include/plugin.jsp"%>
 <title>Property &mdash; Free Bootstrap 5 Website Template by
 	Untree.co</title>
 </head>
+<script type="text/javascript">
+$(document).ready(function() {
+	console.log("ajax test");
+	
+	replylist();
+	
+	$(document).on('click','#btnReplySave',function(){
+		var rememo = $("#rememo").val();
+		var rewriter = $("rewriter").val();
+		
+		var url = "${pageContext.request.contextPath}/onetoonereply/reply2";
+		var paramDate = {
+				"rewriter" : rewriter,
+				"rememo" : rememo,
+				"o_code" : '${onetoone.o_code}'
+		};
+		$.ajax({
+			type : "POST",
+			url : url
+			date = paramDate
+			datetype : 'json',
+			success:function(result){
+				replylist();
+				$("#rememo").val('');
+				$("#rewriter").val('');
+			},
+			error:function(date){
+				console.log(date);
+				alert("에러가 발생했습니다.");
+			}
+		});
+	});
+});
+
+</script>
+
+
+
+
+
+
 <body>
 	<div class="site-mobile-menu site-navbar-target">
 		<div class="site-mobile-menu-header">
@@ -63,7 +104,7 @@
 						<h3 class="box-title">상세보기</h3>
 					</div>
 					<div class="box-body">
-					<div class="form-group">
+						<div class="form-group">
 							<labal>회원 아이디</labal>
 							<input type="text" name="id" class="form-control"
 								value="${onetoone.id }" readonly="readonly" />
@@ -109,6 +150,6 @@
 	</div>
 
 	<!-- 플러그인 -->
-	<%@ include file="../include/plugin.jsp"%>
+	
 </body>
 </html>

@@ -41,3 +41,4 @@ public class Onetoone_replyServiceImpl implements Onetoone_replyService {
 		return dao.delete2(rp_code);
 	}
 }
+

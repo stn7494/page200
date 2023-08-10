@@ -12,6 +12,5 @@ public interface Onetoone_replyService {
 	
 	public int update2(Onetoone_replyDTO rdto);
 	
-	public int delete2(int rp_code);
-
+	public int delete2(int rp_code);	
 }

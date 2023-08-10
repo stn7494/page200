@@ -46,5 +46,4 @@ public class OnetooneServiceImpl implements OnetooneService {
 		// TODO Auto-generated method stub
 		return dao.SELECTONE(id);
 	}
-	
 }
