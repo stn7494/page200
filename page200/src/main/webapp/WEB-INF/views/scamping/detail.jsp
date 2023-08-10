@@ -209,7 +209,7 @@
           >
             <div class="counter-wrap mb-5 mb-lg-0">
               <span class="number"
-                ><span class="countup text-primary">${count}</span></span
+                ><span class="countup text-primary">1291</span></span
               >
               <span class="caption text-black-50">리뷰 개수</span>
             </div>
@@ -260,38 +260,48 @@
     </div>
     
     <!-- 관리자용 -->
-    <div class="box-footer">
-	    <button type="submit" class="btn btn-warning">MODIFY</button>
-    	<button type="submit" class="btn btn-danger">REMOVE</button>
-    	<button type="submit" class="btn btn-primary">LIST</button>
-    </div>
+	<div class="text-center">
+		<div class="box-footer">
+			<button type="submit" class="btn btn-warning">MODIFY</button>
+			<button type="submit" class="btn btn-danger">REMOVE</button>
+			<button type="submit" class="btn btn-primary">GO LIST</button>
+		</div>
+	</div>
+	
+	<form role="form" action="modifyPage" method="post">
+		<input type='hidden' name='cam_code' value="${camping.cam_code }">
+		<input type='hidden' name='page' value="${cri.page }">
+		<input type='hidden' name='perPageNum' value="${cri.perPageNum }">
+		<input type='hidden' name='searchType' value="${cri.searchType }">
+		<input type='hidden' name='keyword' value="${cri.keyword }">
+	</form>
     
-    <script>
-    $(document).ready(function(){
-    
-    	var formObj = $("form[role='form']");
-    	
-    	console.log(formObj);
-    	
-    	$(".btn-warning").on("click", function(){
-    		formObj.attr("action", "/page/camping/modify");
-    		formObj.attr("method", "get");
-    		formObj.submit();
-    	});
-    	
-    	$(".btn-danger").on("click", function(){
-    		formObj.attr("action", "/page/camping/remove");
-    		formObj.submit();
-    	});
-    	
-    	$(".btn-primary").on("click", function(){
-    		self.location = "/page/camping/list";
-    	});
-    
-    
-    });
-    
-    </script>
+	<script>
+		$(document).ready(function() {
+
+			var formObj = $("form[role='form']");
+
+			console.log(formObj);
+
+			$(".btn-warning").on("click", function() {
+				formObj.attr("action", "/page/scamping/modifyPage");
+				formObj.attr("method", "get");
+				formObj.submit();
+			});
+
+			$(".btn-danger").on("click", function() {
+				formObj.attr("action", "/page/scamping/removePage");
+				formObj.submit();
+			});
+
+			$(".btn-primary").on("click", function() {
+				formObj.attr("method", "get");
+				formObj.attr("action", "/page/scamping/list");
+				formObj.submit();
+			});
+
+		});
+	</script>
     
     
     <!-- /body -->

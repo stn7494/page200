@@ -1,8 +1,10 @@
 package ez.en.page.camping;
 
 import java.util.List;
+import java.util.Map;
 
 import ez.en.page.domain.Criteria;
+import ez.en.page.domain.SearchCriteria;
 
 public interface CampingService {
 	
@@ -20,6 +22,11 @@ public interface CampingService {
 	public List<CampingDTO> listCriteria(Criteria cri) throws Exception;
 	
 	public int listCountCriteria(Criteria cri) throws Exception;
+	
+	//캠핑장 검색
+	public List<CampingDTO> listSearchCriteria(SearchCriteria cri) throws Exception;
+	
+	public int listSearchCount(SearchCriteria cri) throws Exception;
 	
 //	//캠핑장 상세페이지 정보 조회
 //	public Map selectAll(Map<String, Object> map);

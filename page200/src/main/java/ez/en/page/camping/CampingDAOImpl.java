@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import ez.en.page.domain.Criteria;
+import ez.en.page.domain.SearchCriteria;
 
 @Repository
 public class CampingDAOImpl implements CampingDAO {
@@ -66,6 +67,16 @@ public class CampingDAOImpl implements CampingDAO {
 	@Override
 	public int countPaging(Criteria cri) throws Exception {
 		return sqlSession.selectOne(namespace+"countPaging", cri);
+	}
+
+	@Override
+	public List<CampingDTO> listSearch(SearchCriteria cri) throws Exception {
+		return sqlSession.selectList(namespace+"listSearch", cri);
+	}
+
+	@Override
+	public int listSearchCount(SearchCriteria cri) throws Exception {
+		return sqlSession.selectOne(namespace+"listSearchCount", cri);
 	}
 
 //	//캠핑장 예약정보

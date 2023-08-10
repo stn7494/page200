@@ -38,6 +38,60 @@
 		SELECT * FROM camping WHERE cam_code = #{cam_code}
 	</select>	
 	
+		<!-- 캠핑장 수 조회 -->
+	<select id="countPaging" resultType="int">
+		<![CDATA[
+		select count(cam_code) 
+		from camping
+		where cam_code > 'cam000'
+		]]>
+	</select>
+	
+	<!-- 캠핑장 페이징처리 (cam_address 조회) -->
+	<select id="listPage" resultType="CampingDTO">
+		<![CDATA[
+			SELECT * FROM camping 
+			WHERE cam_code > 'cam000'
+			order by cam_code desc 
+			limit #{page}, 10 ;
+		]]>
+	</select>
+	
+	<select id="listCriteria" resultType="CampingDTO">
+		<![CDATA[
+		SELECT * FROM camping
+		WHERE cam_code > 'cam000'
+		order by cam_code desc 
+		limit #{pageStart}, #{perPageNum} ;
+		]]>
+	</select>
+	
+	<!-- 캠핑장 검색 처리 -->
+	<select id="listSearch" resultType="CampingDTO">
+		 SELECT *
+		 FROM camping
+		 
+		<if test="keyword != null">
+		 WHERE (cam_name like CONCAT('%', #{keyword}, '%') OR cam_address like CONCAT('%', #{keyword}, '%'))
+		</if>
+		order by cam_code desc
+		limit #{pageStart}, #{perPageNum}
+	</select>
+	
+	<!-- 캠핑장 개수 조회 -->
+	<select id="listSearchCount" resultType="int">
+		 SELECT count(cam_code)
+		 FROM camping
+		 <if test="keyword != null">
+		 WHERE (cam_name like CONCAT('%', #{keyword}, '%') OR cam_address like CONCAT('%', #{keyword}, '%'))
+		 </if>
+	</select>
+	
+	
+	
+	
+	<!-- ====================================== -->
+	
 	<!-- 캠핑장(상세페이지) 정보 조회 -->	
 	<select id="selectAll" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT camping.*, camping_rev_info.* 
@@ -51,38 +105,12 @@
 		select now()
 	</select>
 	
-	<!-- 캠핑장 검색 처리 -->
-	<sql id="search">
-		<where>
-		<if test="types != null and types.length > 0">
-			<foreach collection="types" item="type" open="(" close=")" separator=" OR ">
-				<if test="type=='cam_name'.toString()">
-					cam_name like concat('%', #{keyword}, '%')
-				</if>
-				<if test="type=='cam_address'.toString()">
-					cam_address like concat('%', #{keyword}, '%')
-				</if>
-			</foreach>
-		</if> 
-		</where>
-	</sql>
-	
-	<!-- 캠핑장 검색 조회 목록-->
-	<select id="searchList" resultType="CampingDTO">
-		select * from camping
-		<include refid="search"></include>
-		order by cam_code desc limit #{skip}, #{size}
-	</select>
-	
-	<!-- 캠핑장 수 조회 -->
-	<select id="selectCount" resultType="int">
-		select count(cam_code) from camping
-	</select>
+
 	
 	<!-- 최신 등록 캠핑장 코드 조회 -->
 	<select id="selectMaxCode" resultType="int">
 		select MAX(cam_code) from camping
 	</select>
-	
+
 
 </mapper>

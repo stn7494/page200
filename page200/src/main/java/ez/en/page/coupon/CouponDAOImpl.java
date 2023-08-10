@@ -64,4 +64,9 @@ public class CouponDAOImpl implements CouponDAO {
 	public int birthday(String id) {
 		return sqlSession.selectOne(namepace + "birthday", id);
 	}
+
+	@Override
+	public int reservationNom(String id) {
+		return sqlSession.selectOne(namepace + "reservationNom", id);
+	}
 }
