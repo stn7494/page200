@@ -16,5 +16,4 @@ public interface OnetooneDAO {
 
 	public int delete(int o_code);
 
-
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import ez.en.page.user.UserDTO;
@@ -39,6 +40,8 @@ public class Onetoonecontroller {
 		mav.addObject("onetoone", dto);
 		mav.setViewName("onetoone/selectOne1");
 		return mav;
+		
+		
 	}
 	@GetMapping("onetoone/SELECTONE")
 	public ModelAndView SELECTONE(HttpSession session) {

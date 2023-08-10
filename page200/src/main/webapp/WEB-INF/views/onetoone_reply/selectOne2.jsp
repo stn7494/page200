@@ -12,10 +12,12 @@
 <html lang="ko">
 <head>
 <%@ include file="../include/head.jsp"%>
+<%@ include file="../include/plugin.jsp"%>
 
 <title>Property &mdash; Free Bootstrap 5 Website Template by
 	Untree.co</title>
 </head>
+
 <body>
 	<div class="site-mobile-menu site-navbar-target">
 		<div class="site-mobile-menu-header">
@@ -101,12 +103,12 @@
 			<c:otherwise>
 					관리자님 환영합니다
 				<a href="update2?rp_code=${onetoone_reply.rp_code }" role="button"
-			class="btn btnoutline-info">글 수정</a> 
+					class="btn btnoutline-info">글 수정</a>
 				<a href="delete2?rp_code=${onetoone_reply.rp_code }" role="button"
-			class="btn btnoutline-info">글 삭제</a>
+					class="btn btnoutline-info">글 삭제</a>
 			</c:otherwise>
 		</c:choose>
-		
+
 
 
 		<!-- /.content -->
@@ -125,6 +127,6 @@
 	</div>
 
 	<!-- 플러그인 -->
-	<%@ include file="../include/plugin.jsp"%>
+
 </body>
 </html>

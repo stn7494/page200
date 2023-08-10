@@ -43,8 +43,5 @@ public class Onetoone_replyDAOImpl implements Onetoone_replyDAO {
 		// TODO Auto-generated method stub
 		return sqlsession.delete(namespace + "delete2", rp_code);
 	}
-
-	
-
-	
 }
+

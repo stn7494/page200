@@ -15,5 +15,6 @@ public interface OnetooneService {
 	public int update(OnetooneDTO dto);
 
 	public int delete(int o_code);
-
+	
+	
 }
