@@ -209,7 +209,7 @@
           >
             <div class="counter-wrap mb-5 mb-lg-0">
               <span class="number"
-                ><span class="countup text-primary">1291</span></span
+                ><span class="countup text-primary">${count }</span></span
               >
               <span class="caption text-black-50">리뷰 개수</span>
             </div>
