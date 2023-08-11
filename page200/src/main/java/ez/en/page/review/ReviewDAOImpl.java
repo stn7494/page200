@@ -74,13 +74,6 @@ public class ReviewDAOImpl implements ReviewDAO{
 		return sqlSession.selectOne(namespace + "reviewCount", cam_code);
 	}
 
-//	 캠핑장 상세보기에서 리뷰
-	@Override
-	public List<Map<String, Object>> camReviewList(String cam_code) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace + "camReviewList", cam_code);
-	}
-
 //	 캠핑장 상세보기에서 리뷰22
 	@Override
 	public List<ReviewDTO> camReviewAll(String cam_code) {

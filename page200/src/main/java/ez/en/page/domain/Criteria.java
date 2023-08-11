@@ -1,10 +1,21 @@
 package ez.en.page.domain;
 
 public class Criteria {
-
+	
+	private Object id;
 	private int page;
 	private int perPageNum;
 	
+	
+	
+	public Object getId() {
+		return id;
+	}
+
+	public void setId(Object id) {
+		this.id = id;
+	}
+
 	public Criteria() {
 		this.page = 1;
 		this.perPageNum = 10;

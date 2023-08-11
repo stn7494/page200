@@ -229,29 +229,11 @@ public class CampingController {
 		request.setCharacterEncoding("utf-8");
 		int count = rservice.reviewCount(cam_code);
 		List<ReviewDTO> rdto = rservice.camReviewAll(cam_code);
-//		List<Map<String, Object>> camReview = rservice.camReviewList(cam_code);
-//		for(int i=0; i<camReview.size(); i++) {
-//			System.out.println(camReview.get(i));
-//		}
 		model.addAttribute("count",count);
 		model.addAttribute("rrdto", rdto);
 		return "camping/detail";
 	}
 	
-	
-	
-	
-	
-	
-	
-//	리뷰화면 캠핑장 상세에서 보여주기
-//	@GetMapping("camping/detail")
-//	public ModelAndView camReviewList(@RequestParam("cam_code") String cam_code, HttpServletRequest request) throws Exception {
-//		ModelAndView mav = new ModelAndView();
-//		mav.addObject("cR", camReview);
-//		mav.setViewName("/include/review");
-//		return mav;
-//	}
 	
 
 	//6.캠핑장 예약 정보(캠핑장 상세페이지에서 보여줄 각 캠핑장별 예약 정보)
