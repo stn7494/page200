@@ -19,24 +19,9 @@
       Property &mdash; Free Bootstrap 5 Website Template by Untree.co
     </title>
 <style>
-.pagination {
-  display: inline-block;
-  
+ul li{
+	display: inline-block;
 }
-
-.pagination a {
-  color: black;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
-}
-
-.pagination a.active {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.pagination a:hover:not(.active) {background-color: #ddd;}
 </style>
   </head>
   <body>
@@ -90,12 +75,14 @@
       	<div>
       	<jsp:useBean id="now" class="java.util.Date" />
       	<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />  
-      		<table class="table">
+      		<table class="table table-hover">
+      		<thead class="thead-dark">
       			<tr>
       				<th>예약코드</th>
       				<th>예약시작일</th>
       				<th>예약종료일</th>
       			</tr>
+      		</thead>
       			<c:forEach items="${revlist }" var="list">
       			<tr>
       				<td><a href="revdetail?rev_code=${list.rev_code }" >${list.rev_code }</a></td>
@@ -108,19 +95,19 @@
       	</div>
       </div>
     </div>
-    <div class="pagination">
+    <div class="container" style="margin-left: 40%">
 		<ul class="pagination">
 			<c:if test="${pageMaker.prev && pageMaker.startPage > 0 }">
-				<li><a href="revlistPage?page=${pageMaker.startPage - 1 }">&laquo;</a></li>
+				<li class="page-item"><a class="page-link" href="revlistPage?page=${pageMaker.startPage - 1 }">&laquo;</a></li>
 			</c:if>
 			
 			<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-				<li <c:out value="${pageMaker.cri.page == idx?'class=active':'' }"/>>
-				<a href="revlistPage?page=${idx }">${idx }</a>
+				<li class="page-item"<c:out value="${pageMaker.cri.page == idx?' class=active':'' }"/>>
+				<a class="page-link" href="revlistPage?page=${idx }">${idx }</a>
 				</li>
 			</c:forEach>
 			<c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
-				<li><a href="revlistPage?page=${pageMaker.endPage + 1 }">&raquo;</a></li>
+				<li class="page-item "><a class="page-link" href="revlistPage?page=${pageMaker.endPage + 1 }">&raquo;</a></li>
 			</c:if>
 		</ul>
 	</div>

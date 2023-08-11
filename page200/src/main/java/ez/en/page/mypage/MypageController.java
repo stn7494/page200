@@ -88,21 +88,21 @@ public class MypageController {
 //		mav.addObject("list", service.info(session.getAttribute("user")));
 //		mav.setViewName("index");
 		
-//		if(profile.getOriginalFilename() != "") {
-//			
-//			FileDTO fdto = new FileDTO();
-//			String path = request.getServletContext().getRealPath("resources/images");
-//			fdto.setF_root(request.getContextPath()+"/resources/images");
-//			fdto.setF_realroot(path);
-//			String file_code = dto.getId()+"_profile";
-//			fdto.setF_name("s_"+dto.getId()+"_"+profile.getOriginalFilename());
-//			fdto.setF_code(file_code);
-//			dto.setF_code(fdto.getF_code());
-//			// 이미지 파일을 업로드 및 섬네일 생성
-//			logger.info(fdto.toString()+"========================================");
-//			profile(profile, request, dto.getId());
-//			service.editProfile(fdto);
-//		}
+		if(profile.getOriginalFilename() != "") {
+			
+			FileDTO fdto = new FileDTO();
+			String path = request.getServletContext().getRealPath("resources/images");
+			fdto.setF_root(request.getContextPath()+"/resources/images");
+			fdto.setF_realroot(path);
+			String file_code = dto.getId()+"_profile";
+			fdto.setF_name("s_"+dto.getId()+"_"+profile.getOriginalFilename());
+			fdto.setF_code(file_code);
+			dto.setF_code(fdto.getF_code());
+			// 이미지 파일을 업로드 및 섬네일 생성
+			logger.info(fdto.toString()+"========================================");
+			profile(profile, request, dto.getId());
+			service.editProfile(fdto);
+		}
 		mav.addObject("map", service.edit(dto));
 		mav.addObject("list", service.info(session.getAttribute("user")));
 		mav.setViewName("index");
