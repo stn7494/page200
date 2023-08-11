@@ -14,7 +14,7 @@ public class PageMaker {
 	private boolean prev;
 	private boolean next;
 	
-	private int displayPageNum = 10;	//화면에 보여지는 페이지 번호의 숫자
+	private int displayPageNum = 5;	//화면에 보여지는 페이지 번호의 숫자
 	
 	private Criteria cri;
 	

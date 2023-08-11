@@ -15,7 +15,6 @@
 		<typeAlias alias="FIleDTO" type="ez.en.page.file.FileDTO"/>
 		<typeAlias alias="NoticeDTO" type="ez.en.page.notice.NoticeDTO"/>
 		<typeAlias alias="OnetooneDTO" type="ez.en.page.onetoone.OnetooneDTO"/>
-		<typeAlias alias="Onetoonereply" type="ez.en.page.onetoone.Onetoonereply"/>
 		<typeAlias alias="Onetoone_replyDTO" type="ez.en.page.onetoone_reply.Onetoone_replyDTO"/>
 		<typeAlias alias="CampingDTO" type="ez.en.page.camping.CampingDTO"/>
 		<typeAlias alias="RegionDTO" type="ez.en.page.dto.RegionDTO"/>

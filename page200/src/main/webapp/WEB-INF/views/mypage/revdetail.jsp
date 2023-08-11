@@ -18,6 +18,31 @@
     <title>
       Property &mdash; Free Bootstrap 5 Website Template by Untree.co
     </title>
+<style type="text/css">
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 1px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+}
+
+.button1:hover {
+  background-color: #555555;
+  color: white;
+}
+</style>
   </head>
   <body>
     <div class="site-mobile-menu site-navbar-target">
@@ -70,7 +95,8 @@
       	<div>
       	<jsp:useBean id="now" class="java.util.Date" />
       	<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
-      		<table class="table">
+      		<table class="table table-hover">
+      		<thead class="thead-dark">
       			<tr>
       				<th>캠핑장이름</th>
       				<th>데크</th>
@@ -80,6 +106,7 @@
       				<th>예약취소</th>
       				</c:if>
       			</tr>
+      			</thead>
       			<tr>
       				<td>${revdetail2.cam_name }</td>
       				<td>${revdetail2.cri_area_code }</td>
@@ -87,14 +114,13 @@
       				<td>${revdetail2.cri_price }</td>
       				<form action="revdelete" method="post" id="sub">
       				<c:if test="${today < revdetail2.rev_start_date }">
-      				<td><input type="button" name="check" id="box" value="예약취소"></td>
+      				<td><input class="button button1" type="button" name="check" id="box" value="예약취소"></td>
       				<td><input type="hidden" name="rev_code" value="${revdetail2.rev_code }"></td>
       				</c:if>
       				</form>
       			</tr>
       		</table>
       		<tr>
-      			<th><button type="button" id="btn">예약취소</button></th>
       			<th><button id="btn22" onclick="location.href='reviewInsert?rev_code=${revdetail2.rev_code }'">리뷰쓰기</button></th>
       		</tr>
       	</div>

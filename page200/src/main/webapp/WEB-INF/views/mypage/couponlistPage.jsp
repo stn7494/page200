@@ -18,24 +18,9 @@
       Property &mdash; Free Bootstrap 5 Website Template by Untree.co
     </title>
 <style>
-.pagination {
-  display: inline-block;
-  
+ul li{
+	display: inline-block;
 }
-
-.pagination a {
-  color: black;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
-}
-
-.pagination a.active {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.pagination a:hover:not(.active) {background-color: #ddd;}
 </style>
   </head>
   <body>
@@ -87,13 +72,15 @@
       <div class="container">
       	<!-- 여기에 내용을 작성 -->
       	<div>
-      		<table class="table">
+      		<table class="table table-hover">
+      		<thead class="thead-dark">
       			<tr>
       				<th>쿠폰이름</th>
       				<th>사용여부</th>
       				<th>쿠폰발급일</th>
       				<th>쿠폰만료일</th>
       			</tr>
+      			</thead>
       			<c:forEach items="${couponlist }" var="list">
       			<tr>
       				<td>${list.cp_name }</td>
@@ -106,19 +93,19 @@
       	</div>
       </div>
     </div>
-    <div class="pagination">
+    <div class="container" style="margin-left: 40%">
 		<ul class="pagination">
 			<c:if test="${pageMaker.prev && pageMaker.startPage > 0 }">
-				<li><a href="couponlistPage?page=${pageMaker.startPage - 1 }">&laquo;</a></li>
+				<li class="page-item"><a class="page-link" href="couponlistPage?page=${pageMaker.startPage - 1 }">&laquo;</a></li>
 			</c:if>
 			
 			<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-				<li <c:out value="${pageMaker.cri.page == idx?'class=active':'' }"/>>
-				<a href="couponlistPage?page=${idx }">${idx }</a>
+				<li class="page-item"<c:out value="${pageMaker.cri.page == idx?'class=active':'' }"/>>
+				<a class="page-link" href="couponlistPage?page=${idx }">${idx }</a>
 				</li>
 			</c:forEach>
 			<c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
-				<li><a href="couponlistPage?page=${pageMaker.endPage + 1 }">&raquo;</a></li>
+				<li class="page-item"><a class="page-link" href="couponlistPage?page=${pageMaker.endPage + 1 }">&raquo;</a></li>
 			</c:if>
 		</ul>
 	</div>

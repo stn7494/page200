@@ -17,27 +17,13 @@
     <title>
       Property &mdash; Free Bootstrap 5 Website Template by Untree.co
     </title>
-<style>
-.pagination {
-  display: inline-block;
-  
-}
 
-.pagination a {
-  color: black;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
-}
-
-.pagination a.active {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.pagination a:hover:not(.active) {background-color: #ddd;}
-</style>
   </head>
+<style>
+ul li{
+	display: inline-block;
+}
+</style>
   <body>
     <div class="site-mobile-menu site-navbar-target">
       <div class="site-mobile-menu-header">
@@ -87,7 +73,8 @@
       <div class="container">
       	<!-- 여기에 내용을 작성 -->
       	<div>
-      		<table class="table">
+      		<table class="table table-hover">
+      		<thead class="thead-dark">
       			<tr>
       				<th>리뷰번호</th>
       				<th>아이디</th>
@@ -95,8 +82,8 @@
       				<th>리뷰내용</th>
       				<th>별점</th>
       				<th>조회수</th>
-      				<th>신고수</th>
       			</tr>
+      			</thead>
       			<c:forEach items="${reviewlist }" var="list">
       			<tr>
       				<td><a href="reviewDetail?r_code=${list.r_code}&rev_code=${list.rev_code}" >${list.r_code }</a></td>
@@ -111,19 +98,19 @@
       	</div>
       </div>
     </div>
-    <div class="pagination">
+    <div class="container" style="margin-left: 45%" >
 		<ul class="pagination">
 			<c:if test="${pageMaker.prev && pageMaker.startPage > 0 }">
-				<li><a href="reviewlistPage?page=${pageMaker.startPage - 1 }">&laquo;</a></li>
+				<li class="page-item"><a class="page-link" href="reviewlistPage?page=${pageMaker.startPage - 1 }">&laquo;</a></li>
 			</c:if>
 			
 			<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-				<li <c:out value="${pageMaker.cri.page == idx?'class=active':'' }"/>>
-				<a href="reviewlistPage?page=${idx }">${idx }</a>
+				<li class="page-item"<c:out value="${pageMaker.cri.page == idx?'class=active':'' }"/>>
+				<a class="page-link" href="reviewlistPage?page=${idx }">${idx }</a>
 				</li>
 			</c:forEach>
 			<c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
-				<li><a href="reviewlistPage?page=${pageMaker.endPage + 1 }">&raquo;</a></li>
+				<li class="page-item"><a class="page-link" href="reviewlistPage?page=${pageMaker.endPage + 1 }">&raquo;</a></li>
 			</c:if>
 		</ul>
 	</div>
