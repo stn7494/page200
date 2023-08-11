@@ -113,7 +113,7 @@ input[type=file]::file-selector-button {
       				<td><input class="btn btn-outline-info" type="button" id="nickchk" value="닉네임 중복 체크"></td>
       			</tr>
       			<tr>
-      				<td><input class="form-control" type="date" id="birth" name="birth"></td>
+      				<td><input class="form-control" type="date" id="birth" name="birth" max="${today}"></td>
       			</tr>
       			<tr>
       				<td><input class="form-control" type="text" id="phone" name="phone" placeholder="핸드폰번호"></td>
@@ -139,6 +139,17 @@ input[type=file]::file-selector-button {
       		</table>
       		<script type="text/javascript">
       		$(document).ready(function(){
+      			
+      			var date = new Date();
+      			var year = date.getFullYear();
+      			var month = date.getMonth()+1;
+      			var day = date.getDate();
+      			
+      			
+      			
+      			console.log(year);
+      			console.log(month);
+      			console.log(day);
       			// 아이디 중복 체크
       			$("#idchk").click(function(){
       				var result = $("#useridchk");
@@ -310,7 +321,11 @@ input[type=file]::file-selector-button {
       			var birth = $("#birth").val();
       			if(birth == ""){
       				result.html("<p style='color:red;'>본인의 생년월일을 입력해주세요</p>");
-      			}else{
+      			}else if("${today}" < birth){
+      				result.html("<p style='color:red;'>정확한 날짜를 입력해주세요</p>");
+      			}else if("${year}-12-31" < birth){
+      				result.html("<p style='color:red;'>성인만 회원가입이 가능합니다</p>");
+	      		}else{
       				result.html("<p id = 'birthok' style='color:green;'></p>");
       			}
       		});//생일 작성여부체크 끝
