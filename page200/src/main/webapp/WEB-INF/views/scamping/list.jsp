@@ -169,13 +169,21 @@
 		
 		<!-- 검색script -->
 		<script>
-			$("#searchBtn").on("click", function(e){
-		        e.preventDefault();
-		        let val = $("input[name='keyword']").val();
-		        moveForm.find("input[name='keyword']").val(val);
-		        moveForm.find("input[name='pageNum']").val(1);
-		        moveForm.submit();
-		    });
+		
+			$(document).ready(function(){
+				
+				$('#searchBtn').on("click", function(event){
+					
+					self.location = "list" 
+						+ '${pageMaker.makeQuery(1)}'
+						+ "&keyword=" + encodeURIComponent($('#keywordInput').val());
+				});
+				
+				$('#newBtn').on("click", function(evt){
+				
+					self.location = "register";
+				});
+			});
 		
 		</script>
 
@@ -185,7 +193,7 @@
 			});
 
 			$("#register").click(function() {
-				location.href = "${contextPath }/camping/register";
+				location.href = "${contextPath }/scamping/register";
 			});
 		</script>
 		<script>
@@ -196,6 +204,7 @@
 			}
 		</script>
 	</div>
+
 
 
 	<%@ include file="../include/footer.jsp"%>
