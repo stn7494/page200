@@ -43,7 +43,7 @@
 	<!-- 내 찜목록 Criteria -->
 	<select id="jjimlistCriteria" resultType="JjimDTO">
 	<![CDATA[
-		select  j.j_num, c.cam_name, j.is_jjim from jjim as j join camping as c
+		select  c.cam_code,j.j_num, c.cam_name, j.is_jjim from jjim as j join camping as c
 		on j.cam_code = c.cam_code
 		where j.id = #{id} and
         j.j_num > 0

@@ -32,9 +32,6 @@ public interface ReviewDAO {
 	// ★★★ 각 캠핑장 리뷰 갯수 조회
 	public int reviewCount (String cam_code);
 	
-	// ★★★ 리뷰화면 캠핑장 상세에서 보여주기
-	public List<Map<String, Object>> camReviewList(String cam_code);
-
 	// ★★★ 리뷰화면 캠핑장 상세에서 보여주기222
 	public List<ReviewDTO> camReviewAll(String cam_code);
 	

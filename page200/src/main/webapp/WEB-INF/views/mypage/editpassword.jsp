@@ -17,6 +17,21 @@
     <title>
       Property &mdash; Free Bootstrap 5 Website Template by Untree.co
     </title>
+<style type="text/css">
+input[type=file]::file-selector-button {
+  width: 150px;
+  height: 30px;
+  background: #fff;
+  border: 1px solid rgb(77,77,77);
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover {
+    background: rgb(77,77,77);
+    color: #fff;
+  }
+}
+}
+</style>
   </head>
   <body>
     <div class="site-mobile-menu site-navbar-target">
@@ -41,7 +56,7 @@
       <div class="container">
         <div class="row justify-content-center align-items-center">
           <div class="col-lg-9 text-center mt-5">
-            <h1 class="heading" data-aos="fade-up">회원정보수정</h1>
+            <h1 class="heading" data-aos="fade-up">비밀번호수정</h1>
 
             <nav
               aria-label="breadcrumb"
@@ -68,12 +83,12 @@
       	<!-- 여기에 내용을 작성 -->
       	<div>
       		<form action="editpassword" method="post" id="data">
-      		<table class="table">
+      		<table class="table table-borderless" style="width: 60%; margin: auto; ">
       			<tr>
-      				<th>비밀번호 : <input type="password" id="pw" name="pw"></th>
+      				<th>비밀번호 : <input class="form-control" type="password" id="pw" name="pw"></th>
       			</tr>
       		</table>
-      		<button type="button" id="btn">비밀번호 수정완료</button>
+      		<button style="margin-left: 65%;" class="btn btn-outline-success" type="button" id="btn">비밀번호 수정완료</button>
       	</form>
       	</div>
       </div>

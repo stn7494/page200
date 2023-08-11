@@ -17,6 +17,21 @@
     <title>
       Property &mdash; Free Bootstrap 5 Website Template by Untree.co
     </title>
+<style type="text/css">
+input[type=file]::file-selector-button {
+  width: 150px;
+  height: 30px;
+  background: #fff;
+  border: 1px solid rgb(77,77,77);
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover {
+    background: rgb(77,77,77);
+    color: #fff;
+  }
+}
+}
+</style>
   </head>
   <body>
     <div class="site-mobile-menu site-navbar-target">
@@ -68,44 +83,46 @@
       	<!-- 여기에 내용을 작성 -->
       	<div>
       		<form method="post" id="data" enctype="multipart/form-data">
-      		<table class="table">
+      		<table class="table table-borderless" style="width: 60%; margin: auto; ">
       			<tr>
       				<th>프로필 사진 : <input type="file" id="profile" name="profile" accept="image/*"></th>
-      				<th><input type="button" id="thumnail" value="미리보기"></th>
+      				<th><input class="btn btn-outline-info" type="button" id="thumnail" value="미리보기"></th>
       			</tr>
       			<tr id="showpro">
       				
       			</tr>
       			<tr>
-      				<th>아이디 : <input type="text" name="id" id="id" value="${user.id }" readonly="readonly"></th>
+      				<th>아이디 : <input class="form-control" type="text" name="id" id="id" value="${user.id }" readonly="readonly"></th>
       			</tr>
       			<tr>
-      				<th>이름 : <input type="text" name="name" value="${user.name }"></th>
+      				<th>이름 : <input class="form-control" type="text" name="name" value="${user.name }"></th>
       			</tr>
       			<tr>
-      				<th>닉네임 : <input type="text" id="nick" name="nick" value="${user.nick }"></th>
-      				<td><input type="button" id="nickcheck" value="닉네임 중복 체크"></td>
+      				<th>닉네임 : <input class="form-control" type="text" id="nick" name="nick" value="${user.nick }"></th>
+      				<td><input class="btn btn-outline-info" type="button" id="nickcheck" value="닉네임 중복 체크"></td>
       			</tr>
       			<tr>
-      				<th>생일 : <input type="text" name="birth" id="birth" value="${user.birth }" readonly="readonly"></th>
+      				<th>생일 : <input class="form-control" type="text" name="birth" id="birth" value="${user.birth }" readonly="readonly"></th>
       			</tr>
       			<tr>
-      				<th>연락처 : <input type="text" id="phone" name="phone" value="${user.phone }">" - "하이픈은 제외하고 입력해주세요.</th>
+      				<th>연락처 : <input class="form-control" type="text" id="phone" name="phone" value="${user.phone }">" - "하이픈은 제외하고 입력해주세요.</th>
       			</tr>
       			<tr>
-      				<th>이메일 : <input type="text" name="email" value="${user.email }"></th>
+      				<th>이메일 : <input class="form-control" type="text" name="email" value="${user.email }"></th>
       			</tr>
       		</table>
-      		<button type="button" id="btn">수정완료</button>
+      		<button style="margin-left: 50%;" class="btn btn-outline-success" type="button" id="btn">수정완료</button>
       	</form>
       	<form action="editpasswordform" method="post" id="word">
+      		<div class="mar">
       			<tr>
       				<td><input type="hidden" name="id"  value="${user.id}"></td>
-      				<th><button type="button" id="btn2">비밀번호 변경</button></th>
+      				<th><button style="margin-left: 20%;" class="btn btn-outline-warning" type="button" id="btn2">비밀번호 변경</button></th>
       			</tr>
+      		</div>
       	</form>
       	<form action="freedom" method="post" id="out"></form>
-      			<th><input type="button" id="btn3" value="회원탈퇴">회원탈퇴 동의<input type="checkbox" name="getout" id="free"></th>
+      			<th><input style="margin-left: 20%;" class="btn btn-outline-danger" type="button" id="btn3" value="회원탈퇴">회원탈퇴 동의<input type="checkbox" name="getout" id="free"></th>
       	</div>
       </div>
     </div>

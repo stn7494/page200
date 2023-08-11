@@ -29,11 +29,7 @@
           	
             <div class="item">
               <div class="testimonial">
-                <img
-                  src="${file.f_root }/${file.f_name }"
-                  alt="Image"
-                  class="img-fluid rounded-circle w-25 mb-4"
-                />
+                
                 <div class="rate">
                 <c:forEach begin="1" end="${list.r_star}">
                   <span class="icon-star text-warning"></span>
@@ -46,7 +42,8 @@
                     ${list.r_content}
                   </p>
                 </blockquote>
-                <p class="text-black-50">${list.r_w_date}</p>
+                <p class="text-black-50">리뷰작성일 : ${list.r_w_date}</p>
+                <p class="text-black-50">신고수 : ${list.r_declaration}</p>
               </div>
             </div>
 			</c:forEach>
