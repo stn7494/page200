@@ -46,4 +46,34 @@ public class OnetooneServiceImpl implements OnetooneService {
 		// TODO Auto-generated method stub
 		return dao.SELECTONE(id);
 	}
+
+	@Override
+	public int reply(Onetoone_reply onetoone_reply) {
+		// TODO Auto-generated method stub
+		return dao.reply(onetoone_reply);
+	}
+
+	@Override
+	public List<Onetoone_reply> getDetail(int o_code) {
+		// TODO Auto-generated method stub
+		return dao.getDetail(o_code);
+	}
+
+	@Override
+	public Onetoone_reply detailReply(int o_code) {
+		// TODO Auto-generated method stub
+		return dao.detailReply(o_code);
+	}
+
+	@Override
+	public int replyupdate(Onetoone_reply onetoone_reply) {
+		// TODO Auto-generated method stub
+		return dao.replyupdate(onetoone_reply);
+	}
+
+	@Override
+	public int replyDelete(int o_code) {
+		// TODO Auto-generated method stub
+		return dao.delete(o_code);
+	}
 }
