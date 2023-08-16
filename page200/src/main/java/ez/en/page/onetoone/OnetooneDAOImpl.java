@@ -56,15 +56,15 @@ public class OnetooneDAOImpl implements OnetooneDAO {
 	}
 
 	@Override
-	public List<Onetoone_reply> getDetail(int o_code) {
+	public List<Onetoone_reply> getDetail(int rp_code) {
 		// TODO Auto-generated method stub
-		return sqlsession.selectList(namespace + "detail",o_code);
+		return sqlsession.selectList(namespace + "detail",rp_code);
 	}
 
 	@Override
-	public Onetoone_reply detailReply(int o_code) {
+	public Onetoone_reply detailReply(int rp_code) {
 		// TODO Auto-generated method stub
-		return sqlsession.selectOne(namespace + "detailReply",o_code);
+		return sqlsession.selectOne(namespace + "detailReply",rp_code);
 	}
 
 	@Override
@@ -74,9 +74,9 @@ public class OnetooneDAOImpl implements OnetooneDAO {
 	}
 
 	@Override
-	public int replyDelete(int o_code) {
+	public int replyDelete(int rp_code) {
 		// TODO Auto-generated method stub
-		return sqlsession.delete(namespace + "replyDelete",o_code);
+		return sqlsession.delete(namespace + "replyDelete",rp_code);
 	}
 
 	

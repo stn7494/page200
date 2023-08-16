@@ -12,7 +12,6 @@
 <html lang="ko">
 <head>
 <%@ include file="../include/head.jsp"%>
-
 <title>Property &mdash; Free Bootstrap 5 Website Template by
 	Untree.co</title>
 </head>
@@ -26,6 +25,7 @@
 		$("#btnReplySave").on('click', function() {
 			var rp_content = $("#rp_content").val();
 			var id = $("#id").val();
+			console.log(id);
 
 			var url = "${contextPath}/onetoone/reply2";
 			var paramData = {
@@ -157,6 +157,27 @@
 					}
 		});
 	}
+	//댓글삭제
+	function fn_deleteReply(rp_code) {
+		var url ="${contextPath}/onetoone/replyDelete"
+		var paramData={
+				"rp_code" : rp_code
+		};
+		
+		$.ajax({
+				url : url,
+				data : paramData,
+				dataType :'json',
+				type :'POST',
+				success:function(result){
+						console.log(result);
+						replylist();
+				},
+				error:function(data) {
+						alert("에러가 발생했습니다.")
+				}	
+		});
+	}
 </script>
 
 
@@ -213,7 +234,7 @@
 					<div class="box-body">
 						<div class="form-group">
 							<labal>회원 아이디</labal>
-							<input type="text" name="id" class="form-control"
+							<input type="text" id = "id" name="id" class="form-control"
 								value="${onetoone.id }" readonly="readonly" />
 						</div>
 						<div class="form-group">
@@ -282,4 +303,5 @@
 	<!-- 플러그인 -->
 	<%@ include file="../include/plugin.jsp"%>
 </body>
+
 </html>

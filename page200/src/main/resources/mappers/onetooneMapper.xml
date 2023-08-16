@@ -60,8 +60,7 @@
 	where rp_code = #{rp_code}
 	</update>
 	<delete id="replyDelete" parameterType="Onetoone_reply">
-	Delete from Onetoone_reply
-	where rp_code=#{rp_code}
+	Delete from onetoone_reply where rp_code = #{rp_code}
 	
 	</delete>
 </mapper>

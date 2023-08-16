@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class OnetooneServiceImpl implements OnetooneService {
 	
 	@Autowired
-	private OnetooneDAOImpl dao;
+	private OnetooneDAO dao;
 
 	@Override
 	public List<OnetooneDTO> listAll() {
@@ -54,15 +54,15 @@ public class OnetooneServiceImpl implements OnetooneService {
 	}
 
 	@Override
-	public List<Onetoone_reply> getDetail(int o_code) {
+	public List<Onetoone_reply> getDetail(int rp_code) {
 		// TODO Auto-generated method stub
-		return dao.getDetail(o_code);
+		return dao.getDetail(rp_code);
 	}
 
 	@Override
-	public Onetoone_reply detailReply(int o_code) {
+	public Onetoone_reply detailReply(int rp_code) {
 		// TODO Auto-generated method stub
-		return dao.detailReply(o_code);
+		return dao.detailReply(rp_code);
 	}
 
 	@Override
@@ -72,8 +72,8 @@ public class OnetooneServiceImpl implements OnetooneService {
 	}
 
 	@Override
-	public int replyDelete(int o_code) {
+	public int replyDelete(int rp_code) {
 		// TODO Auto-generated method stub
-		return dao.delete(o_code);
+		return dao.replyDelete(rp_code);
 	}
 }

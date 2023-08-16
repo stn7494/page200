@@ -147,4 +147,11 @@ public class Onetoonecontroller {
 		}
 		return result;
 	}
+	
+	@ResponseBody
+	@PostMapping(value = "onetoone/replyDelete")
+	public int replyDelete(int rp_code) {
+		System.out.println(rp_code);
+		return service.replyDelete(rp_code);
+	}
 }
