@@ -109,7 +109,7 @@
 							<td>${camping.cam_code}</td>
 							<td>${camping.region_code}</td>
 							<td><a
-								href='/page/scamping/detail${pageMaker.makeQuery(pageMaker.cri.page)}
+								href='/page/admin/scamping/detail${pageMaker.makeQuery(pageMaker.cri.page)}
 								&cam_code=${camping.cam_code }'>${camping.cam_name}
 							</a></td>
 							<td>${camping.cam_address}</td>
@@ -131,8 +131,8 @@
 			<div class="text-center">
 				<input class="btn btn-success"
 					type="button" value="홈으로" id="main" />
-				<input class="btn btn-warning"
-					type="button" value="캠핑장추가" id="register" />
+					
+				
 			</div>
 			</section>
 		</div>
@@ -192,9 +192,7 @@
 				location.href = "${contextPath }";
 			});
 
-			$("#register").click(function() {
-				location.href = "${contextPath }/scamping/register";
-			});
+			
 		</script>
 		<script>
 			var result = '${msg}';

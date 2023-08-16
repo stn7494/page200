@@ -9,6 +9,7 @@
 		<typeAlias alias="Camping_rev_infoDTO" type="ez.en.page.camping_rev_info.CampingRevInfoDTO"/>
 		<typeAlias alias="JjimDTO" type="ez.en.page.jjim.JjimDTO"/>
 		<typeAlias alias="CampingDTO" type="ez.en.page.camping.CampingDTO"/>
+		<typeAlias alias="AdminCampingDTO" type="ez.en.page.admin.camping.AdminCampingDTO"/>
 		<typeAlias alias="ReviewDTO" type="ez.en.page.review.ReviewDTO"/>
 		<typeAlias alias="Review_recommendDTO" type="ez.en.page.review_recommend.Review_recommendDTO"/>
 		<typeAlias alias="CouponDTO" type="ez.en.page.coupon.CouponDTO"/>

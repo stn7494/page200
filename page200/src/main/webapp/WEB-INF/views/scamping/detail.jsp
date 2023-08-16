@@ -209,8 +209,7 @@
           >
             <div class="counter-wrap mb-5 mb-lg-0">
               <span class="number"
-                ><span class="countup text-primary">${count }</span></span
-              >
+                ><span class="countup text-primary">${count }</span></span>
               <span class="caption text-black-50">리뷰 개수</span>
             </div>
           </div>
@@ -266,10 +265,7 @@
 			<button type="submit" class="btn btn-info">RESERVATION</button>
 			<button type="submit" class="btn btn-primary">GO LIST</button>
 			
-			<c:if test="${user == admin }">
-				<button type="submit" class="btn btn-warning">MODIFY</button>
-				<button type="submit" class="btn btn-danger">REMOVE</button>
-			</c:if>
+		
 		</div>
 	</div>
 	
@@ -288,16 +284,7 @@
 
 			console.log(formObj);
 
-			$(".btn-warning").on("click", function() {
-				formObj.attr("action", "/page/scamping/modifyPage");
-				formObj.attr("method", "get");
-				formObj.submit();
-			});
-
-			$(".btn-danger").on("click", function() {
-				formObj.attr("action", "/page/scamping/removePage");
-				formObj.submit();
-			});
+		
 
 			$(".btn-primary").on("click", function() {
 				formObj.attr("method", "get");
