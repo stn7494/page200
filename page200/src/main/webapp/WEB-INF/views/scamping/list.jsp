@@ -109,7 +109,7 @@
 							<td>${camping.cam_code}</td>
 							<td>${camping.region_code}</td>
 							<td><a
-								href='/page/admin/scamping/detail${pageMaker.makeQuery(pageMaker.cri.page)}
+								href='/page/scamping/detail${pageMaker.makeQuery(pageMaker.cri.page)}
 								&cam_code=${camping.cam_code }'>${camping.cam_name}
 							</a></td>
 							<td>${camping.cam_address}</td>

@@ -74,9 +74,13 @@ public class SearchCampingController {
 		
 		int count = rservice.reviewCount(cam_code);
 		List<ReviewDTO> rdto = rservice.camReviewAll(cam_code);
-		
-		 model.addAttribute("count",count);
-	      model.addAttribute("rrdto", rdto);
+		logger.info("리뷰 개수 : " + count);
+		if(count==0) {
+			model.addAttribute("count", 0);
+		}else {
+			model.addAttribute("count",count);
+		}
+	    model.addAttribute("rrdto", rdto);
 		
 		model.addAttribute("camping", campingService.detail(cam_code));
 	}
