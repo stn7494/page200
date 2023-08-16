@@ -260,38 +260,40 @@
     </div>
     
     <!-- 관리자용 -->
-    <div class="box-footer">
-	    <button type="submit" class="btn btn-warning">MODIFY</button>
-    	<button type="submit" class="btn btn-danger">REMOVE</button>
-    	<button type="submit" class="btn btn-primary">LIST</button>
-    </div>
+	<div class="text-center">
+		<div class="box-footer">
+			<button type="submit" class="btn btn-warning">MODIFY</button>
+			<button type="submit" class="btn btn-danger">REMOVE</button>
+			<button type="submit" class="btn btn-primary">GO LIST</button>
+		</div>
+	</div>
     
-    <script>
-    $(document).ready(function(){
-    
-    	var formObj = $("form[role='form']");
-    	
-    	console.log(formObj);
-    	
-    	$(".btn-warning").on("click", function(){
-    		formObj.attr("action", "/page/camping/modify");
-    		formObj.attr("method", "get");
-    		formObj.submit();
-    	});
-    	
-    	$(".btn-danger").on("click", function(){
-    		formObj.attr("action", "/page/camping/remove");
-    		formObj.submit();
-    	});
-    	
-    	$(".btn-primary").on("click", function(){
-    		self.location = "/page/camping/list";
-    	});
-    
-    
-    });
-    
-    </script>
+	<script>
+		$(document).ready(function() {
+
+			var formObj = $("form[role='form']");
+
+			console.log(formObj);
+
+			$(".btn-warning").on("click", function() {
+				formObj.attr("action", "/page/camping/modifyPage");
+				formObj.attr("method", "get");
+				formObj.submit();
+			});
+
+			$(".btn-danger").on("click", function() {
+				formObj.attr("action", "/page/camping/removePage");
+				formObj.submit();
+			});
+
+			$(".btn-primary").on("click", function() {
+				formObj.attr("method", "get");
+				formObj.attr("action", "/page/camping/listPage");
+				formObj.submit();
+			});
+
+		});
+	</script>
     
     
     <!-- /body -->

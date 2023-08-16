@@ -262,9 +262,14 @@
     <!-- 관리자용 -->
 	<div class="text-center">
 		<div class="box-footer">
-			<button type="submit" class="btn btn-warning">MODIFY</button>
-			<button type="submit" class="btn btn-danger">REMOVE</button>
+			<!-- 예약자용 -->
+			<button type="submit" class="btn btn-info">RESERVATION</button>
 			<button type="submit" class="btn btn-primary">GO LIST</button>
+			
+			<c:if test="${user == admin }">
+				<button type="submit" class="btn btn-warning">MODIFY</button>
+				<button type="submit" class="btn btn-danger">REMOVE</button>
+			</c:if>
 		</div>
 	</div>
 	
@@ -297,6 +302,12 @@
 			$(".btn-primary").on("click", function() {
 				formObj.attr("method", "get");
 				formObj.attr("action", "/page/scamping/list");
+				formObj.submit();
+			});
+			
+			$(".btn-info").on("click", function() {
+				formObj.attr("method", "get");
+				formObj.attr("action", "/page/reservation");
 				formObj.submit();
 			});
 
