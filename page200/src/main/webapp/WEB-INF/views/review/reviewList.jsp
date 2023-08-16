@@ -68,18 +68,18 @@
 
 						<c:forEach var="review" items="${listAll }">
 							<tr>
-								<td><a
-									href="reviewDetail?r_code=${review.r_code}&rev_code=${review.rev_code}">
-										${review.r_code} </a></td>
+								<td>${review.r_code}</td>
 								<td>${review.id}</td>
 								<td>${review.f_code}</td>
 								<td>${review.r_w_date}</td>
 								<c:choose>
 									<c:when test="${review.r_lockpwd == 1 }">
-										<td style="color: red;">이 글은 잠긴글입니다.</td>
+										<td style="color: red;"><b>이 글은 잠긴글입니다.</b></td>
 									</c:when>
 									<c:otherwise>
-										<td>${review.r_content}</td>
+										<td><a
+										href="reviewDetail?r_code=${review.r_code}&rev_code=${review.rev_code}">
+										${review.r_content}</a></td>
 									</c:otherwise>
 								</c:choose>
 								<td>${review.r_star}</td>
