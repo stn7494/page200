@@ -48,16 +48,20 @@
               	  <li><a href ="${contextPath }/onetoone_reply/list2">1대1 문의사항 답변</a></li>
               </ul>
               </li>
-               	 <li><a href="logout">로그아웃</a></li>
+               	 <li><a href="${contextPath }/logout">로그아웃</a></li>
                	 <li><a href="${contextPath }/userList">회원조회</a></li>
-             	 <li><a href="coupon">쿠폰</a></li>
+             	 <li><a href="${contextPath }/coupon">쿠폰</a></li>
               </c:if>
               
               <!-- sy수정 -->
-              <li><a href="${contextPath}/scamping/list">캠핑장</a></li>
-              <c:if test="${admin != null}">
-              <li><a href="${contextPath}/admin/scamping/list">캠핑장</a></li>
-              </c:if>
+              	<li>
+	              	<c:if test="${admin != null}">
+             		 <li><a href="${contextPath}/admin/scamping/list">캠핑장</a></li>
+		             </c:if>
+		             <c:if test="${admin==null }">
+             		<a href="${contextPath}/scamping/list">캠핑장</a>
+             		</c:if>
+             	</li>
               <li><a href="${contextPath }/review">리뷰</a></li>
               <li><a href ="${contextPath }/notice/list">공지사항</a></li>
 
