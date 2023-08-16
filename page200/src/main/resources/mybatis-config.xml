@@ -24,5 +24,6 @@
 		<typeAlias alias="My_couponDTO" type="ez.en.page.my_coupon.My_couponDTO"/>
 		<typeAlias alias="Onetoone_reply" type="ez.en.page.onetoone.Onetoone_reply"/>
 		<typeAlias alias="ReservationDTO" type="ez.en.page.reservation.ReservationDTO"/>
+		<typeAlias alias="CampingRevInfoDTO" type="ez.en.page.camping_rev_info.CampingRevInfoDTO"/>
 	</typeAliases>
 </configuration>

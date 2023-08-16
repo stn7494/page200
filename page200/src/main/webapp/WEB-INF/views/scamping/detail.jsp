@@ -28,6 +28,8 @@
   </form> 
   
 
+  
+
  <body>
   
     <div class="site-mobile-menu site-navbar-target">
@@ -265,13 +267,13 @@
 	<div class="text-center">
 		<div class="box-footer">
 			<!-- 예약자용 -->
-			<button type="submit" class="btn btn-info">RESERVATION</button>
+			<button type="submit" class="btn btn-info">RESERVATION INFO</button>
 			<button type="submit" class="btn btn-primary">GO LIST</button>
 			
 		
 		</div>
 	</div>
-	
+	 
 	<form role="form" action="modifyPage" method="post">
 		<input type='hidden' name='cam_code' value="${camping.cam_code }">
 		<input type='hidden' name='page' value="${cri.page }">
@@ -279,6 +281,11 @@
 		<input type='hidden' name='searchType' value="${cri.searchType }">
 		<input type='hidden' name='keyword' value="${cri.keyword }">
 	</form>
+	
+	
+   <form id="code" method="get" action="c_revinfo">
+  	<input type='hidden' name='cam_code' value="${camping.cam_code}" >
+   </form> 
     
 	<script>
 		$(document).ready(function() {
@@ -295,13 +302,15 @@
 				formObj.submit();
 			});
 			
-			$(".btn-info").on("click", function() {
-				formObj.attr("method", "get");
-				formObj.attr("action", "/page/reservation");
-				formObj.submit();
-			});
-
 		});
+		
+		
+		$(".btn-info").click(function() {
+			$("#code").submit();
+			<%//location.href = "${contextPath }/scamping/c_revinfo?cam_code=${camping.cam_code}";%>
+		});
+		
+		
 	</script>
     
     

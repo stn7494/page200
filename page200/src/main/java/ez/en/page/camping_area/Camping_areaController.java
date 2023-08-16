@@ -1,5 +1,5 @@
 package ez.en.page.camping_area;
 
-public class CampingAreaController {
+public class Camping_areaController {
 
 }
