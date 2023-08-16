@@ -48,9 +48,9 @@
               	  <li><a href ="${contextPath }/onetoone_reply/list2">1대1 문의사항 답변</a></li>
               </ul>
               </li>
-               	 <li><a href="logout">로그아웃</a></li>
+               	 <li><a href="${contextPath }/logout">로그아웃</a></li>
                	 <li><a href="${contextPath }/userList">회원조회</a></li>
-             	 <li><a href="coupon">쿠폰</a></li>
+             	 <li><a href="${contextPath }/coupon">쿠폰</a></li>
               </c:if>
               
               <!-- sy수정 -->
