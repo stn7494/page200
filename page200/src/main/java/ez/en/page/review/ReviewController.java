@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ez.en.page.camping.CampingDTO;
+import ez.en.page.domain.Criteria;
+import ez.en.page.domain.PageMaker;
 import ez.en.page.user.UserDTO;
 
 @Controller
@@ -123,6 +125,29 @@ public class ReviewController {
 		return mav;
 	}
 	
+//	페이징처리 1
+	@GetMapping("reviewlistCri")
+	public ModelAndView rlist(Criteria cri) throws Exception{
+		ModelAndView mav = new ModelAndView();
+		logger.info("show list page with Criteria......................");
+		
+		mav.addObject("rlist",service.listCriteria(cri));
+		mav.setViewName("review/reviewlistCri");
+		return mav;
+	}
+	
+//	페이징처리 2
+	@GetMapping("rreviewlistPage")
+	public ModelAndView rlistPage(Criteria cri) throws Exception{
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("rlistPage", service.listCriteria(cri));
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(100);
+		mav.addObject("pageMaker", pageMaker);
+		mav.setViewName("review/rreviewlistPage");
+		return mav;
+	}
 
 	
 

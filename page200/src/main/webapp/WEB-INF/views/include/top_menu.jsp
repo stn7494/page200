@@ -62,7 +62,7 @@
              		<a href="${contextPath}/scamping/list">캠핑장</a>
              		</c:if>
              	</li>
-              <li><a href="${contextPath }/review">리뷰</a></li>
+              <li><a href="${contextPath }/rreviewlistPage">리뷰</a></li>
               <li><a href ="${contextPath }/notice/list">공지사항</a></li>
 
 

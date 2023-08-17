@@ -84,6 +84,22 @@
 		where ci.cam_code = #{cam_code}) j
 		on r.rev_code = j.rev_code
 	</select>
+	
+	<!-- 페이징 -->
+	<select id="listPage" resultType="ReviewDTO">
+		<![CDATA[
+		select r_code, id, rev_code, f_code, r_w_date, r_content, r_star, r_declaration, r_lockpwd 
+		from review where r_code > 'r000' order by r_code desc limit #{page},10
+		]]>
+	</select>
+	
+	<!-- 페이징2 -->
+	<select id="listCriteria" resultType="ReviewDTO">
+		<![CDATA[
+		select r_code, id, rev_code, f_code, r_w_date, r_content, r_star, r_declaration, r_lockpwd 
+		from review where r_code > 'r000' order by r_code desc, r_w_date desc limit #{pageStart},#{perPageNum}
+		]]>
+	</select>
 
 
 </mapper>
