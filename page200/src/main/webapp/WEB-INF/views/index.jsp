@@ -66,18 +66,13 @@
               지역 또는 캠핑장명을 입력해주세요
             </h1>
             <form
-              action="#"
-              class="narrow-w form-search d-flex align-items-stretch mb-3"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              <input
-                type="text"
-                class="form-control px-4"
-                placeholder="지역, 캠핑장이름"
-              />
+              action="${contextPath }/scamping/list " class="narrow-w form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200" >
+              <input type="text" class="form-control px-4" placeholder="지역, 캠핑장이름"
+              	name='keyword' id="keywordInput" value='${cri.keyword }' />
               <button type="submit" class="btn btn-primary">Search</button>
             </form>
+            
+            
           </div>
         </div>
       </div>

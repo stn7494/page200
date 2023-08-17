@@ -15,7 +15,7 @@
 <head>
 <%@ include file="../include/head.jsp"%>
 
-<title>캠핑장</title>
+<title>캠핑장 예약 정보</title>
 
 <style>
 .pagination {
@@ -49,8 +49,13 @@
 }
   
 </style>
-
 </head>
+
+    <!-- 리뷰까지 같이 적용하려면 <body>밖에? -->
+  <form role="form" method="post">
+  	<input type='hidden' name='cam_code' value="${c_revinfo.cam_code}" >
+  </form> 
+
 <body>
 	<div class="site-mobile-menu site-navbar-target">
 		<div class="site-mobile-menu-header">
@@ -90,18 +95,38 @@
 			
 			<section class="content container-fluid">
 				<div class="box-header">
-					<h3 class="box-title">캠핑장 리스트</h3>
+					<h3 class="box-title">캠핑장 예약정보</h3>
 				</div>
 								
 
-				<table class="table">
-					<tr>
-						<td>캠핑장코드</td>
-						<td>지역코드</td>
-						<td>캠핑장명</td>
-						<td>캠핑장주소</td>
-						<td>등록일</td>
-					</tr>
+				<div class="box">
+					<div class="box-header">
+						<h3 class="box-title">
+							<input type="text" name="cam_code" class="form-control" value="${c_revinfo.cam_code}" readonly="readonly" />
+						</h3>
+					</div>
+					
+					<div class="box-body">
+						
+						<div class="form-group">
+							<label>캠핑 구역</label> <input type="text" name="cri_area_code"
+								class="form-control" value="${c_revinfo.cri_area_code}" readonly="readonly" />
+						</div>
+
+						<div class="form-group">
+							<label>내용</label>
+							<textarea name="content" rows="5" readonly="readonly"
+								class="form-control">${board.content}</textarea>
+						</div>
+
+						<div class="form-group">
+							<label>작성자</label> <input type="text" name="id"
+								class="form-control" value="${board.id}" readonly="readonly" />
+						</div>
+					</div>
+
+				</div>
+						
 
 		<!-- 페이징 추가 -->
 					<c:forEach var="camping" items="${list }">

@@ -1,4 +1,4 @@
-package ez.en.page.camping;
+package ez.en.page.admin.camping;
 
 import java.util.List;
 
@@ -22,13 +22,13 @@ import ez.en.page.review.ReviewDTO;
 import ez.en.page.review.ReviewService;
 
 @Controller
-@RequestMapping("/scamping/*")
-public class SearchCampingController {
+@RequestMapping("/admin/scamping/*")
+public class AdminSearchCampingController {
 	
 
-	private static final Logger logger = LoggerFactory.getLogger(SearchCampingController.class);
+	private static final Logger logger = LoggerFactory.getLogger(AdminSearchCampingController.class);
 	@Inject
-	private CampingService campingService;
+	private AdminCampingService campingService;
 	@Inject
 	private ReviewService rservice;
 	
@@ -74,13 +74,9 @@ public class SearchCampingController {
 		
 		int count = rservice.reviewCount(cam_code);
 		List<ReviewDTO> rdto = rservice.camReviewAll(cam_code);
-		logger.info("리뷰 개수 : " + count);
-//		if(count==0) {
-//			model.addAttribute("count", 0);
-//		}else {
-			model.addAttribute("count",count);
-//		}
-	    model.addAttribute("rrdto", rdto);
+		
+		 model.addAttribute("count",count);
+	      model.addAttribute("rrdto", rdto);
 		
 		model.addAttribute("camping", campingService.detail(cam_code));
 	}
@@ -100,7 +96,7 @@ public class SearchCampingController {
 		
 		rttr.addFlashAttribute("msg", "SUCCESS");
 		
-		return "redirect:/scamping/list";
+		return "redirect:/admin/scamping/list";
 	}
 	
 //	수정
@@ -111,7 +107,7 @@ public class SearchCampingController {
 	}
 	
 	@PostMapping("/modifyPage")
-	public String modifyPagingPOST(CampingDTO campingDTO, SearchCriteria cri, RedirectAttributes rttr) throws Exception{
+	public String modifyPagingPOST(AdminCampingDTO campingDTO, SearchCriteria cri, RedirectAttributes rttr) throws Exception{
 		
 		logger.info(cri.toString());
 		campingService.modify(campingDTO);
@@ -125,7 +121,7 @@ public class SearchCampingController {
 		
 		logger.info(rttr.toString());
 		
-		return "redirect:/scamping/list";
+		return "redirect:/admin/scamping/list";
 	}
 	
 //	등록
@@ -136,7 +132,7 @@ public class SearchCampingController {
 	}
 	
 	@PostMapping("/register")
-	public String registPOST(CampingDTO campingDTO, RedirectAttributes rttr) throws Exception{
+	public String registPOST(AdminCampingDTO campingDTO, RedirectAttributes rttr) throws Exception{
 		logger.info("regist post ..................");
 		logger.info(campingDTO.toString());
 		
@@ -144,6 +140,6 @@ public class SearchCampingController {
 		
 		rttr.addFlashAttribute("msg", "SUCCESS");
 		
-		return "redirect:/scamping/list";
+		return "redirect:/admin/scamping/list";
 	}
 }

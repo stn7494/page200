@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<%@ include file="../include/head.jsp"%>
+<%@ include file="../../include/head.jsp"%>
 
 <title>캠핑장</title>
 
@@ -62,7 +62,7 @@
 	</div>
 
 	<!-- 상단에 네비게이션 -->
-	<%@ include file="../include/top_menu.jsp"%>
+	<%@ include file="../../include/top_menu.jsp"%>
 
 	<div class="hero page-inner overlay"
 		style="background-image: url('${contextPath}/resources/images/hero_bg_1.jpg')">
@@ -131,8 +131,8 @@
 			<div class="text-center">
 				<input class="btn btn-success"
 					type="button" value="홈으로" id="main" />
-					
-				
+				<input class="btn btn-warning"
+					type="button" value="캠핑장추가" id="register" />
 			</div>
 			</section>
 		</div>
@@ -192,7 +192,9 @@
 				location.href = "${contextPath }";
 			});
 
-			
+			$("#register").click(function() {
+				location.href = "${contextPath }/admin/scamping/register";
+			});
 		</script>
 		<script>
 			var result = '${msg}';
@@ -205,7 +207,7 @@
 
 
 
-	<%@ include file="../include/footer.jsp"%>
+	<%@ include file="../../include/footer.jsp"%>
 	<!-- /.site-footer -->
 
 	<!-- Preloader -->
@@ -217,6 +219,6 @@
 	</div>
 
 	<!-- 플러그인 -->
-	<%@ include file="../include/plugin.jsp"%>
+	<%@ include file="../../include/plugin.jsp"%>
 </body>
 </html>

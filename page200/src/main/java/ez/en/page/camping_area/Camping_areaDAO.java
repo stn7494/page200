@@ -1,5 +1,5 @@
 package ez.en.page.camping_area;
 
-public interface CampingAreaService {
+public interface Camping_areaDAO {
 
 }

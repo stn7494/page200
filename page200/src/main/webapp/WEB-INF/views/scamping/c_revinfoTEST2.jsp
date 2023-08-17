@@ -15,7 +15,7 @@
 <head>
 <%@ include file="../include/head.jsp"%>
 
-<title>캠핑장</title>
+<title>캠핑장 예약 정보</title>
 
 <style>
 .pagination {
@@ -48,9 +48,44 @@
 	height: 36px;
 }
   
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
 </style>
 
 </head>
+
+<!-- 플러그인 -->
+<%@ include file="../include/plugin.jsp"%>
+
+  <form role="form" method="post">
+  	<input type='hidden' name='cam_code' value="${c_revinfo.cam_code}" >
+  </form> 
+  
 <body>
 	<div class="site-mobile-menu site-navbar-target">
 		<div class="site-mobile-menu-header">
@@ -90,30 +125,30 @@
 			
 			<section class="content container-fluid">
 				<div class="box-header">
-					<h3 class="box-title">캠핑장 리스트</h3>
+					<h3 class="box-title">
+					<input type="text" name="cam_code" class="form-control" value="${c_revinfo.cam_code}" readonly="readonly" />
+					캠핑장 예약정보</h3>
 				</div>
 								
 
 				<table class="table">
 					<tr>
-						<td>캠핑장코드</td>
-						<td>지역코드</td>
-						<td>캠핑장명</td>
-						<td>캠핑장주소</td>
-						<td>등록일</td>
+						<td>캠핑장구역</td>
+						<td>최대인원</td>
+						<td>가격</td>
 					</tr>
 
 		<!-- 페이징 추가 -->
-					<c:forEach var="camping" items="${list }">
+					<c:forEach var="c_revinfo" items="${c_revinfo }">
 						<tr>
-							<td>${camping.cam_code}</td>
-							<td>${camping.region_code}</td>
-							<td><a
-								href='/page/scamping/detail${pageMaker.makeQuery(pageMaker.cri.page)}
-								&cam_code=${camping.cam_code }'>${camping.cam_name}
-							</a></td>
-							<td>${camping.cam_address}</td>
-							<td>${camping.cam_regdate}</td>
+							<td class="tooltip">
+								<a href='/page/reservation${pageMaker.makeQuery(pageMaker.cri.page)}
+								&cri_area_code=${c_revinfo.cri_area_code }'>${c_revinfo.cri_area_code}</a>
+								<span class="tooltiptext">예약하기</span>
+							</td>
+							
+							<td>${c_revinfo.cri_max}</td>
+							<td>${c_revinfo.cri_price}</td>
 						</tr>
 					</c:forEach>
 					
@@ -216,7 +251,5 @@
 		</div>
 	</div>
 
-	<!-- 플러그인 -->
-	<%@ include file="../include/plugin.jsp"%>
 </body>
 </html>
