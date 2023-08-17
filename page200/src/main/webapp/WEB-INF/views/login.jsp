@@ -96,7 +96,7 @@
 	      					<input class="btn btn-link" type="button" id="idfind" value="아이디 찾기">
 	      				</td>
 	      				<td>
-	      					<input class="btn btn-link" type="button" id="signpu" value="회원가입">
+	      					<input class="btn btn-link" type="button" id="signup" value="회원가입">
 	      				</td>
 	      			</tr>
 	      		</table>

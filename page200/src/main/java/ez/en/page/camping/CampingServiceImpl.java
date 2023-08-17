@@ -66,6 +66,19 @@ public class CampingServiceImpl implements CampingService {
 		return campingDAO.listSearchCount(cri);
 	}
 
+	//캠핑장 추천에 의한 필요정보 리스트(주연)
+	@Override
+	public List<CampingDTO> camList(List<Map<String, Object>> list) {
+		return campingDAO.camList(list);
+	}
+	
+	
+	//캠핑장 별점 평균 내림차순(주연)
+	@Override
+	public List<Map<String, Object>> revAvg() {
+		return campingDAO.revAvg();
+	}
+
 //	//캠핑장 예약 정보
 //	@Override
 //	public Map selectAll(Map<String, Object> map) {

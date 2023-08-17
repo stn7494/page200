@@ -75,6 +75,25 @@ public class CampingDTO {
 		this.cam_regdate = cam_regdate;
 	}
 
+	
+
+	public CampingDTO(String cam_code, String region_code, String f_code, String cam_name, String cam_address,
+		String cam_tel, String cam_start_time, String cam_finish_time, String thema_code, String option_code,
+		char cam_hide) {
+	super();
+	this.cam_code = cam_code;
+	this.region_code = region_code;
+	this.f_code = f_code;
+	this.cam_name = cam_name;
+	this.cam_address = cam_address;
+	this.cam_tel = cam_tel;
+	this.cam_start_time = cam_start_time;
+	this.cam_finish_time = cam_finish_time;
+	this.thema_code = thema_code;
+	this.option_code = option_code;
+	this.cam_hide = cam_hide;
+}
+
 
 
 	public String getCam_code() {

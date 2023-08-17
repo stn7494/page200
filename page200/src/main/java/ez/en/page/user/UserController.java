@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +30,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import ez.en.page.camping.CampingDTO;
+import ez.en.page.camping.CampingService;
 import ez.en.page.file.FileDTO;
 import ez.en.page.file.FileService;
 import ez.en.page.review.ReviewService;
@@ -46,6 +49,12 @@ public class UserController {
 	@Autowired
 	private FileService fileService;
 	
+	@Autowired
+	private CampingService camService;
+	
+	
+	
+	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	@GetMapping(value = "detail")
@@ -58,7 +67,16 @@ public class UserController {
 	}
 	
 	
-	
+	// 캠핑장 추천에 의한 필요정보 리스트(주연)
+	@GetMapping(value = "/")
+	public ModelAndView home() {
+		ModelAndView mav = new ModelAndView();
+		List<Map<String, Object>> revAvgList = camService.revAvg();
+		List<CampingDTO> camList = camService.camList(revAvgList);
+		mav.addObject("camList", camList);
+		mav.setViewName("index");
+		return mav;
+	}
 	
 	
 	
@@ -70,12 +88,7 @@ public class UserController {
 	}
 	
 	
-	@GetMapping(value = "/")
-	public ModelAndView home() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("index");
-		return mav;
-	}
+	
 	@GetMapping(value = "login")
 	public ModelAndView login() {
 		ModelAndView mav = new ModelAndView();
