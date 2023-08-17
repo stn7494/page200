@@ -8,8 +8,46 @@
 	SELECT id, nick FROM user where id =#{id} AND pw =#{pw} AND admin is not null
 	</select>
 	
-	<select id="userList" resultType="UserDTO">
+	<select id="userCount" resultType="int">
+		select count(*) from user where admin is null
+	</select>
+	
+	<select id="searchCount" parameterType="map" resultType="int">
+		select count(*) from user where admin is null
+		<choose>
+			<when test="selected.equals('all')">
+				and id like concat('%',#{type},'%')
+				or nick like concat('%',#{type},'%')
+			</when>
+			<when test="selected.equals('id')">
+				and id like concat('%',#{type},'%')
+			</when>
+			<when test="selected.equals('type')">
+				and nick like concat('%',#{type},'%')
+			</when>
+		</choose>
+	</select>
+	
+	<select id="userList" parameterType="Criteria" resultType="UserDTO">
 		select id, nick, stop from user where admin is null
+		limit #{pageStart},#{perPageNum}
+	</select>
+	
+	<select id="search" parameterType="map" resultType="UserDTO">
+		select id, nick, stop from user where admin is null
+		<choose>
+			<when test="selected == 'all'">
+				and id like concat('%',#{type},'%')
+				or nick like concat('%',#{type},'%')
+			</when>
+			<when test="selected == 'id'">
+				and id like concat('%',#{type},'%')
+			</when>
+			<when test="selected == 'nick'">
+				and nick like concat('%',#{type},'%')
+			</when>
+		</choose>
+		limit #{pageStart},#{perPageNum}
 	</select>
 	
 	<update id="userStop">

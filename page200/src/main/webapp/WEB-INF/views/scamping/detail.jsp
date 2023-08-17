@@ -28,6 +28,8 @@
   </form> 
   
 
+  
+
  <body>
   
     <div class="site-mobile-menu site-navbar-target">
@@ -208,9 +210,11 @@
             data-aos-delay="500"
           >
             <div class="counter-wrap mb-5 mb-lg-0">
-              <span class="number"
-                ><span class="countup text-primary">${count }</span></span
-              >
+              <span class="number">
+              	<span class="countup text-primary">
+                	${count }
+                </span>
+               </span>
               <span class="caption text-black-50">리뷰 개수</span>
             </div>
           </div>
@@ -262,12 +266,14 @@
     <!-- 관리자용 -->
 	<div class="text-center">
 		<div class="box-footer">
-			<button type="submit" class="btn btn-warning">MODIFY</button>
-			<button type="submit" class="btn btn-danger">REMOVE</button>
+			<!-- 예약자용 -->
+			<button type="submit" class="btn btn-info">RESERVATION INFO</button>
 			<button type="submit" class="btn btn-primary">GO LIST</button>
+			
+		
 		</div>
 	</div>
-	
+	 
 	<form role="form" action="modifyPage" method="post">
 		<input type='hidden' name='cam_code' value="${camping.cam_code }">
 		<input type='hidden' name='page' value="${cri.page }">
@@ -275,6 +281,11 @@
 		<input type='hidden' name='searchType' value="${cri.searchType }">
 		<input type='hidden' name='keyword' value="${cri.keyword }">
 	</form>
+	
+	
+   <form id="code" method="get" action="c_revinfo">
+  	<input type='hidden' name='cam_code' value="${camping.cam_code}" >
+   </form> 
     
 	<script>
 		$(document).ready(function() {
@@ -283,24 +294,23 @@
 
 			console.log(formObj);
 
-			$(".btn-warning").on("click", function() {
-				formObj.attr("action", "/page/scamping/modifyPage");
-				formObj.attr("method", "get");
-				formObj.submit();
-			});
-
-			$(".btn-danger").on("click", function() {
-				formObj.attr("action", "/page/scamping/removePage");
-				formObj.submit();
-			});
+		
 
 			$(".btn-primary").on("click", function() {
 				formObj.attr("method", "get");
 				formObj.attr("action", "/page/scamping/list");
 				formObj.submit();
 			});
-
+			
 		});
+		
+		
+		$(".btn-info").click(function() {
+			$("#code").submit();
+			<%//location.href = "${contextPath }/scamping/c_revinfo?cam_code=${camping.cam_code}";%>
+		});
+		
+		
 	</script>
     
     

@@ -70,8 +70,7 @@
 		rev.cri_area_code FROM review r INNER JOIN reservation rev ON
 		r.rev_code=rev.rev_code) j
 		ON cam.cri_area_code=j.cri_area_code
-		GROUP BY
-		cam.cam_code HAVING cam.cam_code=#{cam_code}
+		where cam.cam_code=#{cam_code}
 	</select>
 
 

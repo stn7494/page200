@@ -48,4 +48,36 @@ public class OnetooneDAOImpl implements OnetooneDAO {
 		// TODO Auto-generated method stub
 		return sqlsession.selectList(namespace + "SELECTONE", id);
 	}
+
+	@Override
+	public int reply(Onetoone_reply onetoone_reply) {
+		// TODO Auto-generated method stub
+		return sqlsession.insert(namespace + "reply",onetoone_reply);
+	}
+
+	@Override
+	public List<Onetoone_reply> getDetail(int rp_code) {
+		// TODO Auto-generated method stub
+		return sqlsession.selectList(namespace + "detail",rp_code);
+	}
+
+	@Override
+	public Onetoone_reply detailReply(int rp_code) {
+		// TODO Auto-generated method stub
+		return sqlsession.selectOne(namespace + "detailReply",rp_code);
+	}
+
+	@Override
+	public int replyupdate(Onetoone_reply onetoone_reply) {
+		// TODO Auto-generated method stub
+		return sqlsession.update(namespace +"replyupdate",onetoone_reply);
+	}
+
+	@Override
+	public int replyDelete(int rp_code) {
+		// TODO Auto-generated method stub
+		return sqlsession.delete(namespace + "replyDelete",rp_code);
+	}
+
+	
 }
