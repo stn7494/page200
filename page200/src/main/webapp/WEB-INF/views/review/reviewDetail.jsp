@@ -87,6 +87,9 @@
 		<form action="reviewDelete" method="get" id="btn2">
 			<input type="hidden" name="r_code" value="${selectOne.r_code}">
 		</form>
+		<form action="reviewLock" method="get" id="btn3">
+			<input type="hidden" name="r_code" value="${selectOne.r_code}">
+		</form>
 	</div>
 
 	</div>
@@ -97,11 +100,15 @@
 			<td colspan="5" align="center"><input class="btn btn-success"
 				type="button" value="리뷰 목록" id="list" /></td>
 
-			<c:if test="${sessionScope.user.id == selectOne.id}">
+			<c:if test="${user.id == selectOne.id or admin !=null }">
 				<td colspan="5" align="center"><input class="btn btn-success"
 					type="button" value="수정" id="reviewUpdate" /></td>
 				<td colspan="5" align="center"><input class="btn btn-success"
 					type="button" value="삭제" id="reviewDelete" /></td>
+			</c:if>
+			<c:if test="${admin !=null }">
+				<td colspan="5" align="center"><input class="btn btn-success"
+					type="button" value="리뷰잠금" id="reviewLock" /></td>
 			</c:if>
 		</tr>
 	</div>
@@ -117,6 +124,9 @@
 		});
 		$("#reviewDelete").click(function() {
 			$("#btn2").submit();
+		});
+		$("#reviewLock").click(function() {
+			$("#btn3").submit();
 		});
 	
 	</script>

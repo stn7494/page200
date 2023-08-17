@@ -301,7 +301,7 @@
 	</div>
 
 	<!-- 플러그인 -->
-	<%@ include file="../include/plugin.jsp"%>
+<%@ include file="../include/plugin.jsp"%>
 </body>
 
 </html>

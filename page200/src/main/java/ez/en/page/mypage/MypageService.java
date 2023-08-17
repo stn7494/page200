@@ -21,9 +21,9 @@ public interface MypageService {
 	public int revdelete(Object revcode);
 //	예약 상세조회2
 	public Map<String, Object> revdetail2(Object sitecode);
-//	내 찜목록 페이징 ==============================
+//	내 찜목록 페이징
 	public List<JjimDTO> jjimlistCriteria(Criteria cri)throws Exception;
-//	내 찜목록 페이지번호 ========================
+//	내 찜목록 페이지번호
 	public int jjimlistcountCriteria(Criteria cri)throws Exception;
 //	내 리뷰목록 페이징
 	public List<ReviewDTO> reviewlistCriteria(Criteria cri) throws Exception;

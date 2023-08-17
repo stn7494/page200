@@ -72,7 +72,7 @@
 								<td>${coupon.cp_name}</td>
 								<td>${coupon.cp_content}</td>
 								<td>${coupon.cp_amount}</td>
-								<td>${coupon.cp_sale}</td>
+								<td>${coupon.cp_sale}%</td>
 								<td>${coupon.cp_start_date}</td>
 								<td>${coupon.cp_end_date}</td>
 							</tr>

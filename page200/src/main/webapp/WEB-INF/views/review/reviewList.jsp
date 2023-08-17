@@ -63,6 +63,7 @@
 							<td>작성날짜</td>
 							<td>내용</td>
 							<td>별점</td>
+							<td>신고수</td>
 						</tr>
 
 						<c:forEach var="review" items="${listAll }">
@@ -73,8 +74,16 @@
 								<td>${review.id}</td>
 								<td>${review.f_code}</td>
 								<td>${review.r_w_date}</td>
-								<td>${review.r_content}</td>
+								<c:choose>
+									<c:when test="${review.r_lockpwd == 1 }">
+										<td style="color: red;">이 글은 잠긴글입니다.</td>
+									</c:when>
+									<c:otherwise>
+										<td>${review.r_content}</td>
+									</c:otherwise>
+								</c:choose>
 								<td>${review.r_star}</td>
+								<td>${review.r_declaration}</td>
 							</tr>
 						</c:forEach>
 						<tr>

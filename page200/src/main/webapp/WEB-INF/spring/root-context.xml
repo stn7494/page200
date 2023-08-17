@@ -39,5 +39,5 @@
       
    </bean>
    
-   <context:component-scan base-package="kr.co.dong" />
+   <context:component-scan base-package="ez.en.page" />
 </beans>

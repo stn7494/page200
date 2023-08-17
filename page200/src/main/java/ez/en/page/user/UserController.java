@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,15 +54,15 @@ public class UserController {
 		model.addAttribute("file", fileService.myprofile(dto.getId()));
 		int count = rservice.reviewCount("cam001");
 		model.addAttribute("count",count);
-		System.out.println("테스트");
-		System.out.println("테스트2");
-		System.out.println("테스트3");
-		System.out.println("테스트4");
-		System.out.println("테스트6");
-		
-		
 		return "camdetail";
 	}
+	
+	
+	
+	
+	
+	
+	
 	
 	@GetMapping(value = "/main")
 	public String main() {
@@ -100,6 +103,14 @@ public class UserController {
 	@GetMapping(value = "signup")
 	public ModelAndView signup() {
 		ModelAndView mav = new ModelAndView();
+		Date date = new Date();
+		SimpleDateFormat day = new SimpleDateFormat("yyyy-MM-dd");
+		String today = day.format(date);
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.add(Calendar.YEAR, -20);
+		mav.addObject("year", cal.get(Calendar.YEAR));
+		mav.addObject("today", today);
 		mav.setViewName("signup");
 		return mav;
 	}
