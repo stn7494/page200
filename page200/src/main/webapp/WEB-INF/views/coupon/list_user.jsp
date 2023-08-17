@@ -73,7 +73,7 @@
 								<td id="data${num.count}">${coupon.cp_name}</td>
 								<td>${coupon.cp_content}</td>
 								<td id="amount${num.count }">${coupon.cp_amount}</td>
-								<td>${coupon.cp_sale}</td>
+								<td>${coupon.cp_sale}%</td>
 								<td>${coupon.cp_start_date}</td>
 								<td>${coupon.cp_end_date}</td>
 								<td colspan="5" align="center">

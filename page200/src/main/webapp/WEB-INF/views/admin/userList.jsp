@@ -16,6 +16,8 @@
     <title>
     	main템플렛
     </title>
+<style type="text/css">
+</style>    
   </head>
   <body>
     <div class="site-mobile-menu site-navbar-target">
@@ -40,7 +42,7 @@
       <div class="container">
         <div class="row justify-content-center align-items-center">
           <div class="col-lg-9 text-center mt-5">
-            <h1 class="heading" data-aos="fade-up">매인템플렛</h1>
+            <h1 class="heading" data-aos="fade-up">회원전체조회</h1>
 
             <nav
               aria-label="breadcrumb"
@@ -53,7 +55,7 @@
                   class="breadcrumb-item active text-white-50"
                   aria-current="page"
                 >
-                  Properties
+                  회원전체조회
                 </li>
               </ol>
             </nav>
@@ -73,6 +75,11 @@
       				<th>회원 정지여부</th>
       				<th>체크박스</th>
       			</tr>
+      			<c:if test="${list == null}">
+      			<tr>
+      				<td colspan="4">조회된 데이터가 없습니다.</td>
+      			</tr>
+      			</c:if>
       			<c:forEach items="${list }" var="list">
       			<tr>
       				<td>${list.id }</td>
@@ -92,6 +99,46 @@
       			</tr>
       		</table>
       		<input class="btn btn-outline-danger" type="button" id="stop" value="회원정지">
+      		<div class="text-center">
+				<ul style="padding-left: 43%;" class="pagination">
+					<c:if test="${pageMaker.prev }">
+						<li class="page-item"><a class="page-link" href="userList?page=${pageMaker.startPage -1 }">&laquo;</a></li>
+					</c:if>
+					
+					<c:forEach begin="${pageMaker.startPage }" 
+						end="${pageMaker.endPage }" var="idx">
+						<li class="page-item"<c:out value="${pageMaker.cri.page == idx?'class=active':'' }"/>>
+							<a class="page-link" href="userList?page=${idx }">${idx }</a>
+						</li>
+					</c:forEach>
+					<c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
+						<li class="page-item">
+							<a class="page-link" href="userList?page=${pageMaker.endPage+1 }">&raquo;</a>
+						</li>
+					</c:if>
+				</ul>
+			</div>
+			<div>
+				<form id="search" action="search" method="post">
+					<table class="table">
+						<tr>
+							<td>
+								<select id="selected" name="selected">
+									<option value="all">전체</option>
+									<option value="id">아이디</option>
+									<option value="nick">닉네임</option>
+								</select>
+							</td>
+							<td>
+								<input type="text" name="type" id="type">
+							</td>
+							<td>
+								<input type="button" id="check" value="검색">
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
       	</div>
       </div>
     </div>
@@ -120,6 +167,14 @@
 						alert("실패");
 					}
 				});
+			}
+		});
+		$("#check").click(function(){
+			var type = $("#selected option:selected").val();
+			if($("#type").val() == ""){
+				alert("조회할 아이디 혹은 닉네임을 입력해주세요");
+			}else{
+				$("#search").submit();
 			}
 		});
 	</script>

@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import ez.en.page.domain.Criteria;
+import ez.en.page.domain.PageMaker;
 import ez.en.page.user.UserController;
 import ez.en.page.user.UserDTO;
 
@@ -50,13 +52,35 @@ public class AdminController {
 	
 	
 	@GetMapping(value = "userList")
-	public ModelAndView userList() {
+	public ModelAndView userList(Criteria cri) {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("list", service.userList());
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.userCount());
+		mav.addObject("list", service.userList(cri));
+		mav.addObject("pageMaker", pageMaker);
 		mav.setViewName("admin/userList");
 		return mav;
 	}
 	
+	@PostMapping(value = "search")
+	public ModelAndView searchList(Criteria cri, @RequestParam("selected")String selected, @RequestParam("type")String type) {
+		logger.info("테스트중임!");
+		ModelAndView mav = new ModelAndView();
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("selected", selected);
+		map.put("type", type);
+		pageMaker.setTotalCount(service.searchCount(map));
+		logger.info("검색후 총 개수 : "+service.searchCount(map));
+		map.put("pageStart", cri.getPageStart());
+		map.put("perPageNum", cri.getPerPageNum());
+		mav.addObject("list", service.search(map));
+		mav.addObject("pageMaker", pageMaker);
+		mav.setViewName("admin/userList");
+		return mav;
+	}
 	@ResponseBody
 	@PostMapping(value = "userStop")
 	public Map<String, Object> userStop(@RequestParam("userList[]")List<String> list){
