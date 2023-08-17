@@ -14,9 +14,30 @@
     <%@ include file="/WEB-INF/views/include/head.jsp" %>
 
     <title>
-    	main템플렛
+    	회원조회
     </title>
 <style type="text/css">
+.pl{
+    width: 200px;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 12px 13px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.pl:focus{
+    border: 1px solid #9B51E0;
+    box-sizing: border-box;
+    border-radius: 10px;
+    outline: 3px solid #F8E4FF;
+    border-radius: 10px;
+}
+
 </style>    
   </head>
   <body>
@@ -100,7 +121,7 @@
       		</table>
       		<input class="btn btn-outline-danger" type="button" id="stop" value="회원정지">
       		<div class="text-center">
-				<ul style="padding-left: 43%;" class="pagination">
+				<ul style="padding-left: 41%;" class="pagination">
 					<c:if test="${pageMaker.prev }">
 						<li class="page-item"><a class="page-link" href="userList?page=${pageMaker.startPage -1 }">&laquo;</a></li>
 					</c:if>
@@ -122,18 +143,18 @@
 				<form id="search" action="search" method="post">
 					<table class="table">
 						<tr>
-							<td>
-								<select id="selected" name="selected">
+							<td style="width: 20%">
+								<select class="pl" id="selected" name="selected">
 									<option value="all">전체</option>
 									<option value="id">아이디</option>
 									<option value="nick">닉네임</option>
 								</select>
 							</td>
 							<td>
-								<input type="text" name="type" id="type">
+								<input style="width: 100%" class="form-control" type="text" name="type" id="type">
 							</td>
 							<td>
-								<input type="button" id="check" value="검색">
+								<input class="btn btn-link"  type="button" id="check" value="검색">
 							</td>
 						</tr>
 					</table>
