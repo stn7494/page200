@@ -12,7 +12,6 @@
 <html lang="ko">
 <head>
 <%@ include file="../include/head.jsp"%>
-<%@ include file="../include/plugin.jsp"%>
 <title>Property &mdash; Free Bootstrap 5 Website Template by
 	Untree.co</title>
 </head>
@@ -150,6 +149,6 @@ $(document).ready(function() {
 	</div>
 
 	<!-- 플러그인 -->
-	
+<%@ include file="../include/plugin.jsp"%>
 </body>
 </html>
