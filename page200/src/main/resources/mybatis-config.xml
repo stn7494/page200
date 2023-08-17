@@ -19,6 +19,7 @@
 		<typeAlias alias="OnetooneDTO" type="ez.en.page.onetoone.OnetooneDTO"/>
   	<typeAlias alias="Onetoone_reply" type="ez.en.page.onetoone.Onetoone_reply"/>
 		<typeAlias alias="Onetoone_replyDTO" type="ez.en.page.onetoone_reply.Onetoone_replyDTO"/>
+		<typeAlias alias="Onetoone_reply" type="ez.en.page.onetoone.Onetoone_reply"/>
 		<typeAlias alias="CampingDTO" type="ez.en.page.camping.CampingDTO"/>
 		<typeAlias alias="RegionDTO" type="ez.en.page.dto.RegionDTO"/>
 		<typeAlias alias="OptionDTO" type="ez.en.page.dto.OptionDTO"/>
