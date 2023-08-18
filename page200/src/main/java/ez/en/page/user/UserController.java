@@ -25,11 +25,13 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import ez.en.page.camping.CampingController;
 import ez.en.page.camping.CampingDTO;
 import ez.en.page.camping.CampingService;
 import ez.en.page.file.FileDTO;
@@ -50,6 +52,8 @@ public class UserController {
 	private FileService fileService;
 	
 	@Autowired
+	private CampingController camController;
+	@Autowired
 	private CampingService camService;
 	
 	
@@ -67,6 +71,14 @@ public class UserController {
 	}
 	
 	
+//	@GetMapping(value = "/")
+//	public ModelAndView home() {
+//		ModelAndView mav = new ModelAndView();
+//		mav.setViewName("index");
+//		return mav;
+//	}
+	
+//	
 	// 캠핑장 추천에 의한 필요정보 리스트(주연)
 	@GetMapping(value = "/")
 	public ModelAndView home() {
@@ -77,7 +89,6 @@ public class UserController {
 		mav.setViewName("index");
 		return mav;
 	}
-	
 	
 	
 	

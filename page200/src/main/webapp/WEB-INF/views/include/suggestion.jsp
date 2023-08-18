@@ -30,7 +30,7 @@
               	<c:forEach items="${camList }" var="list">
               		<div class="property-item">
                   <a href="property-single.html" class="img">
-                    <img src="/page/resources/images/img_1.jpg" alt="Image" class="img-fluid" />
+                    <img src="/page/resources/images/${list.f_code }.jpg" alt="Image" class="img-fluid" />
                   </a>
 
                   <div class="property-content">
@@ -49,10 +49,12 @@
                         </span>
                       </div>
 
+					
+					
                       <a
-                        href="property-single.html"
+                        href="/page/camping/detail?cam_code=${list.cam_code }"
                         class="btn btn-primary py-2 px-3"
-                        >See details</a
+                        > 캠핑장 보러가기</a
                       >
                     </div>
                   </div>
