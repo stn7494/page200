@@ -83,9 +83,6 @@ public class MypageController {
 		UserDTO dto, HttpSession session) throws Exception{
 		request.setCharacterEncoding("utf-8");
 		ModelAndView mav = new ModelAndView();
-//		mav.addObject("map", service.edit(dto));
-//		mav.addObject("list", service.info(session.getAttribute("user")));
-//		mav.setViewName("index");
 		
 		if(profile.getOriginalFilename() != "") {
 			
@@ -98,9 +95,13 @@ public class MypageController {
 			fdto.setF_code(file_code);
 			dto.setF_code(fdto.getF_code());
 			// 이미지 파일을 업로드 및 섬네일 생성
-			logger.info(fdto.toString()+"========================================");
 			profile(profile, request, dto.getId());
 			service.editProfile(fdto);
+			mav.addObject("map", service.edit(dto));
+			mav.addObject("list", service.info(session.getAttribute("user")));
+			mav.setViewName("index");
+			
+			return mav;
 		}
 		mav.addObject("map", service.edit(dto));
 		mav.addObject("list", service.info(session.getAttribute("user")));
@@ -157,6 +158,25 @@ public class MypageController {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.countPaging(cri));
+		mav.addObject("pageMaker", pageMaker);
+		mav.setViewName("mypage/revlistPage");
+		return mav;
+	}
+//	예약코드 검색
+	@PostMapping(value = "revsearch")
+	public ModelAndView revSearch(HttpSession session,Criteria cri,@RequestParam("revcode")String revcode)throws Exception {
+		ModelAndView mav = new ModelAndView();
+		UserDTO dto = (UserDTO)session.getAttribute("user");
+		cri.setId(dto.getId());
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("revcode", revcode);
+		map.put("id", dto.getId());
+		pageMaker.setTotalCount(service.listSearchCount(map));
+		map.put("pageStart", cri.getPageStart());
+		map.put("perPageNum", cri.getPerPageNum());
+		mav.addObject("revlist", service.listSearchCriteria(map));
 		mav.addObject("pageMaker", pageMaker);
 		mav.setViewName("mypage/revlistPage");
 		return mav;
@@ -238,10 +258,8 @@ public class MypageController {
 				
 				thumbnail.close();
 			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		return dto;
@@ -266,7 +284,6 @@ public class MypageController {
 					header, HttpStatus.OK);
 					
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

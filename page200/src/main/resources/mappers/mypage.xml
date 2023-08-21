@@ -4,6 +4,28 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ez.en.page.mypageMapper">
 <!-- 마이페이지 -->
+	<!-- 예약코드 검색 처리 -->
+	<select id="listSearch" parameterType="map" resultType="ReservationDTO">
+		 SELECT rev_code,rev_start_date,rev_finish_date 
+		 FROM reservation
+		 join user
+		 on reservation.id = user.id
+		<if test="revcode != null">
+		 WHERE rev_code like CONCAT('%', #{revcode}, '%') and user.id = #{id}
+		 </if>
+		limit #{pageStart}, #{perPageNum}
+	</select>
+	
+	<!-- 예약코드 개수 조회 -->
+	<select id="listSearchCount" parameterType="map" resultType="int">
+		 select count(rev_code)
+		from reservation
+		join user
+		 on reservation.id = user.id
+		 <if test="revcode != null">
+		where rev_code like CONCAT('%', #{revcode}, '%') and user.id = #{id}
+		 </if>
+	</select>
 	<!-- 예약 페이징 Criteria -->
 	<select id="revlistCriteria" resultType="ReservationDTO">
 	<![CDATA[
@@ -39,7 +61,6 @@
 		delete from reservation
 		where rev_code = #{rev_code}
 	</delete>
-	
 	<!-- 내 찜목록 Criteria -->
 	<select id="jjimlistCriteria" resultType="JjimDTO">
 	<![CDATA[
@@ -105,7 +126,7 @@
 	</select>
 	<!-- 회원정보수정 -->
 	<update id="edit" parameterType="UserDTO">
-		update user set f_code = #{f_code},nick = #{nick},birth = #{birth},phone = #{phone},email = #{email}
+		update user set name = #{name},f_code = #{f_code},nick = #{nick},phone = #{phone},email = #{email}
 		where id = #{id}
 	</update>
 	<!-- 회원탈퇴 -->
@@ -125,7 +146,7 @@
 	</select>
 	<!-- 프로필 사진 바꿀시 파일이름 바꾸기 -->
 	<update id="editProfile" parameterType="FIleDTO">
-		update file set f_name = #{f_name}
+		update file set f_name = #{f_name} 
 		where f_code = #{f_code}
 	</update>
 	

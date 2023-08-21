@@ -3,8 +3,10 @@ package ez.en.page.mypage;
 import java.util.List;
 import java.util.Map;
 
+import ez.en.page.camping.CampingDTO;
 import ez.en.page.coupon.CouponDTO;
 import ez.en.page.domain.Criteria;
+import ez.en.page.domain.SearchCriteria;
 import ez.en.page.file.FileDTO;
 import ez.en.page.jjim.JjimDTO;
 import ez.en.page.reservation.ReservationDTO;
@@ -13,6 +15,10 @@ import ez.en.page.user.UserDTO;
 
 public interface MypageService {
 	
+//	예약코드 검색
+	public List<ReservationDTO> listSearchCriteria(Map<String, Object> map) throws Exception;
+	
+	public int listSearchCount(Map<String, Object> map) throws Exception;
 //	예약 페이징
 	public List<ReservationDTO> revlistCriteria(Criteria cri)throws Exception;
 //	예약 페이징 페이지번호

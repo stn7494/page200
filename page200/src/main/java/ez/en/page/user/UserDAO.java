@@ -20,12 +20,4 @@ public interface UserDAO {
 	
 	public int pwchange(UserDTO dto);
 	
-	
-	//sjs의 흔적
-	//회원정보수정
-	public int edit(Map<String, Object> map);
-	
-	//회원정보 하나 가져오기
-	public UserDTO info(Object id);
-	
 }
