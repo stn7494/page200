@@ -107,8 +107,18 @@
 					type="button" value="삭제" id="reviewDelete" /></td>
 			</c:if>
 			<c:if test="${admin !=null }">
-				<td colspan="5" align="center"><input class="btn btn-success"
-					type="button" value="리뷰잠금" id="reviewLock" /></td>
+				<td colspan="5" align="center">
+					<c:if test="${selectOne.r_lockpwd == 1 }">
+					<input class="btn btn-success"type="button" value="리뷰잠금해제" id="reviewLock" />
+					</c:if>
+				</td>
+			</c:if>
+			<c:if test="${admin !=null }">
+				<td colspan="5" align="center">
+					<c:if test="${selectOne.r_lockpwd == 0 }">
+					<input class="btn btn-success"type="button" value="리뷰잠금" id="reviewLock" />
+					</c:if>
+				</td>
 			</c:if>
 		</tr>
 	</div>
@@ -117,7 +127,7 @@
 			location.href = "${contextPath }";
 		});
 		$("#list").click(function() {
-			location.href = "rreviewlist";
+			location.href = "previewlistPage";
 		});
 		$("#reviewUpdate").click(function() {
 			$("#btn1").submit();

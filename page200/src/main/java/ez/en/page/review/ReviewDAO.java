@@ -39,10 +39,14 @@ public interface ReviewDAO {
 	// ★★★ 페이징처리
 	public List<ReviewDTO> listPage(int page) throws Exception;
 	
+	// ★★★ 페이징처리2
 	public List<ReviewDTO> listCriteria(Criteria cri) throws Exception;
 
 	// ★★★ 페이징수정
 	public int countPaging(Criteria cri) throws Exception;
+	
+	// ★★★ 리뷰 관리자 잠금/잠금해제
+	public int lockUpdate(String r_code);
 	
 	
 }

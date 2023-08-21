@@ -66,7 +66,7 @@
 							<td>신고수</td>
 						</tr>
 
-						<c:forEach var="review" items="${listAll }">
+						<c:forEach var="review" items="${reviewlist }">
 							<tr>
 								<td>${review.r_code}</td>
 								<td>${review.id}</td>
@@ -75,12 +75,6 @@
 								<c:choose>
 									<c:when test="${review.r_lockpwd == 1 }">
 										<td style="color: red;"><b>이 글은 잠긴글입니다.</b></td>
-									</c:when>
-									<c:when test="${review.r_lockpwd == 1 and admin != null}">
-										<td style="color: red;">
-											<a href="reviewDetail?r_code=${review.r_code}&rev_code=${review.rev_code}">
-												<b>이 글은 잠긴글입니다.</b>
-											</a></td>
 									</c:when>
 									<c:otherwise>
 										<td><a

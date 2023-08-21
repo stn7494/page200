@@ -11,6 +11,11 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<style>
+ul li{
+	display: inline-block;
+}
+</style>
 <%@ include file="../include/head.jsp"%>
 
 <title>리뷰</title>
@@ -66,21 +71,21 @@
 							<td>신고수</td>
 						</tr>
 
-						<c:forEach var="review" items="${listAll }">
+						<c:forEach var="review" items="${plist }">
 							<tr>
 								<td>${review.r_code}</td>
 								<td>${review.id}</td>
 								<td>${review.f_code}</td>
 								<td>${review.r_w_date}</td>
 								<c:choose>
-									<c:when test="${review.r_lockpwd == 1 }">
-										<td style="color: red;"><b>이 글은 잠긴글입니다.</b></td>
-									</c:when>
-									<c:when test="${review.r_lockpwd == 1 and admin != null}">
+									<c:when test="${review.r_lockpwd == 1 && admin.nick != null}">
 										<td style="color: red;">
 											<a href="reviewDetail?r_code=${review.r_code}&rev_code=${review.rev_code}">
 												<b>이 글은 잠긴글입니다.</b>
 											</a></td>
+									</c:when>
+									<c:when test="${review.r_lockpwd == 1 }">
+										<td style="color: red;"><b>이 글은 잠긴글입니다.</b></td>
 									</c:when>
 									<c:otherwise>
 										<td><a
@@ -92,11 +97,34 @@
 								<td>${review.r_declaration}</td>
 							</tr>
 						</c:forEach>
+					
 						<tr>
 							<td colspan="5" align="center"><input
 								class="btn btn-success" type="button" value="홈으로" id="main" /></td>
 						</tr>
 					</table>
+					
+						<div class="container" style="margin-left: 45%" >
+							<ul class="pagination">
+								<c:if test="${pageMaker.prev}">
+									<li class="page-item"><a class="page-link" href="previewlistPage?page=${pageMaker.startPage-1 }">&laquo;</a></li>
+								</c:if>
+								
+								<c:forEach begin="${pageMaker.startPage }"
+									end="${pageMaker.endPage }" var="idx">
+									<li class="page-item"
+										<c:out value="${pageMaker.cri.page==idx?'class=active':'' }"/>>
+										<a class="page-link"  href="previewlistPage?page=${idx}">${idx }</a>
+									</li>
+								</c:forEach>
+								
+								<c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
+									<li class="page-item"><a class="page-link" href="previewlistPage?page=${pageMaker.endPage+1 }">&raquo;</a></li>
+								</c:if>
+							</ul>
+						</div>
+					
+					
 				</form>
 			</div>
 			<script>
