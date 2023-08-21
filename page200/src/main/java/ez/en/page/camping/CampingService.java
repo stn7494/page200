@@ -30,5 +30,17 @@ public interface CampingService {
 	
 //	//캠핑장 상세페이지 정보 조회
 //	public Map selectAll(Map<String, Object> map);
+	
+	/**
+	 * 캠핑장 추천에 의한 필요정보 리스트(주연)
+	 * @return
+	 */
+	public List<CampingDTO> camList(List<Map<String, Object>> list);
+	
+	/**
+	 * 캠핑장 별점 평균 내림차순(주연)
+	 * @return
+	 */
+	public List<Map<String, Object>> revAvg();
 
 }

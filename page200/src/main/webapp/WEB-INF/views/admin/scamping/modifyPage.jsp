@@ -66,7 +66,7 @@
 			 
 			 <table class="table">
 				<tr>  
-					<td colspan="2">캠핑장 코드 입력 &nbsp;&nbsp; <input type="text", name="cam_code" value="${camping.cam_code}" readonly/></td>
+					<td colspan="2">캠핑장 코드 입력 &nbsp;&nbsp; <input type="text", name="cam_code" value="${acamping.cam_code}" /></td>
 				  	<td colspan="2">지역코드 선택 &nbsp;&nbsp;
 				  		<select name="region_code">
 				  			
@@ -82,24 +82,24 @@
 				</tr>
 				
 				<tr> <!-- 3행 생성-->
-					<td colspan="4"><input type="file", name="f_code" value="${camping.f_code }" /> <!-- 3행 1열 -->
+					<td colspan="4"><input type="file", name="f_code" value="${acamping.f_code }" /> <!-- 3행 1열 -->
 				</tr>
 				<tr> <!-- 4행 1,2열(병합) -->
-					<td colspan="4">캠핑장 이름 입력 &nbsp;&nbsp;<input type="text", name="cam_name" value="${camping.cam_name}" ></td>
+					<td colspan="4">캠핑장 이름 입력 &nbsp;&nbsp;<input type="text", name="cam_name" value="${acamping.cam_name}" ></td>
 				</tr>
 				<tr> <!-- 5행 -->
-					<td colspan="4">캠핑장 주소 입력 &nbsp;&nbsp;<input type="text", name="cam_address" value="${camping.cam_address}"></td>
+					<td colspan="4">캠핑장 주소 입력 &nbsp;&nbsp;<input type="text", name="cam_address" value="${acamping.cam_address}"></td>
 				</tr>
 				<tr> <!-- 6행 -->
-					<td colspan="4">캠핑장 전화전호 입력 &nbsp;&nbsp;<input type="text", name="cam_tel", value="${camping.cam_tel}"></td>
+					<td colspan="4">캠핑장 전화전호 입력 &nbsp;&nbsp;<input type="text", name="cam_tel", value="${acamping.cam_tel}"></td>
 				</tr>
 				<tr> <!-- 7행 -->
-					<td colspan="2"> 입실시간 &nbsp;&nbsp;<input type="text", name="cam_start_time", value="${cam.start_name}"></td>
-					<td colspan="2"> 퇴실시간 &nbsp;&nbsp;<input type="text", name="cam_finish_time", value="${cam_finish_time}" ></td>
+					<td colspan="2"> 입실시간 &nbsp;&nbsp;<input type="text", name="cam_start_time", value="${acamping.cam_start_time}"></td>
+					<td colspan="2"> 퇴실시간 &nbsp;&nbsp;<input type="text", name="cam_finish_time", value="${acamping.cam_finish_time}" ></td>
 				</tr>
 				<tr> <!-- 8행 -->
 					<td colspan="4"> 테마코드 선택 &nbsp;&nbsp;
-					<input type="checkbox" name="thema_code", value= "연인" checked>연인 &nbsp;
+					<input type="checkbox" name="thema_code", value= "연인">연인 &nbsp;
 					<input type="checkbox" name="thema_code", value= "가족" >가족 &nbsp;
 					<input type="checkbox" name="thema_code", value= "반려동물" >반려동물 &nbsp;
 					<input type="checkbox" name="thema_code", value= "당일캠핑" >당일캠핑 &nbsp;
@@ -114,7 +114,7 @@
 				</tr>
 				<tr> <!-- 9행 -->
 					<td colspan="4"> 옵션코드 선택 &nbsp;&nbsp;
-					<input type="checkbox" name="option_code", value= "매점" checked>매점 &nbsp;
+					<input type="checkbox" name="option_code", value= "매점">매점 &nbsp;
 					<input type="checkbox" name="option_code", value= "샤워장 및 화장실" >샤워장 및 화장실 &nbsp;
 					<input type="checkbox" name="option_code", value= "개수대" >개수대 &nbsp;
 					<input type="checkbox" name="option_code", value= "차박가능" >차박가능 &nbsp;
@@ -129,7 +129,9 @@
 					</td>
 				</tr>
 				<tr> <!-- 10행 -->
-					<td colspan="4">등록일&nbsp;&nbsp; <input type="date" name="today" readonly></td>
+					
+					<td colspan="2">등록일&nbsp;&nbsp; ${acamping.cam_regdate }</td>
+					<td colspan="2">수정일&nbsp;&nbsp; <input type="text" name="cam_modifydate" value="${acamping.cam_modifydate }" ></td>
 				</tr>
 				
 					

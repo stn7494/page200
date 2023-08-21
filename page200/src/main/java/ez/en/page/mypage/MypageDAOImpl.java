@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import ez.en.page.coupon.CouponDTO;
 import ez.en.page.domain.Criteria;
+import ez.en.page.domain.SearchCriteria;
 import ez.en.page.file.FileDTO;
 import ez.en.page.jjim.JjimDTO;
 import ez.en.page.reservation.ReservationDTO;
@@ -123,7 +124,16 @@ public class MypageDAOImpl implements MypageDAO {
 	@Override
 	public int editProfile(FileDTO dto) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace+"editProfile", dto);
+		return sqlSession.update(namespace+"editProfile", dto);
 	}
-
+	@Override
+	public List<ReservationDTO> listSearch(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+"listSearch", map);
+	}
+	@Override
+	public int listSearchCount(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"listSearchCount", map);
+	}
 }

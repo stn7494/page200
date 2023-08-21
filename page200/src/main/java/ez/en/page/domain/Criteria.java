@@ -59,8 +59,9 @@ public class Criteria {
 
 	@Override
 	public String toString() {
-		return "Criteria [page=" + page + ", perPageNum=" + perPageNum + "]";
+		return "Criteria [id=" + id + ", page=" + page + ", perPageNum=" + perPageNum + "]";
 	}
+
 	
 	
 

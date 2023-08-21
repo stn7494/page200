@@ -43,6 +43,10 @@ public class CampingController {
 	@Autowired
 	private ReviewService rservice;
 	
+	@Autowired
+	private CampingService camService;
+	
+	
 	//1.캠핑장 등록 (캠핑장 등록 버튼은 admin의 캠핑장 전체목록(list)view -> register) -> 등록 후 list목록으로 (registerPost)
 	//캠핑장 등록 폼 (registerGET)
 	@GetMapping("/register")
@@ -237,4 +241,16 @@ public class CampingController {
 	
 
 	//6.캠핑장 예약 정보(캠핑장 상세페이지에서 보여줄 각 캠핑장별 예약 정보)
+	
+//	 캠핑장 추천에 의한 필요정보 리스트(주연)
+//		@GetMapping(value = "/")
+//		public ModelAndView home() {
+//			ModelAndView mav = new ModelAndView();
+//			List<Map<String, Object>> revAvgList = camService.revAvg();
+//			List<CampingDTO> camList = camService.camList(revAvgList);
+//			mav.addObject("camList", camList);
+//			mav.setViewName("index");
+//			return mav;
+//		}
+
 }

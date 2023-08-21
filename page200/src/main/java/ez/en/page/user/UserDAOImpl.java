@@ -62,17 +62,6 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.update(NS+"pwchange", dto);
 	}
 	
-	@Override
-	public int edit(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return sqlSession.update(NS+"edit", map);
-	}
-
-	@Override
-	public UserDTO info(Object Id) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne(NS+"info", Id);
-	}
 
 	
 

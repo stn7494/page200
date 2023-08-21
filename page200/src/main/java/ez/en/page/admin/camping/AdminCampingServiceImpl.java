@@ -18,14 +18,14 @@ public class AdminCampingServiceImpl implements AdminCampingService {
 	
 	//캠핑장 등록
 	@Override
-	public void register(AdminCampingDTO campingDTO) {
-		campingDAO.register(campingDTO);
+	public void register(AdminCampingDTO adminCampingDTO) {
+		campingDAO.register(adminCampingDTO);
 	}
 	
 	//캠핑장 수정
 	@Override
-	public void modify(AdminCampingDTO campingDTO) {
-		campingDAO.modify(campingDTO);
+	public void modify(AdminCampingDTO adminCampingDTO) {
+		campingDAO.modify(adminCampingDTO);
 	}
 
 	//캠핑장 삭제

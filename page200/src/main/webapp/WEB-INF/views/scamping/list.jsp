@@ -18,7 +18,7 @@
 <title>캠핑장</title>
 
 <style>
-.pagination {
+ul li {
 	display: inline-block;
 }
 
@@ -138,7 +138,7 @@
 		</div>
 		
 	<!-- 검색기능 추가 수정 -->
-		<div class="text-center">
+		<div class="container">
 			<ul class="pagination">
 			
 				<c:if test="${pageMaker.prev && pageMaker.startPage > 0 }">

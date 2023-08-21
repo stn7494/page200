@@ -55,12 +55,12 @@ ul li{
               data-aos-delay="200"
             >
               <ol class="breadcrumb text-center justify-content-center">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="${contextPath }">Home</a></li>
                 <li
                   class="breadcrumb-item active text-white-50"
                   aria-current="page"
                 >
-                  Properties
+                  내 예약목록
                 </li>
               </ol>
             </nav>
@@ -83,6 +83,11 @@ ul li{
       				<th>예약종료일</th>
       			</tr>
       		</thead>
+      			<c:if test="${revlist == null}">
+      			<tr>
+      				<td colspan="4">조회된 데이터가 없습니다.</td>
+      			</tr>
+      			</c:if>
       			<c:forEach items="${revlist }" var="list">
       			<tr>
       				<td><a href="revdetail?rev_code=${list.rev_code }" >${list.rev_code }</a></td>
@@ -111,7 +116,25 @@ ul li{
 			</c:if>
 		</ul>
 	</div>
-	
+	<div class="form-group">
+		<form action="revsearch" id="search" method="post">
+		<table class="table table-borderless" style="width: 15%; margin-left: 40%;">
+			<tr>
+				<th><input style="height: 10%" type="text" class="form-control" name="revcode" id="revcode"></th>
+				<td><input type="button" id="searchBtn" value="검색"></td>
+			</tr>
+		</table>
+		</form>
+	</div>
+	<script>
+		$("#searchBtn").click(function(){
+			if($("#revcode").val() == "") {
+				alert("검색어를 입력해주세요.");
+				return false;
+			}
+			$("#search").submit();
+		});
+	</script>
 	<%@ include file="../include/footer.jsp" %>
     <!-- /.site-footer -->
 
