@@ -56,7 +56,7 @@
 		
 		
 		<div>${msg}</div>
-			 <strong>캠핑장 테스트 중 사진은 언제 채우냐</strong><hr>
+			 <strong>캠핑장 등록</strong><hr>
 			 <table class="table">
 				<tr>  
 					<td colspan="2">캠핑장 코드 입력 &nbsp;&nbsp; <input type="text", name="cam_code" placeholder="cam_code"></td>
@@ -123,16 +123,18 @@
 					</td>
 				</tr>
 				<tr> <!-- 10행 -->
-					<td colspan="4">등록일&nbsp;&nbsp; <input type="date" name="today"></td>
+					<td colspan="2">등록일&nbsp;&nbsp; <input type="date" name="cam_regdate"></td>
+					<td colspan="2">수정일&nbsp;&nbsp; </td>
+					
 				</tr>
 					
 			</table>
 			
 				<div class="text-center">
-					<input class="btn btn-secondary" value="홈으로" id="main" />
-					<input class="btn btn-secondary" value="목록" id="list" />
-					<input class="btn btn-warning" type="reset" value="다시작성" id="reset" />
-					<input class="btn btn-success" type="submit" value="등록" id="submit" />
+					<input class="btn btn-dark" value="GO HOME" id="main" />
+					<input class="btn btn-light" value="GO LIST" id="list" />
+					<input class="btn btn-success" type="submit" value="COMMIT" id="submit" />
+					<input class="btn btn-warning" type="reset" value="RESET" id="reset" />
 				</div>
 		</form>
 			
@@ -143,7 +145,7 @@
 			});
 			
 			$("#list").click(function() {
-			location.href = "${contextPath }/admin/scamping/listPage";
+			location.href = "${contextPath }/admin/scamping/list";
 			});
 			
 			$("#submit").click(function() {

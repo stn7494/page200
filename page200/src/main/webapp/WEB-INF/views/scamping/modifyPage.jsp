@@ -94,8 +94,8 @@
 					<td colspan="4">캠핑장 전화전호 입력 &nbsp;&nbsp;<input type="text", name="cam_tel", value="${camping.cam_tel}"></td>
 				</tr>
 				<tr> <!-- 7행 -->
-					<td colspan="2"> 입실시간 &nbsp;&nbsp;<input type="text", name="cam_start_time", value="${cam.start_name}"></td>
-					<td colspan="2"> 퇴실시간 &nbsp;&nbsp;<input type="text", name="cam_finish_time", value="${cam_finish_time}" ></td>
+					<td colspan="2"> 입실시간 &nbsp;&nbsp;<input type="text", name="cam_start_time", value="${camping.cam_start_name}"></td>
+					<td colspan="2"> 퇴실시간 &nbsp;&nbsp;<input type="text", name="cam_finish_time", value="${camping.cam_finish_time}" ></td>
 				</tr>
 				<tr> <!-- 8행 -->
 					<td colspan="4"> 테마코드 선택 &nbsp;&nbsp;

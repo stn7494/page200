@@ -101,19 +101,21 @@
 						<td>캠핑장명</td>
 						<td>캠핑장주소</td>
 						<td>등록일</td>
+						<td>수정일</td>
 					</tr>
 
 		<!-- 페이징 추가 -->
-					<c:forEach var="camping" items="${list }">
+					<c:forEach var="acamping" items="${list }">
 						<tr>
-							<td>${camping.cam_code}</td>
-							<td>${camping.region_code}</td>
+							<td>${acamping.cam_code}</td>
+							<td>${acamping.region_code}</td>
 							<td><a
-								href='/page/scamping/detail${pageMaker.makeQuery(pageMaker.cri.page)}
-								&cam_code=${camping.cam_code }'>${camping.cam_name}
+								href='/page/admin/scamping/detail${pageMaker.makeQuery(pageMaker.cri.page)}
+								&cam_code=${acamping.cam_code }'>${acamping.cam_name}
 							</a></td>
-							<td>${camping.cam_address}</td>
-							<td>${camping.cam_regdate}</td>
+							<td>${acamping.cam_address}</td>
+							<td>${acamping.cam_regdate}</td>
+							<td>${acamping.cam_modifydate }</td>
 						</tr>
 					</c:forEach>
 					
@@ -129,10 +131,10 @@
 		    </div>  
  	
 			<div class="text-center">
-				<input class="btn btn-success"
-					type="button" value="홈으로" id="main" />
-				<input class="btn btn-warning"
-					type="button" value="캠핑장추가" id="register" />
+				<input class="btn btn-dark"
+					type="button" value="GO HOME" id="main" />
+				<input class="btn btn-primary"
+					type="button" value="REGISTER" id="register" />
 			</div>
 			</section>
 		</div>

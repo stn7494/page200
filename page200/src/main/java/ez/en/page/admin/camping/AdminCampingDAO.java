@@ -9,9 +9,9 @@ import ez.en.page.domain.SearchCriteria;
 public interface AdminCampingDAO {
 	
 	//캠핑장 등록
-	public void register(AdminCampingDTO campingDTO);
+	public void register(AdminCampingDTO adminCampingDTO);
 	//캠핑장 수정
-	public void modify(AdminCampingDTO campingDTO);
+	public void modify(AdminCampingDTO adminCampingDTO);
 	//캠핑장 삭제
 	public void remove(String cam_code);
 	//캠핑장 전체 조회

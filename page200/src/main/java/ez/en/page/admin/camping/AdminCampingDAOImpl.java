@@ -21,14 +21,14 @@ public class AdminCampingDAOImpl implements AdminCampingDAO {
 	
 	//캠핑장 등록
 	@Override
-	public void register(AdminCampingDTO campingDTO) {
-		sqlSession.insert(namespace+"register", campingDTO);
+	public void register(AdminCampingDTO adminCampingDTO) {
+		sqlSession.insert(namespace+"register", adminCampingDTO);
 	}
 
 	//캠핑장 수정
 	@Override
-	public void modify(AdminCampingDTO campingDTO) {
-		sqlSession.update(namespace+"modify", campingDTO);
+	public void modify(AdminCampingDTO adminCampingDTO) {
+		sqlSession.update(namespace+"modify", adminCampingDTO);
 	}
 
 	//캠핑장 삭제
