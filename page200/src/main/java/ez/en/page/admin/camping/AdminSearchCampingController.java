@@ -32,35 +32,17 @@ public class AdminSearchCampingController {
 	@Inject
 	private ReviewService rservice;
 	
-	//경로: page/scamping/list
-//	@RequestMapping("/list")
-//	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception{
-//		
-//		logger.info(cri.toString());
-//		
-//		model.addAttribute("list", campingService.listCriteria(cri));
-//		
-//		PageMaker pageMaker = new PageMaker();
-//		pageMaker.setCri(cri);
-//		
-//		pageMaker.setTotalCount(campingService.listCountCriteria(cri));
-//		
-//		model.addAttribute("pageMaker", pageMaker);
-//	}
-	
 //	검색기능 추가 후 조회 
 	@GetMapping("/list")
 	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception{
 		
 		logger.info(cri.toString());
 		
-//		model.addAttribute("list", campingService.listCriteria(cri));
 		model.addAttribute("list", adminCampingService.listSearchCriteria(cri));
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		
-//		pageMaker.setTotalCount(campingService.listCountCriteria(cri));
 		pageMaker.setTotalCount(adminCampingService.listSearchCount(cri));
 		
 		model.addAttribute("pageMaker", pageMaker);

@@ -121,12 +121,14 @@ ul li {
 				
 		<!-- 검색기능 추가 -->
    			 
+   			 
 		   	<div class="search_wrap">
 		        <div class="search_area">
 		            <input type="text" name='keyword' id="keywordInput" value='${cri.keyword }'>
 		            <button id='searchBtn'>Search</button>
 		        </div>
 		    </div>  
+		   
  	
 			<div class="text-center">
 				<input class="btn btn-success"
@@ -142,19 +144,19 @@ ul li {
 			<ul class="pagination">
 			
 				<c:if test="${pageMaker.prev && pageMaker.startPage > 0 }">
-					<li><a
+					<li class="page-item"><a class="page-link"
 						href="list${pageMaker.makeSearch(pageMaker.startPage - 1) }">&laquo;</a></li>
 				</c:if>
 
 				<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-					<li
+					<li class="page-item"
 						<c:out value="${pageMaker.cri.page == idx?'class=active':'' }"/>>
-						<a href="list${pageMaker.makeSearch(idx) }">${idx }</a>
+						<a class="page-link" href="list${pageMaker.makeSearch(idx) }">${idx }</a>
 					</li>
 				</c:forEach>
 
 				<c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
-					<li><a href="list${pageMaker.makeSearch(pageMaker.endPage + 1) }">&raquo;</a></li>
+					<li class="page-item"><a class="page-link" href="list${pageMaker.makeSearch(pageMaker.endPage + 1) }">&raquo;</a></li>
 				</c:if>
 			</ul>
 		</div>

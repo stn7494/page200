@@ -10,10 +10,21 @@
 		values (#{cri_area_code}, #{cam_code}, #{cri_max}, #{cri_price})
 	</insert>
 	<!-- 캠핑장 예약정보 수정(admin) -->
-	<update id="update" parameterType="AdminCampingRevInfoDTO">
+	<!-- <update id="update" parameterType="AdminCampingRevInfoDTO">
 		update camping_rev_info set cri_area_code=#{cri_area_code}, cri_max=#{cri_max}, cri_price=#{cri_price} 
 		where cri_area_code=#{cri_area_code} 
+	</update>  -->
+	
+<!-- 	<update id="update" parameterType="map">
+		update camping_rev_info set cri_area_code=#{after_cri_area_code}, cri_max=#{cri_max}, cri_price=#{cri_price} 
+		where cri_area_code=#{before_cri_area_code}
+	</update> -->
+	
+	<update id="update" parameterType="map">
+		update camping_rev_info set cri_max=#{cri_max}, cri_price=#{cri_price} 
+		where cri_area_code=#{cri_area_code}
 	</update>
+	
 	
 	<!-- 캠핑장 예약정보 삭제(admin) -->
 	<delete id="delete" parameterType="String">

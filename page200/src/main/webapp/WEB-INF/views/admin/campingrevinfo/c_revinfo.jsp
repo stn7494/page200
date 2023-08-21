@@ -163,30 +163,18 @@
 							<td>${ac_revinfo.cri_area_code}</td>
 							<td>${ac_revinfo.cri_max}</td>
 							<td>${ac_revinfo.cri_price}</td>
-							<%-- <td>
-							<a href="/page/admin/campingrevinfo/selectArea?cri_area_code=${ac_revinfo.cri_area_code }" data-toggle="tooltip" title="click">
-								상세페이지</a>
-							</td> --%>
+							
 							<td>
 							<button type="button" 
 								onclick="location.href='${contextPath }/admin/campingrevinfo/update?cri_area_code=${ac_revinfo.cri_area_code }&cam_code=${cam_code}';">
 								MODIFY</button>
-							<%-- <a href="/page/admin/campingrevinfo/update?cri_area_code=${ac_revinfo.cri_area_code }&cam_code=${cam_code}" data-toggle="tooltip" title="click">
-								수정</a>
-							</td> --%>
-							<%-- <td>
-							<button type="button" 
-								onclick="location.href='${contextPath }/admin/campingrevinfo/update?cri_area_code=${ac_revinfo.cri_area_code }&cam_code=${cam_code}';">
-								REMOVE</button>
-							</td> --%> 
+						
 							<td>
 							<button type="button" 
 								onclick="location.href='${contextPath }/admin/campingrevinfo/delete?cri_area_code=${ac_revinfo.cri_area_code }&cam_code=${cam_code}';">
 								REMOVE</button>
 							</td>	
-							<!-- <td>
-								<button type="submit" class="delete">REMOVE</button>
-							</td> -->
+							
 							
  						</tr>
 					</c:forEach>
@@ -195,10 +183,9 @@
 				
 			<div class="text-center">
 				<input class="btn btn-dark" type="button" value="GO HOME" id="main" />
-				<!-- <button type="submit" class="btn btn-primary">GO LIST</button> -->
+				
 				<button type="submit" class="btn btn-primary">INSERT</button>
-<!-- 				<button type="submit" class="btn btn-warning">MODIFY</button>
-				<button type="submit" class="btn btn-danger">REMOVE</button> -->
+
 				
 			</div>
 			</section>
@@ -208,36 +195,19 @@
   			<input type='hidden' name='cam_code' value="${cam_code}" >
    		</form>
    		
-   	<%-- 	<form id="delete" method="post" action="${contextPath }/admin/campingrevinfo/delete">
-  			<input type='hidden' name='cri_area_code' value="${ac_revinfo.cri_area_code}" >
-   		</form> --%>
 		
 		<script>
 			$("#main").click(function() {
 				location.href = "${contextPath }/admin/";
 			});
 			
-			/* $(".btn-primary").click(function() {
-				location.href = "${contextPath }/admin/campingrevinfo/c_revinfo?cam_code="${cam_code}"";
-			}); */
+
 			
 			$(".btn-primary").click(function() {
 				$("#code2").submit();
 			});
 			
-/* 			$(".btn-warning").click(function() {
-				location.href = "${contextPath }/admin/campingrevinfo/update";
-			});
-			*/
-			/* $(".delete").click(function() {
-				$("#delete").submit();
-			}); */
-			 
-			 
-			/* 	$("#delete").on("click", function() {
-					formObj.attr("action", "/page/admin/campingrevinfo/delete");
-					formObj.submit();
-				}); */
+
 
 			
 		</script>

@@ -1,6 +1,8 @@
 package ez.en.page.admin.camping_rev_info;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import ez.en.page.camping_rev_info.CampingRevInfoDTO;
 
 
 
@@ -83,6 +87,52 @@ public class AdminCampingRevInfoController {
 		model.addAttribute("cam_code", cam_code);
 	}
 	
+	@PostMapping("/update")
+	public String updatePOST(@RequestParam("cri_area_code")String cri_area_code, 
+							Model model,@RequestParam("cam_code") String cam_code, AdminCampingRevInfoDTO adminCampingRevInfoDTO, RedirectAttributes rttr) throws Exception{
+		logger.info("update POST =========================>");
+		
+		logger.info("cri_area_code : " + cri_area_code);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("cri_area_code", cri_area_code);
+		map.put("cri_max", adminCampingRevInfoDTO.getCri_max());
+		map.put("cri_price", adminCampingRevInfoDTO.getCri_price());
+		
+		adminCampingRevInfoService.update(map);
+		
+		logger.info("update map : " + map);
+				
+		rttr.addFlashAttribute("msg", "SUCCESS");
+		
+		return "redirect:/admin/campingrevinfo/c_revinfo?cam_code="+cam_code;
+//		return null;
+	}
+	
+//	@PostMapping("/update")
+//	public String updatePOST(@RequestParam("cri_area_code")String cri_area_code, 
+//							@RequestParam("cri_area_code2")String cri_area_code2,
+//							Model model,@RequestParam("cam_code") String cam_code, AdminCampingRevInfoDTO adminCampingRevInfoDTO, RedirectAttributes rttr) throws Exception{
+//		logger.info("update POST =========================>");
+//		
+//		logger.info("cri_area_code : " + cri_area_code);
+//		logger.info("cri_area_code2 : " + cri_area_code2);
+//		
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("before_cri_area_code", cri_area_code);
+//		map.put("after_cri_area_code", cri_area_code2);
+//		map.put("cri_max", adminCampingRevInfoDTO.getCri_max());
+//		map.put("cri_price", adminCampingRevInfoDTO.getCri_price());
+//		
+//		adminCampingRevInfoService.update(map);
+//		
+//		logger.info("update map : " + map);
+//				
+//		rttr.addFlashAttribute("msg", "SUCCESS");
+//		
+//		return "redirect:/admin/campingrevinfo/c_revinfo?cam_code="+cam_code;
+////		return null;
+//	}
 	
 //	@PostMapping("/update")
 //	public String updatePOST(@RequestParam("cri_area_code")String cri_area_code, Model model,@RequestParam("cam_code") String cam_code, AdminCampingRevInfoDTO adminCampingRevInfoDTO, RedirectAttributes rttr) throws Exception{
@@ -97,20 +147,21 @@ public class AdminCampingRevInfoController {
 //		return "redirect:/admin/campingrevinfo/c_revinfo?cam_code="+cam_code;
 //	}
 	
-	@PostMapping("/update")
-	public String updatePOST( Model model,@RequestParam("cam_code") String cam_code,@RequestParam("cri_area_code2") String cri_area_code2, AdminCampingRevInfoDTO adminCampingRevInfoDTO, RedirectAttributes rttr) throws Exception{
-		logger.info("update POST =========================>");
-		adminCampingRevInfoDTO.setCri_area_code(cri_area_code2);
-		logger.info("cri_area_code ===============> " + adminCampingRevInfoDTO.getCri_area_code());
-		
-		adminCampingRevInfoService.update(adminCampingRevInfoDTO);
-		logger.info("update adminCampingRevInfoDTO : " + adminCampingRevInfoDTO);
-				
-//		model.addAttribute("cam_code", cam_code);
-		rttr.addFlashAttribute("msg", "SUCCESS");
-		
-		return "redirect:/admin/campingrevinfo/c_revinfo?cam_code="+cam_code;
-	}
+
+//	@PostMapping("/update")
+//	public String updatePOST( Model model,@RequestParam("cam_code") String cam_code,@RequestParam("cri_area_code2") String cri_area_code2, AdminCampingRevInfoDTO adminCampingRevInfoDTO, RedirectAttributes rttr) throws Exception{
+//		logger.info("update POST =========================>");
+//		adminCampingRevInfoDTO.setCri_area_code(cri_area_code2);
+//		logger.info("cri_area_code ===============> " + adminCampingRevInfoDTO.getCri_area_code());
+//		
+//		adminCampingRevInfoService.update(adminCampingRevInfoDTO);
+//		logger.info("update adminCampingRevInfoDTO : " + adminCampingRevInfoDTO);
+//				
+////		model.addAttribute("cam_code", cam_code);
+//		rttr.addFlashAttribute("msg", "SUCCESS");
+//		
+//		return "redirect:/admin/campingrevinfo/c_revinfo?cam_code="+cam_code;
+//	}
 	
 		
 //		캠핑장 예약정보 삭제 (admin)

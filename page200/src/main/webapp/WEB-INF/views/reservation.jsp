@@ -52,81 +52,42 @@
 	<div class="section"></div>
 	<div class="container">
 		<!-- 여기에 내용을 작성 -->
-	<form role="form" method="post">
+		
+	<form action="reservatoin" role="form" method="post">
 		
 		
 		<div>${msg}</div>
-			 <strong>캠핑장 예약 - 수정중</strong><hr>
-			 <table class="table">
-				<tr>  
-					<td colspan="2">캠핑장 코드 입력 &nbsp;&nbsp; <input type="text", name="cam_code" placeholder="cam_code"></td>
-				  	<td colspan="2">지역코드 선택 &nbsp;&nbsp;
-				  		<select name="region_code">
-							<option value="region001" selected>강원도</option>
-							<option value="region002">경기도</option>
-							<option value="region003">경상도</option>
-							<option value="region004">전라도</option>
-							<option value="region005">제주도</option>
-							<option value="region006">충청도</option>
-							<option value="region007">서울시</option>
-						</select>
-					</td> 
-				</tr>
-				<tr> <!-- 2행 생성 -->
-				  	
-				</tr>
-				<tr> <!-- 3행 생성-->
-					<td colspan="4"><input type="file", name="f_code" /> <!-- 3행 1열 -->
-				</tr>
-				<tr> <!-- 4행 1,2열(병합) -->
-					<td colspan="4">캠핑장 이름 입력 &nbsp;&nbsp;<input type="text", name="cam_name" placeholder="cam_name"></td>
-				</tr>
-				<tr> <!-- 5행 -->
-					<td colspan="4">캠핑장 주소 입력 &nbsp;&nbsp;<input type="text", name="cam_address" placeholder="cam_address"></td>
-				</tr>
-				<tr> <!-- 6행 -->
-					<td colspan="4">캠핑장 전화전호 입력 &nbsp;&nbsp;<input type="text", name="cam_tel", placeholder="cam_tel"></td>
-				</tr>
-				<tr> <!-- 7행 -->
-					<td colspan="2"> 입실시간 &nbsp;&nbsp;<input type="text", name="cam_start_time", placeholder="cam_start_time"></td>
-					<td colspan="2"> 퇴실시간 &nbsp;&nbsp;<input type="text", name="cam_finish_time", placeholder="cam_finish_time"></td>
-				</tr>
-				<tr> <!-- 8행 -->
-					<td colspan="4"> 테마코드 선택 &nbsp;&nbsp;
-					<input type="checkbox" name="thema_code", value= "연인" checked>연인 &nbsp;
-					<input type="checkbox" name="thema_code", value= "가족" >가족 &nbsp;
-					<input type="checkbox" name="thema_code", value= "반려동물" >반려동물 &nbsp;
-					<input type="checkbox" name="thema_code", value= "당일캠핑" >당일캠핑 &nbsp;
+			 <section class="content container-fluid">
+				<div class="box-header">
+					<h3 class="box-title">
 					
-					<input type="checkbox" name="thema_code", value= "산/숲" >산/숲 &nbsp;
-					<input type="checkbox" name="thema_code", value= "바다" >바다 &nbsp;
-					<input type="checkbox" name="thema_code", value= "계곡" >계곡 &nbsp;
-					<input type="checkbox" name="thema_code", value= "강/호수" >강/호수 &nbsp;
-					<input type="checkbox" name="thema_code", value= "섬" >섬 &nbsp;
-					<input type="checkbox" name="thema_code", value= "도심" >도심 &nbsp;
-					</td>
-				</tr>
-				<tr> <!-- 9행 -->
-					<td colspan="4"> 옵션코드 선택 &nbsp;&nbsp;
-					<input type="checkbox" name="option_code", value= "매점" checked>매점 &nbsp;
-					<input type="checkbox" name="option_code", value= "샤워장 및 화장실" >샤워장 및 화장실 &nbsp;
-					<input type="checkbox" name="option_code", value= "개수대" >개수대 &nbsp;
-					<input type="checkbox" name="option_code", value= "차박가능" >차박가능 &nbsp;
-					<input type="checkbox" name="option_code", value= "물품대여" >물품대여 &nbsp;
-					<input type="checkbox" name="option_code", value= "레저시설" >레저시설 &nbsp;
-					</td>
-				</tr>
-				<tr>
-					<td colspan="4">
-					<input type="radio" name="cam_hide" value="0" checked>숨김해제 &nbsp;
-					<input type="radio" name="cam_hide" value="1" >숨김
-					</td>
-				</tr>
-				<tr> <!-- 10행 -->
-					<td colspan="4">등록일&nbsp;&nbsp; <input type="date" name="today"></td>
-				</tr>
+					캠핑장 예약</h3>
+				</div>
+								
+
+				<table style="text-align: center;" class="table">
+					<tr>
+						<td>회원ID</td>
+						<td>캠핑장구역</td>
+						<td>예약코드</td>
+						<td>예약 시작일</td>
+						<td>예약 종료일</td>
+						
+					</tr>
+
+		<!-- 페이징 추가 -->
 					
-			</table>
+						<tr>
+							<td style="font-size: 20px;">${user.id }</td>
+							<td style="font-size: 20px;">${reservation.cri_area_code}</td>
+							<td><input type="text", name="rev_code"></td>
+							<td><input class="form-control" type="date", name="rev_start_date"></td>
+							<td><input class="form-control" type="date", name="rev_finish_date"></td>
+							
+							
+ 						</tr>
+					
+				</table>
 			
 				<div class="text-center">
 					<input class="btn btn-secondary" value="홈으로" id="main" />
@@ -142,18 +103,30 @@
 			location.href = "${contextPath }";
 			});
 			
+			
 			$("#list").click(function() {
-			location.href = "${contextPath }/camping/listPage";
+			location.href = "${contextPath }/scamping/c_revinfo";
 			});
 			
 			$("#submit").click(function() {
-			location.href = "${contextPath }/camping/register";
+				alert("테스트");
+				$("#submit").submit();
 			});
-			
 			
 			
 			
 
+		</script>
+		
+		<script>
+			var result = '${msg}';
+
+			if (result == 'SUCCESS') {
+				alert("처리가 완료되었습니다.")
+			}
+			if (result == 'FAIL'){
+				alert("예약이 실패하였습니다.")
+			}
 		</script>
 		
 		</div>

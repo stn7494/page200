@@ -1,6 +1,7 @@
 package ez.en.page.admin.camping_rev_info;
 
 import java.util.List;
+import java.util.Map;
 
 public interface AdminCampingRevInfoService {
 	
@@ -8,7 +9,7 @@ public interface AdminCampingRevInfoService {
 	public void insert(AdminCampingRevInfoDTO adminCampingRevInfoDTO);
 	
 	//캠핑장 예약정보 수정(admin)
-	public void update(AdminCampingRevInfoDTO adminCampingRevInfoDTO);
+	public void update(Map<String, Object> map);
 	
 	//캠핑장 예약정보 삭제(admin)
 	public void delete(String cri_area_code);

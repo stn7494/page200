@@ -1,6 +1,7 @@
 package ez.en.page.admin.camping_rev_info;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -27,8 +28,8 @@ public class AdminCampingRevInfoServiceImpl implements AdminCampingRevInfoServic
 
 
 	@Override
-	public void update(AdminCampingRevInfoDTO adminCampingRevInfoDTO) {
-		adminCampingRevInfoDAO.update(adminCampingRevInfoDTO);
+	public void update(Map<String, Object> map) {
+		adminCampingRevInfoDAO.update(map);
 	}
 
 

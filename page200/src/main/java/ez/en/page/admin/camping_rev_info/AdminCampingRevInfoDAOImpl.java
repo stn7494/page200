@@ -1,6 +1,7 @@
 package ez.en.page.admin.camping_rev_info;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -30,8 +31,8 @@ public class AdminCampingRevInfoDAOImpl implements AdminCampingRevInfoDAO {
 
 
 	@Override
-	public void update(AdminCampingRevInfoDTO adminCampingRevInfoDTO) {
-		sqlSession.update(namespace+"update", adminCampingRevInfoDTO);
+	public void update(Map<String, Object> map) {
+		sqlSession.update(namespace+"update", map);
 	}
 
 
