@@ -14,6 +14,21 @@ public class ReviewDTO {
 	
 	public ReviewDTO() {}
 
+	
+	public ReviewDTO(String r_code, String id, String rev_code, String r_content,
+			int r_star, int r_declaration, int r_lockpwd) {
+		super();
+		this.r_code = r_code;
+		this.id = id;
+		this.rev_code = rev_code;
+		this.r_content = r_content;
+		this.r_star = r_star;
+		this.r_declaration = r_declaration;
+		this.r_lockpwd = r_lockpwd;
+	}
+
+
+
 	public String getR_code() {
 		return r_code;
 	}

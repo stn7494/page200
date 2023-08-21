@@ -112,5 +112,24 @@
 		select MAX(cam_code) from camping
 	</select>
 
+	<!-- 캠핑장 별점 평균 내림차순(주연) -->
+	<select id="revAvg" resultType="map" parameterType="String">
+		select c.cam_code, avg(j.r_star) as avg from camping_rev_info c join(select r.r_star, r.rev_code, j.cri_area_code from review r join reservation j
+		on r.rev_code = j.rev_code) j
+		on c.cri_area_code = j.cri_area_code
+		group by c.cam_code
+		order by avg desc
+		limit 0,9
+	</select>
+	
 
+	<!-- 캠핑장 추천에 의한 필요정보 리스트(주연) -->
+	<select id="camList" resultType="CampingDTO">
+		select c.cam_code, c.f_code,c.cam_name, c.cam_address, c.cam_start_time, c.cam_finish_time from camping c
+		where c.cam_code in
+		<foreach item="list" collection="list" open="(" separator="," close=")">
+		#{list.cam_code}
+		</foreach>
+	</select>
+	
 </mapper>
