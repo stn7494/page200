@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ez.en.page.camping.CampingDTO;
+import ez.en.page.domain.Criteria;
 import ez.en.page.user.UserDTO;
 
 @Service
@@ -71,5 +72,26 @@ public class ReviewServiceImpl implements ReviewService{
 	public List<ReviewDTO> camReviewAll(String cam_code) {
 		// TODO Auto-generated method stub
 		return dao.camReviewAll(cam_code);
+	}
+
+//	페이징 처리
+	@Override
+	public List<ReviewDTO> listPage(int page) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.listPage(page);
+	}
+
+//	페이징 처리2
+	@Override
+	public List<ReviewDTO> listCriteria(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.listCriteria(cri);
+	}
+
+//	페이징 수정
+	@Override
+	public int listCountCriteria(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.countPaging(cri);
 	}
 }

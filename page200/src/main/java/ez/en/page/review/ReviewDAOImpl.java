@@ -1,13 +1,13 @@
 package ez.en.page.review;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import ez.en.page.camping.CampingDTO;
+import ez.en.page.domain.Criteria;
 import ez.en.page.user.UserDTO;
 
 @Repository
@@ -79,5 +79,29 @@ public class ReviewDAOImpl implements ReviewDAO{
 	public List<ReviewDTO> camReviewAll(String cam_code) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace + "camReviewAll", cam_code);
+	}
+
+	// 페이징처리
+	@Override
+	public List<ReviewDTO> listPage(int page) throws Exception {
+		// TODO Auto-generated method stub
+		if(page <= 0) {
+			page = 1;
+		}
+		page = (page-1) * 10;
+		return sqlSession.selectList(namespace + "listPage", page);
+	}
+	// 페이징처리22
+	@Override
+	public List<ReviewDTO> listCriteria(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + "listCriteria", cri);
+	}
+
+	// 페이징카운트
+	@Override
+	public int countPaging(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + "countPaging", cri);
 	}
 }
