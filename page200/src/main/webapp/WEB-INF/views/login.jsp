@@ -117,7 +117,7 @@
       			$("#pwfind").click(function(){
       				location.href="${contextPath}/serachid";
       			});
-      			$("#signup").click(function(){
+      			$("#signpu").click(function(){
       				location.href="${contextPath}/signup";
       			});
       		</script>
