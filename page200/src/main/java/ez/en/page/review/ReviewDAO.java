@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import ez.en.page.camping.CampingDTO;
+import ez.en.page.domain.Criteria;
 import ez.en.page.user.UserDTO;
 
 public interface ReviewDAO {
@@ -35,6 +36,13 @@ public interface ReviewDAO {
 	// ★★★ 리뷰화면 캠핑장 상세에서 보여주기222
 	public List<ReviewDTO> camReviewAll(String cam_code);
 	
+	// ★★★ 페이징처리
+	public List<ReviewDTO> listPage(int page) throws Exception;
+	
+	public List<ReviewDTO> listCriteria(Criteria cri) throws Exception;
+
+	// ★★★ 페이징수정
+	public int countPaging(Criteria cri) throws Exception;
 	
 	
 }

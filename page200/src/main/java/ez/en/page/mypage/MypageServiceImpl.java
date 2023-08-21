@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import ez.en.page.coupon.CouponDTO;
 import ez.en.page.domain.Criteria;
+import ez.en.page.domain.SearchCriteria;
 import ez.en.page.file.FileDTO;
 import ez.en.page.jjim.JjimDTO;
 import ez.en.page.reservation.ReservationDTO;
@@ -119,8 +120,18 @@ public class MypageServiceImpl implements MypageService {
 	// 프로필사진 수정
 	@Override
 	public int editProfile(FileDTO dto) {
-		// TODO Auto-generated method stub
+
 		return dao.editProfile(dto);
+	}
+	@Override
+	public List<ReservationDTO> listSearchCriteria(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.listSearch(map);
+	}
+	@Override
+	public int listSearchCount(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.listSearchCount(map);
 	}
 
 }

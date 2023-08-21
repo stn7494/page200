@@ -50,7 +50,7 @@
 		limit #{pageStart},#{perPageNum}
 	</select>
 	
-	<update id="userStop">
+	<update id="userStop" parameterType="list">
 		update user set stop = '1'
 		where id in
 		<foreach collection="list" item="userList" open="(" close=")" separator=",">

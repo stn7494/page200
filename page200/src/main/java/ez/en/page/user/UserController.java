@@ -70,15 +70,6 @@ public class UserController {
 		return "camdetail";
 	}
 	
-	
-//	@GetMapping(value = "/")
-//	public ModelAndView home() {
-//		ModelAndView mav = new ModelAndView();
-//		mav.setViewName("index");
-//		return mav;
-//	}
-	
-//	
 	// 캠핑장 추천에 의한 필요정보 리스트(주연)
 	@GetMapping(value = "/")
 	public ModelAndView home() {
@@ -89,17 +80,7 @@ public class UserController {
 		mav.setViewName("index");
 		return mav;
 	}
-	
-	
-	
-	
-	@GetMapping(value = "/main")
-	public String main() {
-		return "main";
-	}
-	
-	
-	
+
 	@GetMapping(value = "login")
 	public ModelAndView login() {
 		ModelAndView mav = new ModelAndView();

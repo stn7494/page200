@@ -59,17 +59,6 @@ public class UserServiceImpl implements UserService {
 		return dao.pwchange(dto);
 	}
 	
-	@Override
-	public int edit(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return dao.edit(map);
-	}
-
-	@Override
-	public UserDTO info(Object id) {
-		// TODO Auto-generated method stub
-		return dao.info(id);
-	}
 
 	
 

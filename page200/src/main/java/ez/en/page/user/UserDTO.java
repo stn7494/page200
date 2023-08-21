@@ -96,8 +96,12 @@ public class UserDTO {
 	public void setAdmin(int admin) {
 		this.admin = admin;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "UserDTO [id=" + id + ", f_code=" + f_code + ", pw=" + pw + ", name=" + name + ", nick=" + nick
+				+ ", birth=" + birth + ", phone=" + phone + ", email=" + email + ", stop=" + stop + ", admin=" + admin
+				+ "]";
+	}
 	
 }
