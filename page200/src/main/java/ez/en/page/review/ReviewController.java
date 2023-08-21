@@ -12,16 +12,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ez.en.page.camping.CampingDTO;
 import ez.en.page.domain.Criteria;
 import ez.en.page.domain.PageMaker;
+import ez.en.page.domain.SearchCriteria;
 import ez.en.page.user.UserDTO;
 
 @Controller
+@RequestMapping("/sreview/*")
 public class ReviewController {
 
 	@Autowired
@@ -143,12 +147,27 @@ public class ReviewController {
 		mav.addObject("rlistPage", service.listCriteria(cri));
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(100);
+//		pageMaker.setTotalCount(100);
+		pageMaker.setTotalCount(service.listCountCriteria(cri));
 		mav.addObject("pageMaker", pageMaker);
 		mav.setViewName("review/rreviewlistPage");
 		return mav;
 	}
 
+//	페이징,검색
+	@GetMapping("rreviewlist")
+	public ModelAndView rlistPage(@ModelAttribute("cri") SearchCriteria cri) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		logger.info(cri.toString());
+		mav.addObject("rlist", service.listCriteria(cri));
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.listCountCriteria(cri));
+		mav.addObject("pageMaker", pageMaker);
+		mav.setViewName("sreview/rreviewlist");
+		return mav;
+	}
+	
 	
 
 	

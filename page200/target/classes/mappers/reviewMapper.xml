@@ -101,5 +101,16 @@
 		]]>
 	</select>
 
+	<!-- 페이징수정 -->
+	<select id="countPaging" resultType="int">
+		<![CDATA[
+		select count(r_code) from review where r_code > 'r000'
+		]]>
+	</select>
+
+
+
+
+
 
 </mapper>

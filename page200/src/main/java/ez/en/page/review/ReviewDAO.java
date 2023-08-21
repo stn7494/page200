@@ -41,7 +41,8 @@ public interface ReviewDAO {
 	
 	public List<ReviewDTO> listCriteria(Criteria cri) throws Exception;
 
-	
+	// ★★★ 페이징수정
+	public int countPaging(Criteria cri) throws Exception;
 	
 	
 }

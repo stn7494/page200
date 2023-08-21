@@ -117,7 +117,7 @@
 			location.href = "${contextPath }";
 		});
 		$("#list").click(function() {
-			location.href = "rreviewlistPage";
+			location.href = "rreviewlist";
 		});
 		$("#reviewUpdate").click(function() {
 			$("#btn1").submit();

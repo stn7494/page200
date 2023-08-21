@@ -87,4 +87,11 @@ public class ReviewServiceImpl implements ReviewService{
 		// TODO Auto-generated method stub
 		return dao.listCriteria(cri);
 	}
+
+//	페이징 수정
+	@Override
+	public int listCountCriteria(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.countPaging(cri);
+	}
 }

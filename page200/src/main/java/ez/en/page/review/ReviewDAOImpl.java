@@ -91,10 +91,17 @@ public class ReviewDAOImpl implements ReviewDAO{
 		page = (page-1) * 10;
 		return sqlSession.selectList(namespace + "listPage", page);
 	}
-
+	// 페이징처리22
 	@Override
 	public List<ReviewDTO> listCriteria(Criteria cri) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace + "listCriteria", cri);
+	}
+
+	// 페이징카운트
+	@Override
+	public int countPaging(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + "countPaging", cri);
 	}
 }

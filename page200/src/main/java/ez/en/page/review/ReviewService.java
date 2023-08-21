@@ -41,4 +41,10 @@ public interface ReviewService {
 	
 //	★★★ 페이징 처리2
 	public List<ReviewDTO> listCriteria(Criteria cri) throws Exception;
+
+//	★★★ 페이징 수정
+	public int listCountCriteria(Criteria cri) throws Exception;
+
+
+
 }

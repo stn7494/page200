@@ -62,7 +62,6 @@
 				<button type="submit" class="btn btn-primary">삭제완료</button>
 			</div>
 		</form>
-
 	</section>
 	<!-- /.content -->
 
