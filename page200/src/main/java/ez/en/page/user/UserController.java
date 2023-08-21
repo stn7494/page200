@@ -58,22 +58,11 @@ public class UserController {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	@GetMapping(value = "/main")
-	public String main() {
-		return "main";
-	}
-	
-	
 	@GetMapping(value = "/")
 	public ModelAndView home() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("index");
+		
 		return mav;
 	}
 	@GetMapping(value = "login")
