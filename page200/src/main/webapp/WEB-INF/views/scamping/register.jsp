@@ -56,7 +56,7 @@
 		
 		
 		<div>${msg}</div>
-			 <strong>캠핑장 테스트 중 사진은 언제 채우냐</strong><hr>
+			 <strong>캠핑장 등록</strong><hr>
 			 <table class="table">
 				<tr>  
 					<td colspan="2">캠핑장 코드 입력 &nbsp;&nbsp; <input type="text", name="cam_code" placeholder="cam_code"></td>

@@ -28,6 +28,7 @@ public class AdminCampingDTO {
 	private String option_code;
 	private char cam_hide;
 	private String cam_regdate;
+	private String cam_modifydate;	//구현 안됨
 //	private String thema_name;
 //	private String option_name;
 	
@@ -171,6 +172,20 @@ public class AdminCampingDTO {
 
 	public void setCam_regdate(String cam_regdate) {
 		this.cam_regdate = cam_regdate;
+	}
+	
+	
+
+
+
+	public String getCam_modifydate() {
+		return cam_modifydate;
+	}
+
+
+
+	public void setCam_modifydate(String cam_modifydate) {
+		this.cam_modifydate = cam_modifydate;
 	}
 
 

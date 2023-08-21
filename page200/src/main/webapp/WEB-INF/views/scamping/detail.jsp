@@ -23,7 +23,7 @@
     <!-- 리뷰까지 같이 적용하려면 <body>밖에? -->
   <form role="form" method="post">
 
-  	<input type='hidden' name='cam_code' value="${camping.cam_code}" >
+  	<input type='hidden' name='cam_code' value="${scamping.cam_code}" >
   	
   </form> 
   
@@ -303,6 +303,8 @@
 			});
 			
 		});
+		
+		
 		
 		
 		$(".btn-info").click(function() {

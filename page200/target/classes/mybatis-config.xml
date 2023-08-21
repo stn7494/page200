@@ -28,6 +28,7 @@
 		<typeAlias alias="Onetoone_reply" type="ez.en.page.onetoone.Onetoone_reply"/>
 		<typeAlias alias="ReservationDTO" type="ez.en.page.reservation.ReservationDTO"/>
 		<typeAlias alias="CampingRevInfoDTO" type="ez.en.page.camping_rev_info.CampingRevInfoDTO"/>
+		<typeAlias alias="AdminCampingRevInfoDTO" type="ez.en.page.admin.camping_rev_info.AdminCampingRevInfoDTO"/>
 		<typeAlias alias="Criteria" type="ez.en.page.domain.Criteria"/>
 	</typeAliases>
 </configuration>

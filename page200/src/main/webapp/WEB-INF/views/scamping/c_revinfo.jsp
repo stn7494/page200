@@ -17,6 +17,13 @@
 
 <title>캠핑장 예약 정보</title>
 
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"> -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
 <style>
 .pagination {
 	display: inline-block;
@@ -48,7 +55,8 @@
 	height: 36px;
 }
   
-
+</style>
+<style>
 .tooltip {
   position: relative;
   display: inline-block;
@@ -77,6 +85,9 @@
 }
 </style>
 
+
+
+
 </head>
 
 
@@ -85,7 +96,7 @@
   	<%-- <input type='hidden' name='cam_code1' value="${c_revinfo.cam_code}" > --%>
   </form> 
   
-<body>
+<body style="text-align:center;">
 	<div class="site-mobile-menu site-navbar-target">
 		<div class="site-mobile-menu-header">
 			<div class="site-mobile-menu-close">
@@ -146,20 +157,21 @@
 							<td>${c_revinfo.cri_area_code}</td>
 							<td>${c_revinfo.cri_max}</td>
 							<td>${c_revinfo.cri_price}</td>
-							
-							<td><a href='/page/reservation?cri_area_code=${c_revinfo.cri_area_code }'>예약하기</a></td>
-						</tr>
+							<td>
+							<a href="/page/reservation?cri_area_code=${c_revinfo.cri_area_code }" data-toggle="tooltip" title="Reservation">
+								예약하기</a>
+							</td>
+ 						</tr>
 					</c:forEach>
 					
 				</table>
 				
- 
- 	
 			<div class="text-center">
 				<input class="btn btn-success" type="button" value="GO HOME" id="main" />
 				<button type="submit" class="btn btn-primary">GO LIST</button>
 			</div>
 			</section>
+		</div>
 		
 		<script>
 			$("#main").click(function() {

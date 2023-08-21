@@ -28,7 +28,7 @@ public class AdminSearchCampingController {
 
 	private static final Logger logger = LoggerFactory.getLogger(AdminSearchCampingController.class);
 	@Inject
-	private AdminCampingService campingService;
+	private AdminCampingService adminCampingService;
 	@Inject
 	private ReviewService rservice;
 	
@@ -55,13 +55,13 @@ public class AdminSearchCampingController {
 		logger.info(cri.toString());
 		
 //		model.addAttribute("list", campingService.listCriteria(cri));
-		model.addAttribute("list", campingService.listSearchCriteria(cri));
+		model.addAttribute("list", adminCampingService.listSearchCriteria(cri));
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		
 //		pageMaker.setTotalCount(campingService.listCountCriteria(cri));
-		pageMaker.setTotalCount(campingService.listSearchCount(cri));
+		pageMaker.setTotalCount(adminCampingService.listSearchCount(cri));
 		
 		model.addAttribute("pageMaker", pageMaker);
 	}
@@ -78,7 +78,7 @@ public class AdminSearchCampingController {
 		 model.addAttribute("count",count);
 	      model.addAttribute("rrdto", rdto);
 		
-		model.addAttribute("camping", campingService.detail(cam_code));
+		model.addAttribute("acamping", adminCampingService.detail(cam_code));
 	}
 	
 	
@@ -87,7 +87,7 @@ public class AdminSearchCampingController {
 	@PostMapping("/removePage")
 	public String remove(@RequestParam("cam_code") String cam_code, SearchCriteria cri, RedirectAttributes rttr) throws Exception{
 		
-		campingService.remove(cam_code);
+		adminCampingService.remove(cam_code);
 		
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
@@ -103,14 +103,14 @@ public class AdminSearchCampingController {
 	@GetMapping("/modifyPage")
 	public void modifyPagingGET(String cam_code, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception{
 		
-		model.addAttribute("camping", campingService.detail(cam_code));
+		model.addAttribute("acamping", adminCampingService.detail(cam_code));
 	}
 	
 	@PostMapping("/modifyPage")
-	public String modifyPagingPOST(AdminCampingDTO campingDTO, SearchCriteria cri, RedirectAttributes rttr) throws Exception{
+	public String modifyPagingPOST(AdminCampingDTO adminCampingDTO, SearchCriteria cri, RedirectAttributes rttr) throws Exception{
 		
 		logger.info(cri.toString());
-		campingService.modify(campingDTO);
+		adminCampingService.modify(adminCampingDTO);
 		
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
@@ -132,11 +132,11 @@ public class AdminSearchCampingController {
 	}
 	
 	@PostMapping("/register")
-	public String registPOST(AdminCampingDTO campingDTO, RedirectAttributes rttr) throws Exception{
+	public String registPOST(AdminCampingDTO adminCampingDTO, RedirectAttributes rttr) throws Exception{
 		logger.info("regist post ..................");
-		logger.info(campingDTO.toString());
+		logger.info(adminCampingDTO.toString());
 		
-		campingService.register(campingDTO);
+		adminCampingService.register(adminCampingDTO);
 		
 		rttr.addFlashAttribute("msg", "SUCCESS");
 		

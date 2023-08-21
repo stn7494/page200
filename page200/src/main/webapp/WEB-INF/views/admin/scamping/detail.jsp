@@ -23,7 +23,7 @@
     <!-- 리뷰까지 같이 적용하려면 <body>밖에? -->
   <form role="form" method="post">
 
-  	<input type='hidden' name='cam_code' value="${camping.cam_code}" >
+  	<input type='hidden' name='cam_code' value="${acamping.cam_code}" >
   	
   </form> 
   
@@ -96,7 +96,7 @@
               </span>
               <div class="feature-text">
                 <h3 class="heading">
-                	${camping.cam_name }
+                	${acamping.cam_name }
                 </h3>
                 <p class="text-black-50">
                   대충 캠핑장 소개글 (캠핑장 소개글 게시판 필요?)
@@ -111,7 +111,7 @@
               <div class="feature-text">
                 <h3 class="heading">캠핑장 주소</h3>
                 <p class="text-black-50">
-                  ${camping.cam_address }
+                  ${acamping.cam_address }
                
                 </p>
               </div>
@@ -124,7 +124,7 @@
               <div class="feature-text">
                 <h3 class="heading">캠핑장 연락처</h3>
                 <p class="text-black-50">
-                  ${camping.cam_tel}
+                  ${acamping.cam_tel}
                 </p>
               </div>
             </div>
@@ -149,7 +149,7 @@
               <div class="feature-text">
                 <h3 class="heading">캠핑 테마</h3>
                 <p class="text-black-50">
-                  ${camping.thema_code }
+                  ${acamping.thema_code }
                 </p>
               </div>
             </div>
@@ -161,7 +161,7 @@
               <div class="feature-text">
                 <h3 class="heading">캠핑 옵션</h3>
                 <p class="text-black-50">
-                  ${camping.option_code }
+                  ${acamping.option_code }
                 </p>
               </div>
             </div>
@@ -240,7 +240,7 @@
             <div class="counter-wrap mb-5 mb-lg-0">
               <span class="number"
                 ><span style="color: black; size=70%">
-                	${camping.cam_start_time}
+                	${acamping.cam_start_time}
                 </span></span>
               <span class="caption text-black-50">입실 시간</span>
             </div>
@@ -254,7 +254,7 @@
             <div class="counter-wrap mb-5 mb-lg-0">
               <span class="number"
                 ><span style="color: black;">
-                	${camping.cam_finish_time}
+                	${acamping.cam_finish_time}
                 </span></span>
               <span class="caption text-black-50">퇴실 시간</span>
             </div>
@@ -265,21 +265,29 @@
     
     <!-- 관리자용 -->
 	<div class="text-center">
-		<div class="box-footer">
+		<div class="box-footer">			
+			
+			<button type="submit" class="btn btn-primary">RESERVATION INFO</button>
 			<button type="submit" class="btn btn-warning">MODIFY</button>
 			<button type="submit" class="btn btn-danger">REMOVE</button>
-			<button type="submit" class="btn btn-primary">GO LIST</button>
+			<button type="submit" class="btn btn-light">GO LIST</button>
 		</div>
 	</div>
 	
 	<form role="form" action="modifyPage" method="post">
-		<input type='hidden' name='cam_code' value="${camping.cam_code }">
+		<input type='hidden' name='cam_code' value="${acamping.cam_code }">
 		<input type='hidden' name='page' value="${cri.page }">
 		<input type='hidden' name='perPageNum' value="${cri.perPageNum }">
 		<input type='hidden' name='searchType' value="${cri.searchType }">
 		<input type='hidden' name='keyword' value="${cri.keyword }">
 	</form>
     
+	<form id="code" method="get" action="${contextPath }/admin/campingrevinfo/c_revinfo">
+  		<input type='hidden' name='cam_code' value="${acamping.cam_code}" >
+   	</form>
+   	
+  
+   
 	<script>
 		$(document).ready(function() {
 
@@ -298,13 +306,24 @@
 				formObj.submit();
 			});
 
-			$(".btn-primary").on("click", function() {
+			$(".btn-light").on("click", function() {
 				formObj.attr("method", "get");
 				formObj.attr("action", "/page/admin/scamping/list");
 				formObj.submit();
 			});
 			
 		});
+			
+			$(".btn-primary").click(function() {
+				$("#code").submit();
+			});
+			
+			
+			
+		/* $(".btn-info").click(function() {
+			location.href = "${contextPath }/admin/campingrevinfo/c_revinfo";
+		}); */
+		
 	</script>
     
     
