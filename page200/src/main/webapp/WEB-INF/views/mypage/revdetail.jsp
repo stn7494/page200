@@ -75,12 +75,12 @@
               data-aos-delay="200"
             >
               <ol class="breadcrumb text-center justify-content-center">
-                <li class="breadcrumb-item"><a href="${contextPath }">Home</a></li>
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                 <li
                   class="breadcrumb-item active text-white-50"
                   aria-current="page"
                 >
-                  예약상세조회
+                  Properties
                 </li>
               </ol>
             </nav>
@@ -121,7 +121,7 @@
       			</tr>
       		</table>
       		<tr>
-      			<th><button id="btn22" onclick="location.href='reviewInsert?rev_code=${revdetail2.rev_code }'">리뷰쓰기</button></th>
+      			<th><button id="btn22" onclick="location.href='review/reviewInsert?rev_code=${revdetail2.rev_code }'">리뷰쓰기</button></th>
       		</tr>
       	</div>
       </div>

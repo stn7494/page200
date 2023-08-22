@@ -74,7 +74,7 @@ public class ReviewServiceImpl implements ReviewService{
 		return dao.camReviewAll(cam_code);
 	}
 
-//	페이징 처리
+//	페이징 처리1
 	@Override
 	public List<ReviewDTO> listPage(int page) throws Exception {
 		// TODO Auto-generated method stub
@@ -93,5 +93,12 @@ public class ReviewServiceImpl implements ReviewService{
 	public int listCountCriteria(Criteria cri) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.countPaging(cri);
+	}
+
+//	리뷰잠금/해제
+	@Override
+	public int lockUpdate(String r_code) {
+		// TODO Auto-generated method stub
+		return dao.lockUpdate(r_code);
 	}
 }

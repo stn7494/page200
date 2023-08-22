@@ -36,7 +36,7 @@ public interface ReviewService {
 //  ★★★ 리뷰화면 캠핑장 상세에서 보여주기222
 	public List<ReviewDTO> camReviewAll(String cam_code);
 	
-//	★★★ 페이징 처리
+//	★★★ 페이징 처리1
 	public List<ReviewDTO> listPage(int page) throws Exception;
 	
 //	★★★ 페이징 처리2
@@ -45,6 +45,7 @@ public interface ReviewService {
 //	★★★ 페이징 수정
 	public int listCountCriteria(Criteria cri) throws Exception;
 
-
+//	★★★ 리뷰잠금/해제
+	public int lockUpdate(String r_code);
 
 }

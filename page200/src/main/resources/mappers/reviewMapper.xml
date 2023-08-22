@@ -70,7 +70,8 @@
 		rev.cri_area_code FROM review r INNER JOIN reservation rev ON
 		r.rev_code=rev.rev_code) j
 		ON cam.cri_area_code=j.cri_area_code
-		where cam.cam_code=#{cam_code}
+		where
+		cam.cam_code=#{cam_code}
 	</select>
 
 
@@ -81,36 +82,36 @@
 		review r join (select re.rev_code from camping_rev_info ci join
 		reservation re
 		on ci.cri_area_code = re.cri_area_code
-		where ci.cam_code = #{cam_code}) j
+		where ci.cam_code
+		= #{cam_code}) j
 		on r.rev_code = j.rev_code
 	</select>
-	
-	<!-- 페이징 -->
+
+	<!-- 페이징1 -->
 	<select id="listPage" resultType="ReviewDTO">
-		<![CDATA[
-		select r_code, id, rev_code, f_code, r_w_date, r_content, r_star, r_declaration, r_lockpwd 
-		from review where r_code > 'r000' order by r_code desc limit #{page},10
-		]]>
+	<![CDATA[ select r_code, id, rev_code, f_code, r_w_date, r_content, r_star, r_declaration, r_lockpwd 
+	from review 
+	where r_code > 'r000' order by r_code desc limit #{page},10 ]]>
 	</select>
-	
-	<!-- 페이징2 -->
+
+	<!-- 페이징2 -->	
 	<select id="listCriteria" resultType="ReviewDTO">
-		<![CDATA[
-		select r_code, id, rev_code, f_code, r_w_date, r_content, r_star, r_declaration, r_lockpwd 
-		from review where r_code > 'r000' order by r_code desc, r_w_date desc limit #{pageStart},#{perPageNum}
-		]]>
+	<![CDATA[ select r_code, id, rev_code, f_code, r_w_date, r_content, r_star, r_declaration, r_lockpwd 
+	from review where r_code > 'r000' 
+	order by r_w_date desc limit #{pageStart},#{perPageNum} ]]>
 	</select>
 
 	<!-- 페이징수정 -->
 	<select id="countPaging" resultType="int">
-		<![CDATA[
-		select count(r_code) from review where r_code > 'r000'
-		]]>
+	<![CDATA[ select count(r_code) from review where r_code > 'r000' ]]>
 	</select>
-
-
-
-
-
-
+	
+	<!-- 리뷰 잠금 -->
+	<update id="lockUpdate" parameterType="String">
+		update review 
+		set r_lockpwd = if((select r_lockpwd from(select r_lockpwd from review where r_code = #{r_code}) 
+		as tmp) = 1, 0, 1) where r_code=#{r_code}
+	</update>
+	
+		
 </mapper>

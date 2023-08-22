@@ -25,7 +25,7 @@ import ez.en.page.domain.SearchCriteria;
 import ez.en.page.user.UserDTO;
 
 @Controller
-@RequestMapping("/sreview/*")
+@RequestMapping("/review/*")
 public class ReviewController {
 
 	@Autowired
@@ -33,7 +33,7 @@ public class ReviewController {
 	private static final Logger logger = LoggerFactory.getLogger(ReviewController.class);
 
 //	리뷰글 전체목록조회
-	@GetMapping("review")
+	@GetMapping("/reviewList")
 	public ModelAndView review(HttpServletRequest request) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		ModelAndView mav = new ModelAndView();
@@ -46,7 +46,7 @@ public class ReviewController {
 	
 	
 //	리뷰글 상세조회
-	@GetMapping("reviewDetail")
+	@GetMapping("/reviewDetail")
 	public ModelAndView reviewDetail (@RequestParam("r_code") String r_code, @RequestParam("rev_code") String rev_code, HttpServletRequest request) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		ModelAndView mav = new ModelAndView();
@@ -63,7 +63,7 @@ public class ReviewController {
 	}
 	
 //	리뷰 작성 form
-	@GetMapping("reviewInsert")
+	@GetMapping("/reviewInsert")
 	public ModelAndView reviewInsert (@RequestParam("rev_code") String rev_code) {
 		ModelAndView mav = new ModelAndView();
 		logger.info(rev_code + "예약번호입니다.");
@@ -76,21 +76,26 @@ public class ReviewController {
 	}
 	
 //	리뷰 작성
-	@PostMapping("reviewInsert")
-	public ModelAndView reviewInsert(ReviewDTO dto, HttpServletRequest request) throws Exception {
+	@PostMapping("/reviewInsert")
+	public ModelAndView reviewInsert(ReviewDTO dto, HttpServletRequest request, Criteria cri) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		ModelAndView mav = new ModelAndView();
 		System.out.println(dto);
 		logger.info(dto.getId() + "아이디입니다.");
 		service.insert(dto);
-		List<ReviewDTO> list = service.listAll();
-		mav.addObject("listAll", list);
-		mav.setViewName("review/reviewList");
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.listCountCriteria(cri));
+		mav.addObject("pageMaker", pageMaker);
+		
+		mav.addObject("plist", service.listCriteria(cri));
+		mav.setViewName("review/reviewlistPage");
 		return mav;
 	}
 	
 //	리뷰 수정 form
-	@GetMapping("reviewUpdate")
+	@GetMapping("/reviewUpdate")
 	public ModelAndView reviewUpdate(@RequestParam("r_code") String r_code , @RequestParam("rev_code") String rev_code) {
 		ModelAndView mav = new ModelAndView();
 		ReviewDTO dto = service.selectOne(r_code);
@@ -105,70 +110,75 @@ public class ReviewController {
 	}
 	
 //	리뷰 수정
-	@PostMapping("reviewUpdate")
-	public ModelAndView reviewUpdate(ReviewDTO dto, HttpServletRequest request) throws Exception {
+	@PostMapping("/reviewUpdate")
+	public ModelAndView reviewUpdate(ReviewDTO dto, HttpServletRequest request, Criteria cri) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		ModelAndView mav = new ModelAndView();
 		service.update(dto);
-		List<ReviewDTO> list = service.listAll();
+//		List<ReviewDTO> list = service.listAll();
 		logger.info("리뷰수정???!!!!!" + dto);
-		mav.addObject("listAll", list);
-		mav.setViewName("review/reviewList");
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.listCountCriteria(cri));
+		mav.addObject("pageMaker", pageMaker);
+		
+//		mav.addObject("listAll", list);
+		mav.addObject("plist", service.listCriteria(cri));
+		mav.setViewName("review/reviewlistPage");
 		return mav;
 	}
 	
 //	리뷰 삭제
-	@GetMapping("reviewDelete")
-	public ModelAndView reviewDelete(@RequestParam("r_code") String r_code, HttpServletRequest request) throws Exception{
+	@GetMapping("/reviewDelete")
+	public ModelAndView reviewDelete(@RequestParam("r_code") String r_code, HttpServletRequest request, Criteria cri) throws Exception{
 		request.setCharacterEncoding("utf-8");
 		ModelAndView mav = new ModelAndView();
 		service.delete(r_code);
-		List<ReviewDTO> list = service.listAll();
-		mav.addObject("listAll", list);
-		mav.setViewName("review/reviewList");
+//		List<ReviewDTO> list = service.listAll();
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.listCountCriteria(cri));
+		mav.addObject("pageMaker", pageMaker);
+		
+		mav.addObject("plist", service.listCriteria(cri));
+		mav.setViewName("review/reviewlistPage");
 		return mav;
 	}
 	
 //	페이징처리 1
-	@GetMapping("reviewlistCri")
+	@GetMapping("previewlistCri")
 	public ModelAndView rlist(Criteria cri) throws Exception{
 		ModelAndView mav = new ModelAndView();
 		logger.info("show list page with Criteria......................");
 		
-		mav.addObject("rlist",service.listCriteria(cri));
+		mav.addObject("reviewlist",service.listCriteria(cri));
 		mav.setViewName("review/reviewlistCri");
 		return mav;
 	}
 	
 //	페이징처리 2
-	@GetMapping("rreviewlistPage")
+	@GetMapping("previewlistPage")
 	public ModelAndView rlistPage(Criteria cri) throws Exception{
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("rlistPage", service.listCriteria(cri));
+		mav.addObject("plist", service.listCriteria(cri));
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-//		pageMaker.setTotalCount(100);
 		pageMaker.setTotalCount(service.listCountCriteria(cri));
 		mav.addObject("pageMaker", pageMaker);
-		mav.setViewName("review/rreviewlistPage");
+		mav.setViewName("review/reviewlistPage");
 		return mav;
 	}
+	
+//	리뷰 잠금/해제
+	@GetMapping("/reviewLock")
+	public ModelAndView lockUpdate(@RequestParam("r_code") String r_code, Criteria cri) throws Exception{
+		service.lockUpdate(r_code);
+		return rlistPage(cri);
+	}
+	
 
-//	페이징,검색
-	@GetMapping("rreviewlist")
-	public ModelAndView rlistPage(@ModelAttribute("cri") SearchCriteria cri) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		logger.info(cri.toString());
-		mav.addObject("rlist", service.listCriteria(cri));
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(service.listCountCriteria(cri));
-		mav.addObject("pageMaker", pageMaker);
-		mav.setViewName("sreview/rreviewlist");
-		return mav;
-	}
-	
-	
 
 	
 	
