@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import ez.en.page.camping.CampingDTO;
+import ez.en.page.camping.CampingService;
 import ez.en.page.domain.Criteria;
 import ez.en.page.domain.PageMaker;
 import ez.en.page.user.UserController;
@@ -28,6 +30,9 @@ public class AdminController {
 	
 	@Autowired
 	private AdminService service;
+	
+	@Autowired
+	private CampingService camService;
 	
 	@GetMapping(value = "admin")
 	public ModelAndView adminLogin() {
@@ -46,6 +51,9 @@ public class AdminController {
 			session.setAttribute("admin", service.adminLogin(dto));
 			mav.setViewName("index");
 		}
+		List<Map<String, Object>> revAvgList = camService.revAvg();
+		List<CampingDTO> camList = camService.camList(revAvgList);
+		mav.addObject("camList", camList);
 		return mav;
 	}
 	

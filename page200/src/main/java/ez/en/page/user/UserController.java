@@ -95,6 +95,7 @@ public class UserController {
 		if(udto == null) {
 			mav.addObject("msg", "아이디와 비밀번호를 다시 입력해주세요");
 			mav.setViewName("login");
+			
 		}else if(udto.getStop() == 1) {
 			mav.addObject("msg", "stop");
 			mav.setViewName("index");
@@ -102,6 +103,9 @@ public class UserController {
 			session.setAttribute("user", userService.login(dto));
 			mav.setViewName("index");
 		}
+		List<Map<String, Object>> revAvgList = camService.revAvg();
+		List<CampingDTO> camList = camService.camList(revAvgList);
+		mav.addObject("camList", camList);
 		return mav;
 	}
 	

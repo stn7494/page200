@@ -171,7 +171,7 @@
       			$("#pwfind").click(function(){
       				location.href="${contextPath}/serachid";
       			});
-      			$("#signpu").click(function(){
+      			$("#signup").click(function(){
       				location.href="${contextPath}/signup";
       			});
       			$("#naverIdLogin_loginButton").click(function(){
