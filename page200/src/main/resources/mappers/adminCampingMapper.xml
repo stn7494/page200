@@ -18,7 +18,7 @@
 		UPDATE camping 
 		SET cam_code=#{cam_code}, region_code=#{region_code}, cam_name=#{cam_name}, cam_address=#{cam_address}, cam_tel=#{cam_tel}, 
 			cam_start_time=#{cam_start_time}, cam_finish_time=#{cam_finish_time}, thema_code=#{thema_code}, option_code=#{option_code}, 
-			cam_hide=#{cam_hide}, cam_regdate=now()
+			cam_hide=#{cam_hide}, cam_modifydate=now()
 		WHERE cam_code=#{cam_code}
 	</update>
 

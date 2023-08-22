@@ -4,7 +4,7 @@ public class ReservationDTO {
 	
 	private String rev_code;       
 	private String id;             
-	private String cri_site_code;  
+	private String cri_area_code;  
 	private String rev_start_date; 
 	private String rev_finish_date;
 	
@@ -26,12 +26,12 @@ public class ReservationDTO {
 		this.id = id;
 	}
 
-	public String getCri_site_code() {
-		return cri_site_code;
+	public String getCri_area_code() {
+		return cri_area_code;
 	}
 
-	public void setCri_site_code(String cri_site_code) {
-		this.cri_site_code = cri_site_code;
+	public void setCri_area_code(String cri_area_code) {
+		this.cri_area_code = cri_area_code;
 	}
 
 	public String getRev_start_date() {
@@ -52,7 +52,7 @@ public class ReservationDTO {
 
 	@Override
 	public String toString() {
-		return "ReservationDTO [rev_code=" + rev_code + ", id=" + id + ", cri_site_code=" + cri_site_code
+		return "ReservationDTO [rev_code=" + rev_code + ", id=" + id + ", cri_area_code=" + cri_area_code
 				+ ", rev_start_date=" + rev_start_date + ", rev_finish_date=" + rev_finish_date + "]";
 	}
 	

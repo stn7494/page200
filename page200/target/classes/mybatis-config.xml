@@ -30,5 +30,6 @@
 		<typeAlias alias="CampingRevInfoDTO" type="ez.en.page.camping_rev_info.CampingRevInfoDTO"/>
 		<typeAlias alias="AdminCampingRevInfoDTO" type="ez.en.page.admin.camping_rev_info.AdminCampingRevInfoDTO"/>
 		<typeAlias alias="Criteria" type="ez.en.page.domain.Criteria"/>
+		<typeAlias alias="ReservationDTO" type="ez.en.page.reservation.ReservationDTO"/>
 	</typeAliases>
 </configuration>

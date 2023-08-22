@@ -149,15 +149,16 @@
 				<table class="table">
 					<tr>
 						<td>캠핑장코드</td>
-						<td>캠핑장구역 입력</td>
+						<td>캠핑장구역</td>
 						<td>최대인원 입력</td>
 						<td>가격 입력</td>
 					</tr>
 
 		<!-- 페이징 추가 -->
 						<tr>
-							<td>${cam_code} : ${ac_revinfo.cri_area_code }</td>
-							<td><input type="text" name="cri_area_code2" placeholder="${ac_revinfo.cri_area_code }"/>
+							<td>${cam_code}</td>
+							<%-- <td><input type="text" name="cri_area_code2" placeholder="${ac_revinfo.cri_area_code }"/> --%>
+							<td>${ac_revinfo.cri_area_code } </td>
 							<td><input type="text" name="cri_max" placeholder="${ac_revinfo.cri_max }"></td>
 							<td><input type="text" name="cri_price" placeholder="${ac_revinfo.cri_price }"></td>
 							<%-- <input type="hidden" name="cam_code" value="${cam_code}"> --%>

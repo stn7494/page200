@@ -157,9 +157,14 @@
 							<td>${c_revinfo.cri_area_code}</td>
 							<td>${c_revinfo.cri_max}</td>
 							<td>${c_revinfo.cri_price}</td>
-							<td>
+							<%-- <td>
 							<a href="/page/reservation?cri_area_code=${c_revinfo.cri_area_code }" data-toggle="tooltip" title="Reservation">
 								예약하기</a>
+							</td> --%>
+							<td>
+							<button type="button" 
+								onclick="location.href='/page/reservation?cri_area_code=${c_revinfo.cri_area_code }';">
+								RESERVATION</button>
 							</td>
  						</tr>
 					</c:forEach>
