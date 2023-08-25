@@ -213,8 +213,11 @@ input[type=file]::file-selector-button {
       				
       				
       				var files = inputFile[0].files;
-      				
-      					if(!imgchk(files[0].name)){
+      					if(files[0] == null){
+      						alert("파일을 선택해주세요");
+      						return false;
+      					
+      					}else if(!imgchk(files[0].name)){
       						return false;
       					}
       					formData.append("uploadFile", files[0]);
@@ -338,7 +341,7 @@ input[type=file]::file-selector-button {
       			var phone = $("#phone").val();
       			var reg = new RegExp("^01([0|1|6|7|8|9])([0-9]{3,4})([0-9]{4})$");
       			if(!(reg.test(phone))){
-      				result.html("<p style='color:red;'>옳바른 핸드폰번호를 입력해주세요</p>");
+      				result.html("<p style='color:red;'>올바른 핸드폰번호를 입력해주세요</p>");
       			}else{
       				result.html("<p id = 'phoneok' style='color:green;'></p>");
       			}
