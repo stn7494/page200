@@ -16,6 +16,11 @@ public interface CampingService {
 	public void remove(String cam_code);
 	//캠핑장 전체 조회
 	public List<CampingDTO> list();
+	
+	//캠핑장 전체 조회(지역이름Join)
+	public List<CampingDTO> campingJoinRegionList();
+	
+	
 	//캠핑장 상세페이지
 	public CampingDTO detail(String cam_code);
 	

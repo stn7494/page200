@@ -40,7 +40,7 @@ ul li{
 .search_area{
 	display: inline-block;
 	margin-top: 30px;
-	margin-left: 260px;
+/* 	margin-left: 260px; */
 }
 .search_area input{
 	height: 30px;
@@ -133,12 +133,7 @@ ul li{
 		        </div>
 		    </div>  
  	
-			<div class="text-center">
-				<input class="btn btn-dark"
-					type="button" value="GO HOME" id="main" />
-				<input class="btn btn-primary"
-					type="button" value="REGISTER" id="register" />
-			</div>
+	
 			</section>
 		</div>
 		
@@ -163,6 +158,13 @@ ul li{
 				</c:if>
 			</ul>
 		</div>
+		
+			<div class="text-center">
+				<input class="btn btn-dark"
+					type="button" value="GO HOME" id="main" />
+				<input class="btn btn-primary"
+					type="button" value="REGISTER" id="register" />
+			</div>
 		
 			<form role="moveForm" action="modifyPage" method="post">
 				<input type='hidden' name='page' value="${cri.page }">

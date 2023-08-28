@@ -13,6 +13,7 @@
               <c:if test="${user == null && admin == null}">
               <li><a href="${contextPath }/login">로그인</a></li>
               <li><a href="${contextPath }/signup">회원가입</a></li>
+              <li><a href="${contextPath }/autologin">자동로그인</a></li>
               </c:if>
               <c:if test="${user != null }">
               <li style="color: white;">${user.nick }님 환영합니다.</li>

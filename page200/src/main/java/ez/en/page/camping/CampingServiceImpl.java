@@ -39,6 +39,12 @@ public class CampingServiceImpl implements CampingService {
 	public List<CampingDTO> list() {
 		return campingDAO.list();
 	}
+	
+	//캠핑장 전체 목록(지역이름Join)
+	@Override
+	public List<CampingDTO> campingJoinRegionList() {
+		return campingDAO.campingJoinRegionList();
+	}
 
 	//캠핑장 상세페이지
 	@Override
@@ -79,10 +85,7 @@ public class CampingServiceImpl implements CampingService {
 		return campingDAO.revAvg();
 	}
 
-//	//캠핑장 예약 정보
-//	@Override
-//	public Map selectAll(Map<String, Object> map) {
-//		return campingDAO.selectAll(map);
-//	}
+
+
 
 }

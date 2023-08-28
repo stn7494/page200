@@ -20,10 +20,8 @@
   </head>
   
       
-    <!-- 리뷰까지 같이 적용하려면 <body>밖에? -->
-  <form role="form" method="post">
+  <form role="form" method="post" enctype="multipart/form-data">
 
-  	
   	
   </form> 
   
@@ -80,7 +78,7 @@
       </div>
     </div>
     
-    	<form role="form" action="modifyPage" method="post">
+    <form id="modify" role="form" action="modifyPage" method="post" enctype="multipart/form-data">
     	<input type='hidden' name='cam_code' value="${acamping.cam_code}" >
 		<input type='hidden' name='page' value="${cri.page }">
 		<input type='hidden' name='perPageNum' value="${cri.perPageNum }">
@@ -92,11 +90,13 @@
       <div class="container">
         <div class="row justify-content-between mb-5">
           <div class="col-lg-7 mb-5 mb-lg-0 order-lg-2">
-            <div class="img-about dots">
-            
-				<input type="file", name="f_code" value="${acamping.f_code }" />
+            <div id="showpro" class="img-about dots">
+            	<input type="file" id="campingImg1" name="campingImg1" accept="image/*" >
+      			<input class="btn btn-outline-info" type="button" id="thumnail" value="미리보기">
+      			
+      			<!-- <img id="showpro"> -->
    
-              <img src="${contextPath }/resources/images/camping_bg_3.jpg" alt="Image" class="img-fluid" />
+              <%-- <img src="${contextPath }/resources/images/camping_bg_3.jpg" alt="Image" class="img-fluid" /> --%>
            
             </div>
           </div>
@@ -355,11 +355,13 @@
   
    
 		<script>
-		$(document).ready(function)(){
-			var formObj = $("form[role='form']");
+		$(document).ready(function(){
+			
+			var formObj = $("#modify");
 			console.log(formObj);
 			
-			$(".btn-success").on("click", function()){
+			$(".btn-success").on("click", function(){
+		
 				formObj.submit();
 			});
 			
@@ -372,6 +374,70 @@
 		});
 
 
+		</script>
+		<script>
+		// 섬네일화면 띄우기
+			$("#thumnail").click(function(){
+				
+				var formData = new FormData();
+				
+				var inputFile = $("input[name='campingImg1']");
+				
+				
+				
+				var files = inputFile[0].files;
+				
+					if(!imgchk(files[0].name)){
+						return false;
+					}
+					formData.append("uploadFile", files[0]);
+					
+				
+				
+      			$.ajax({
+      				url: "${contextPath}/admin/scamping/campingImg1Upload",
+      				processData: false,
+      				contentType: false,
+      				data: formData,
+      				type: "POST",
+      				dataType: "json",
+      				success:function(result){
+      					showproFile(result);
+      				},
+      				error:function(result){
+      					alert("실패");
+      				}
+      			});
+			});
+			
+	/* 	}); */
+		
+		// 이미지 파일만 업로드 가능하게 하는 함수
+		
+		function imgchk(fileName){
+			var regex = new RegExp("(.*?)\.(png|jpg)");
+			
+			if(!(regex.test(fileName))){
+				alert("png, jpg타입의 파일만 프로필이미지로 사용 가능합니다.");
+				return false;
+			}
+			return true;
+		}
+		
+		//섬네일 화면 만들어서 
+		function showproFile(uploadResultArr){
+			var showpro = $("#showpro");
+			var str = "";
+			showpro.html(str);
+//			each의 경우 반복문이랑 같음
+			$(uploadResultArr).each(function(i, obj){
+				
+			var fileCallPath = encodeURIComponent("/s_"+obj.f_name);
+			str += "<img src='${contextPath}/admin/scamping/showCampingImg1?fileName=/"+fileCallPath+ "'>";
+			});
+			
+			showpro.append(str);
+		}
 		</script>
     
     

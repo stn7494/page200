@@ -99,7 +99,6 @@ public class AdminCampingRevInfoController {
 //		캠핑장 예약정보 삭제 (admin)
 	@GetMapping("/delete")
 	public String delete(@RequestParam("cri_area_code") String cri_area_code, @RequestParam("cam_code") String cam_code, Model model, RedirectAttributes rttr) throws Exception{
-		System.out.println("삭제 ==============> " + cri_area_code);
 		logger.info("삭제 ==============> " + cri_area_code);
 		adminCampingRevInfoService.delete(cri_area_code);
 		rttr.addFlashAttribute("msg", "SUCCESS");

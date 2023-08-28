@@ -1,5 +1,9 @@
 package ez.en.page.admin.camping;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -7,19 +11,28 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ez.en.page.domain.PageMaker;
 import ez.en.page.domain.SearchCriteria;
+import ez.en.page.file.FileDTO;
+import ez.en.page.file.FileService;
 import ez.en.page.review.ReviewDTO;
 import ez.en.page.review.ReviewService;
+import net.coobird.thumbnailator.Thumbnailator;
 
 @Controller
 @RequestMapping("/admin/scamping/*")
@@ -31,6 +44,8 @@ public class AdminSearchCampingController {
 	private AdminCampingService adminCampingService;
 	@Inject
 	private ReviewService rservice;
+	@Inject
+	private FileService fileService;
 	
 //	검색기능 추가 후 조회 
 	@GetMapping("/list")
@@ -124,4 +139,81 @@ public class AdminSearchCampingController {
 		
 		return "redirect:/admin/scamping/list";
 	}
+	
+//	파일 업로드
+	@ResponseBody
+	@PostMapping("/campingImg1Upload")
+	public FileDTO campingImg1(MultipartFile uploadFile, HttpServletRequest request, String cam_code) {
+		
+		FileDTO fileDTO = new FileDTO();
+		logger.info(uploadFile.getOriginalFilename()+"===================");
+		String fileName = uploadFile.getOriginalFilename();
+			if(cam_code != null) {
+				fileName = cam_code+"_"+uploadFile.getOriginalFilename();
+			}
+			String uploadFolder = request.getServletContext().getRealPath("resources/images");
+			
+			fileDTO.setF_name(fileName);
+			logger.info("파일이름 : " + fileName);
+			logger.info("업로드 경로 : " + uploadFolder);
+			
+			File saveFile = new File(uploadFolder, fileName);
+			try {
+				uploadFile.transferTo(saveFile);
+				FileOutputStream thumbnail = new FileOutputStream(new File(uploadFolder, "s_"+fileName));
+				Thumbnailator.createThumbnail(uploadFile.getInputStream(), thumbnail, 500, 500);
+				
+				thumbnail.close();
+				
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	return fileDTO;
+		
+	}
+	
+//	미리보기
+	@ResponseBody
+	@GetMapping("showCampingImg1")
+	public ResponseEntity<byte[]> showcampingImg1(@RequestParam("fileName") String fileName, HttpServletRequest request){
+		String folderPath = request.getServletContext().getRealPath("/")+"resources/images";
+		
+		logger.info("파일이름 : " + fileName);
+		
+		ResponseEntity<byte[]> result = null;
+		
+		File file = new File(folderPath + fileName);
+		HttpHeaders header = new HttpHeaders();
+		
+		logger.info("경로가 지정된 파일명" + file);
+		
+		try {
+			header.add("Content-Type", Files.probeContentType(file.toPath()));
+			result = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

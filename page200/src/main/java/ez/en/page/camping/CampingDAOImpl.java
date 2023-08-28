@@ -42,6 +42,12 @@ public class CampingDAOImpl implements CampingDAO {
 	public List<CampingDTO> list() {
 		return sqlSession.selectList(namespace+"list");
 	}
+	
+	//캠핑장 전체조회(지역이름Join)
+	@Override
+	public List<CampingDTO> campingJoinRegionList() {
+		return sqlSession.selectList(namespace+"campingJoinRegionList");
+	}
 
 	//캠핑장 상세페이지
 	@Override
@@ -91,11 +97,7 @@ public class CampingDAOImpl implements CampingDAO {
 		return sqlSession.selectList(namespace + "revAvg");
 	}
 
-//	//캠핑장 예약정보
-//	@Override
-//	public Map selectAll(Map<String, Object> map) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+
+
 
 }

@@ -109,6 +109,18 @@ public class UserController {
 		return mav;
 	}
 	
+	@GetMapping(value = "autologin")
+	public ModelAndView autoLogin(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		UserDTO dto = new UserDTO();
+		dto.setId("user01");
+		dto.setPw("user01");
+		session.setAttribute("user", userService.login(dto));
+		mav.setViewName("index");
+		return mav;
+	}
+	
+	
 	@GetMapping(value = "signup")
 	public ModelAndView signup() {
 		ModelAndView mav = new ModelAndView();

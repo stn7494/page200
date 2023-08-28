@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface ThemaDAO {
 	
-	public ThemaDTO selectOne(String Thema_code);
+	public ThemaDTO selectOne(String thema_code);
 	public List<ThemaDTO> list();
 
 }

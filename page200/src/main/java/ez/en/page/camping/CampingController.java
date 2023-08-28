@@ -68,12 +68,18 @@ public class CampingController {
 		return "redirect:/camping/list";
 	}
 	
+	/*
+	 * @GetMapping("/list") public void list(Model model) throws Exception{
+	 * logger.info("show all list =====================>");
+	 * model.addAttribute("list", campingService.list()); }
+	 */
+	
+	//캠핑장 지역 이름 추가
 	@GetMapping("/list")
 	public void list(Model model) throws Exception{
 		logger.info("show all list =====================>");
-		model.addAttribute("list", campingService.list());
+		model.addAttribute("list", campingService.campingJoinRegionList());
 	}
-	
 
 	@PostMapping("/remove")
 	public String remove(@RequestParam("cam_code") String cam_code,

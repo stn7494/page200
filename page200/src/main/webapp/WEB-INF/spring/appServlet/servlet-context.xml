@@ -36,6 +36,7 @@
 	<mapping path="/notice/selectOne"/>
 	<mapping path="/notice/update"/>
 	<mapping path="/notice/delete"/>
+	<mapping path="/reservation"/>
 	<beans:ref bean="auth"/>
 	</interceptor>
 	

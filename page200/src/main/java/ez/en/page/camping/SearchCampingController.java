@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import ez.en.page.camping_region.RegionDTO;
+import ez.en.page.camping_region.RegionService;
 import ez.en.page.domain.PageMaker;
 import ez.en.page.domain.SearchCriteria;
 import ez.en.page.review.ReviewDTO;
@@ -31,26 +33,46 @@ public class SearchCampingController {
 	private CampingService campingService;
 	@Inject
 	private ReviewService rservice;
+	@Inject
+	private RegionService regionService;
 	
 
-	
+		
 //	검색기능 추가 후 조회 
 	@GetMapping("/list")
 	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception{
 		
 		logger.info(cri.toString());
 		
-//		model.addAttribute("list", campingService.listCriteria(cri));
 		model.addAttribute("list", campingService.listSearchCriteria(cri));
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		
-//		pageMaker.setTotalCount(campingService.listCountCriteria(cri));
 		pageMaker.setTotalCount(campingService.listSearchCount(cri));
 		
 		model.addAttribute("pageMaker", pageMaker);
 	}
+	
+//	검색기능 추가 후 조회 (RegionName Join)
+//	@GetMapping("/list")
+//	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception{
+//		
+//		logger.info(cri.toString());
+//		
+//		model.addAttribute("list", campingService.listSearchCriteria(cri));
+//		
+//		RegionDTO regionDTO = new RegionDTO();
+//		String region_name = regionDTO.getRegion_name();
+//		model.addAttribute("region_name", region_name);
+//		
+//		PageMaker pageMaker = new PageMaker();
+//		pageMaker.setCri(cri);
+//		
+//		pageMaker.setTotalCount(campingService.listSearchCount(cri));
+//		
+//		model.addAttribute("pageMaker", pageMaker);
+//	}
 	
 //	상세 조회
 	@GetMapping("/detail")

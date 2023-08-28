@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -52,10 +54,12 @@
 	<div class="section"></div>
 	<div class="container">
 		<!-- 여기에 내용을 작성 -->
-		
-	<form action="reservatoin" role="form" method="post">
-		
-		
+	<form action="reservation" role="form" method="post" onsubmit="return reservationchk()">
+	<!-- <form action="reservation" role="form" method="post"> -->
+		<input type="hidden" name="cam_code" value="${cam_code}">		
+		<input type="hidden" name="id" value="${user.id }" >
+		<input type="hidden" name="cri_area_code" value="${reservation.cri_area_code }" >
+		<input type="hidden" name="rev_code" value="${reservation.rev_code }" >
 		<div>${msg}</div>
 			 <section class="content container-fluid">
 				<div class="box-header">
@@ -69,32 +73,42 @@
 					<tr>
 						<td>회원ID</td>
 						<td>캠핑장구역</td>
-						<td>예약코드</td>
+						<td>인원수</td>
 						<td>예약 시작일</td>
 						<td>예약 종료일</td>
 						
 					</tr>
 
 		<!-- 페이징 추가 -->
-					
+	<% 
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String today = sdf.format(date);
+	
+	%>				
 						<tr>
+							
 							<td style="font-size: 20px;">${user.id }</td>
 							<td style="font-size: 20px;">${reservation.cri_area_code}</td>
-							<td><input type="text", name="rev_code"></td>
-							<td><input class="form-control" type="date", name="rev_start_date"></td>
-							<td><input class="form-control" type="date", name="rev_finish_date"></td>
+							<td><input type="number", min="1" ,max=${c_revinfo.cri_max } name="person"></td>
+							<td><input class="form-control" value="2023-08-30" min="<%=today %>" type="date", id="rev_start_date", name="rev_start_date"></td>
+							<td><input class="form-control" value="2023-09-01" type="date", id="rev_finish_date", name="rev_finish_date"></td>
 							
 							
  						</tr>
 					
 				</table>
-			
+				<div class="text-center">
+					<p id="dateCheck"></p>
+				</div>
 				<div class="text-center">
 					<input class="btn btn-secondary" value="홈으로" id="main" />
 					<input class="btn btn-secondary" value="목록" id="list" />
 					<input class="btn btn-warning" type="reset" value="다시작성" id="reset" />
 					<input class="btn btn-success" type="submit" value="등록" id="submit" />
 				</div>
+				
+		</section>
 		</form>
 			
 			
@@ -108,10 +122,10 @@
 			location.href = "${contextPath }/scamping/c_revinfo";
 			});
 			
-			$("#submit").click(function() {
+/*  			$("#submit").click(function() {
 				alert("테스트");
 				$("#submit").submit();
-			});
+			});  */
 			
 			
 			
@@ -127,6 +141,64 @@
 			if (result == 'FAIL'){
 				alert("예약이 실패하였습니다.")
 			}
+		</script>
+		
+		<script>
+		
+	/* 	$("#submit").click(function(){
+			var rev_start_date = $("#rev_start_date").val();
+			var rev_finish_date = $("#rev_finish_date").val();
+			var paramData = {
+					"rev_start_date" : rev_start_date,
+					"rev_finish_date" : rev_finish_date
+			};
+			var dateCheck = $("#dateCheck");
+				$.ajax({
+					type : "POST",
+					data : paramData,
+					dataType : "json",
+					url : "${contextPath}/dateCheck",
+					success : function(map){
+						if(map.result == false){
+							alert("이미 예약된 날짜입니다");
+							return false;
+      					}
+						
+					},
+					error : function(result){
+						alert("실패");
+					}, */
+					
+					
+					function reservationchk(){
+		                  
+		                   var result = true;
+		                     var rev_start_date = $("#rev_start_date").val();
+		                     var rev_finish_date = $("#rev_finish_date").val();
+		                     var paramData = {
+		                           "rev_start_date" : rev_start_date,
+		                           "rev_finish_date" : rev_finish_date
+		                     };
+		                     var dateCheck = $("#dateCheck");
+		                        $.ajax({
+		                           type : "POST",
+		                           data : paramData,
+		                           async:false,
+		                           dataType : "json",
+		                           url : "${contextPath}/dateCheck",
+		                           success : function(map){
+		                              if(map.Result == false){
+		                                   alert("이미 예약된 날짜입니다");
+		                                  result=false;
+		                              }
+		                           },
+		                           error : function(result){
+		                              alert("실패");
+		                           },
+		                        });
+		                        return result;
+		                  };
+		
 		</script>
 		
 		</div>

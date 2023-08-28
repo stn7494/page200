@@ -163,7 +163,7 @@
 							</td> --%>
 							<td>
 							<button type="button" 
-								onclick="location.href='/page/reservation?cri_area_code=${c_revinfo.cri_area_code }';">
+								onclick="location.href='/page/reservation?cri_area_code=${c_revinfo.cri_area_code }&cam_code=${c_revinfo.cam_code }&cri_max=${c_revinfo.cri_max }';">
 								RESERVATION</button>
 							</td>
  						</tr>

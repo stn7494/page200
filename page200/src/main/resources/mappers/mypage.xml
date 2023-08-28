@@ -27,7 +27,7 @@
 		 </if>
 	</select>
 	<!-- 예약 페이징 Criteria -->
-	<select id="revlistCriteria" resultType="ReservationDTO">
+<!-- 	<select id="revlistCriteria" resultType="ReservationDTO">
 	<![CDATA[
 		SELECT rev_code,rev_start_date,rev_finish_date 
 		FROM reservation
@@ -38,14 +38,40 @@
         order by rev_code desc, rev_start_date desc
         limit #{pageStart},#{perPageNum};
 	]]>
+	</select> -->
+	
+	<!-- ksy수정 -->
+		<select id="revlistCriteria" resultType="ReservationDTO">
+	<![CDATA[
+		SELECT rev_code,rev_start_date,rev_finish_date 
+		FROM reservation
+		join user
+		on reservation.id = user.id
+		where user.id = #{id}
+        order by rev_code desc, rev_start_date desc
+        limit #{pageStart},#{perPageNum};
+	]]>
 	</select>
-	<!-- 예약 페이징 페이지 번호 -->
-	<select id="countPaging" resultType="int">
+	
+	
+<!-- 예약 페이징 페이지 번호 -->
+<!-- 	<select id="countPaging" resultType="int">
 	<![CDATA[
 		select count(rev_code)
 		from reservation where rev_code > 'rev000' and id = #{id}
 	]]>
+	</select> -->
+	
+	<!--ksy 수정-->
+		<!-- 예약 페이징 페이지 번호 -->
+	<select id="countPaging" resultType="int">
+	<![CDATA[
+		select count(rev_code)
+		from reservation where id = #{id}
+	]]>
 	</select>
+	
+	
 	<!-- 예약 상세조회2 -->
 	<select id="revdetail2" resultType="Map" parameterType="Object">
 		select d.rev_start_date,d.rev_code ,c.cam_name, d.cri_area_code, d.cri_price, d.cri_max  from camping c join (select camping_rev_info.cri_area_code, cam_code, cri_max, cri_price, r.rev_code,r.rev_start_date

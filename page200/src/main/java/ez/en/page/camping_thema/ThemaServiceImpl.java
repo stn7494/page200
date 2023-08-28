@@ -13,9 +13,9 @@ public class ThemaServiceImpl implements ThemaService {
 	private ThemaDAO themaDAO;
 	
 	@Override
-	public ThemaDTO selectOne(String Thema_code) {
+	public ThemaDTO selectOne(String thema_code) {
 		// TODO Auto-generated method stub
-		return themaDAO.selectOne(Thema_code);
+		return themaDAO.selectOne(thema_code);
 	}
 
 	@Override

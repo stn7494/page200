@@ -49,10 +49,10 @@
 		</div>
 	</div>
 
-	<div class="section"></div>
+	<div class="section">
 	<div class="container">
 		<!-- 여기에 내용을 작성 -->
-	<form role="form" method="post">
+	<form role="form" method="post" enctype="multipart/form-data">
 		
 		
 		<div>${msg}</div>
@@ -76,8 +76,12 @@
 				  	
 				</tr>
 				<tr> <!-- 3행 생성-->
-					<td colspan="4"><input type="file", name="f_code" /> <!-- 3행 1열 -->
+					<td colspan="2"><input type="file" id="campingImg1" name="campingImg1" accept="image/*" ></td>
+      				<td colspan="2"><input class="btn btn-outline-info" type="button" id="thumnail" value="미리보기"></td>
 				</tr>
+				<tr id="showpro">
+      				
+      			</tr>
 				<tr> <!-- 4행 1,2열(병합) -->
 					<td colspan="4">캠핑장 이름 입력 &nbsp;&nbsp;<input type="text", name="cam_name" placeholder="cam_name"></td>
 				</tr>
@@ -152,12 +156,70 @@
 			location.href = "${contextPath }/admin/scamping/register";
 			});
 			
+		</script>
+		<script>
+  		// 섬네일화면 띄우기
+			$("#thumnail").click(function(){
+				
+				var formData = new FormData();
+				
+				var inputFile = $("input[name='campingImg1']");
+				
+				var files = inputFile[0].files;
+				
+					if(!imgchk(files[0].name)){
+						return false;
+					}
+					formData.append("uploadFile", files[0]);
+					
+				
+      			$.ajax({
+      				url: "/page/campingImg1Upload",
+      				processData: false,
+      				contentType: false,
+      				data: formData,
+      				type: "POST",
+      				dataType: "json",
+      				success:function(result){
+      					showproFile(result);
+      				},
+      				error:function(result){
+      					alert("실패");
+      				}
+      			});
+			});
 			
-			
-			
-
+		});
+		
+  		// 이미지 파일만 업로드 가능하게 하는 함수
+  		
+  		function imgchk(fileName){
+  			var regex = new RegExp("(.*?)\.(png|jpg)");
+  			
+  			if(!(regex.test(fileName))){
+					alert("png, jpg타입의 파일만 프로필이미지로 사용 가능합니다.");
+					return false;
+				}
+				return true;
+  		}
+  		
+  		//섬네일 화면 만들어서 
+  		function showcampingImg1(uploadResultArr){
+  			var showpro = $("#showpro");
+  			var str = "";
+  			showpro.html(str);
+//  			each의 경우 반복문이랑 같음
+  			$(uploadResultArr).each(function(i, obj){
+  				
+  			var fileCallPath = encodeURIComponent("/s_"+obj.f_name);
+  			str += "<td><img src='/page/showcampingImg1?fileName=/"+fileCallPath+ "'></td>";
+  			});
+  			
+  			showpro.append(str);
+  		}
 		</script>
 		
+		</div>
 		</div>
 
 

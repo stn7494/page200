@@ -27,6 +27,7 @@ ul li {
 	float: left;
 	padding: 8px 16px;
 	text-decoration: none;
+ /* 	margin-left: 260px; */
 }
 
 .pagination a.active {
@@ -37,7 +38,7 @@ ul li {
 .search_area{
 	display: inline-block;
 	margin-top: 30px;
-	margin-left: 260px;
+ 	/* margin-left: 260px; */
 }
 .search_area input{
 	height: 30px;
@@ -97,7 +98,7 @@ ul li {
 				<table class="table">
 					<tr>
 						<td>캠핑장코드</td>
-						<td>지역코드</td>
+						<!-- <td>지역이름</td> -->
 						<td>캠핑장명</td>
 						<td>캠핑장주소</td>
 						<td>등록일</td>
@@ -107,7 +108,8 @@ ul li {
 					<c:forEach var="camping" items="${list }">
 						<tr>
 							<td>${camping.cam_code}</td>
-							<td>${camping.region_code}</td>
+							
+							<%-- <td>${region_name}</td> --%>
 							<td><a
 								href='/page/scamping/detail${pageMaker.makeQuery(pageMaker.cri.page)}
 								&cam_code=${camping.cam_code }'>${camping.cam_name}
@@ -119,28 +121,21 @@ ul li {
 					
 				</table>
 				
-		<!-- 검색기능 추가 -->
-   			 
-   			 
+		
+  			 
+   			<!-- 검색기능 추가 -->
 		   	<div class="search_wrap">
 		        <div class="search_area">
 		            <input type="text" name='keyword' id="keywordInput" value='${cri.keyword }'>
 		            <button id='searchBtn'>Search</button>
 		        </div>
 		    </div>  
-		   
- 	
-			<div class="text-center">
-				<input class="btn btn-success"
-					type="button" value="홈으로" id="main" />
-					
-				
-			</div>
-			</section>
-		</div>
+		    
+
+		 
 		
 	<!-- 검색기능 추가 수정 -->
-		<div class="container">
+		<div class="text-center">
 			<ul class="pagination">
 			
 				<c:if test="${pageMaker.prev && pageMaker.startPage > 0 }">
@@ -160,6 +155,14 @@ ul li {
 				</c:if>
 			</ul>
 		</div>
+		
+					</section>
+		</div>
+		
+			<div class="text-center">
+				<input class="btn btn-success"
+					type="button" value="GO HOME" id="main" />
+			</div>
 		
 			<form role="moveForm" action="modifyPage" method="post">
 				<input type='hidden' name='page' value="${cri.page }">

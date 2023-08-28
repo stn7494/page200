@@ -33,10 +33,22 @@
 		SELECT * FROM camping order by cam_code desc
 	</select>
 	
+	<!-- 캠핑장(상세페이지) 지역이름 가져오기 -->
+	<select id="campingJoinRegionList" resultType="CampingDTO">
+		select c.cam_code, cr.region_name, c.f_code, c.cam_name, c.cam_address, c.cam_tel, c.cam_start_time, c.cam_finish_time, c.thema_code, c.option_code, c.cam_regdate, c.cam_modifydate 
+		from camping as c 
+		LEFT JOIN camping_region as cr 
+		ON c.region_code = cr.region_code
+	</select>
+	
+	
+	
 	<!-- 캠핑장 상세페이지 -->
 	<select id="detail" resultType="CampingDTO">
 		SELECT * FROM camping WHERE cam_code = #{cam_code}
 	</select>	
+	
+
 	
 		<!-- 캠핑장 수 조회 -->
 	<select id="countPaging" resultType="int">
@@ -55,7 +67,20 @@
 			order by cam_code desc 
 			limit #{page}, 10 ;
 		]]>
-	</select>
+	</select> 
+	
+	<!-- 캠핑장 페이징처리 (cam_address 조회) JOIN -->
+<!-- 		<select id="listPage" resultType="CampingDTO">
+			<![CDATA[
+				select c.cam_code, cr.region_name, c.f_code, c.cam_name, c.cam_address, c.cam_tel, c.cam_start_time, c.cam_finish_time, c.thema_code, c.option_code, c.cam_regdate, c.cam_modifydate 
+				from camping as c 
+				LEFT JOIN camping_region as cr 
+				ON c.region_code = cr.region_code
+				WHERE cam_code > 'cam000'
+				order by cam_code desc 
+				limit #{page}, 10 ;
+			]]>
+		</select> -->
 	
 	<select id="listCriteria" resultType="CampingDTO">
 		<![CDATA[
@@ -64,7 +89,20 @@
 		order by cam_code desc 
 		limit #{pageStart}, #{perPageNum} ;
 		]]>
-	</select>
+	</select> 
+	
+<!-- 			<select id="listCriteria" resultType="CampingDTO">
+				<![CDATA[
+				select c.cam_code, cr.region_name, c.f_code, c.cam_name, c.cam_address, c.cam_tel, c.cam_start_time, c.cam_finish_time, c.thema_code, c.option_code, c.cam_regdate, c.cam_modifydate 
+				from camping as c 
+				LEFT JOIN camping_region as cr 
+				ON c.region_code = cr.region_code
+				WHERE cam_code > 'cam000'
+				order by cam_code desc 
+				limit #{pageStart}, #{perPageNum} ;
+				]]>
+			</select>  -->
+	
 	
 	<!-- 캠핑장 검색 처리 -->
 	<select id="listSearch" resultType="CampingDTO">
@@ -77,6 +115,21 @@
 		order by cam_code desc
 		limit #{pageStart}, #{perPageNum}
 	</select>
+<!-- 	
+		<select id="listSearch" resultType="CampingDTO">
+			 select c.cam_code, cr.region_name, c.f_code, c.cam_name, c.cam_address, c.cam_tel, c.cam_start_time, c.cam_finish_time, c.thema_code, c.option_code, c.cam_regdate, c.cam_modifydate 
+			from camping as c 
+			LEFT JOIN camping_region as cr 
+			ON c.region_code = cr.region_code
+			 
+			<if test="keyword != null">
+			 WHERE (cam_name like CONCAT('%', #{keyword}, '%') OR cam_address like CONCAT('%', #{keyword}, '%'))
+			</if>
+			order by cam_code desc
+			limit #{pageStart}, #{perPageNum}
+		</select> -->
+		
+	
 	
 	<!-- 캠핑장 개수 조회 -->
 	<select id="listSearchCount" resultType="int">
@@ -87,9 +140,7 @@
 		 </if>
 	</select>
 	
-	
-	
-	
+		
 	<!-- ====================================== -->
 	
 	<!-- 캠핑장(상세페이지) 정보 조회 -->	
@@ -99,6 +150,7 @@
 		WHERE camping.cam_code = camping_rev_info.cam_code
 	</select>
 	
+
 
 	<!-- 현재 날짜 조회 -->
 	<select id="selectTime" resultType="String">

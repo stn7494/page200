@@ -47,12 +47,13 @@ public class MypageController {
 	//예약 취소
 	@PostMapping(value = "revdelete")
 	public ModelAndView revdelete(@RequestParam Map<String, Object> map,
-			HttpServletRequest request) throws Exception{
+			HttpServletRequest request , Criteria cri, HttpSession session) throws Exception{
 		request.setCharacterEncoding("utf-8");
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("revdetail2", service.revdelete(map));
-		mav.setViewName("mypage/revlistPage");
-		return mav;
+		
+//		ModelAndView mav = new ModelAndView();
+		service.revdelete(map);
+//		mav.setViewName("mypage/revlistPage");
+		return revlistPage(cri, session);
 	}
 	// sjs의 흔적
 	// 예약상세조회

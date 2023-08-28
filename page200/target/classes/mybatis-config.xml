@@ -21,7 +21,6 @@
 		<typeAlias alias="Onetoone_replyDTO" type="ez.en.page.onetoone_reply.Onetoone_replyDTO"/>
 		<typeAlias alias="Onetoone_reply" type="ez.en.page.onetoone.Onetoone_reply"/>
 		<typeAlias alias="CampingDTO" type="ez.en.page.camping.CampingDTO"/>
-		<typeAlias alias="RegionDTO" type="ez.en.page.dto.RegionDTO"/>
 		<typeAlias alias="OptionDTO" type="ez.en.page.dto.OptionDTO"/>
 		<typeAlias alias="ThemaDTO" type="ez.en.page.camping_thema.ThemaDTO"/>
 		<typeAlias alias="My_couponDTO" type="ez.en.page.my_coupon.My_couponDTO"/>
@@ -31,5 +30,6 @@
 		<typeAlias alias="AdminCampingRevInfoDTO" type="ez.en.page.admin.camping_rev_info.AdminCampingRevInfoDTO"/>
 		<typeAlias alias="Criteria" type="ez.en.page.domain.Criteria"/>
 		<typeAlias alias="ReservationDTO" type="ez.en.page.reservation.ReservationDTO"/>
+		<typeAlias alias="RegionDTO" type="ez.en.page.camping_region.RegionDTO"/>
 	</typeAliases>
 </configuration>
