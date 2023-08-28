@@ -136,9 +136,9 @@ public class CampingController {
 //	
 	
 	//5.캠핑장 상세 페이지 (캠핑장 전체 목록에서 캠핑장 이름(cam_name)을 클릭 했을 경우 -> 상세페이지(detail)로 이동
-	// kdj가 수정
 	@GetMapping("/detail")
-	public String detail(@RequestParam ("cam_code") String cam_code, Model model, HttpServletRequest request) throws Exception {
+	public String detail(@RequestParam ("cam_code") String cam_code, Model model, 
+			HttpServletRequest request) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		int count = rservice.reviewCount(cam_code);
 		List<ReviewDTO> rdto = rservice.camReviewAll(cam_code);

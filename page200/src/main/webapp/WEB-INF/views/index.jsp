@@ -15,7 +15,7 @@
     <%@ include file="include/head.jsp" %>
 
     <title>
-      Property &mdash; Free Bootstrap 5 Website Template by Untree.co
+      Page200 캠핑장
     </title>
   </head>
 <script type="text/javascript">

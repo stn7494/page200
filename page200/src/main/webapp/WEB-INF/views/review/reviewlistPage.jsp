@@ -64,7 +64,6 @@ ul li{
 						<tr>
 							<td>리뷰글번호</td>
 							<td>아이디</td>
-							<td>파일</td>
 							<td>작성날짜</td>
 							<td>내용</td>
 							<td>별점</td>
@@ -75,14 +74,14 @@ ul li{
 							<tr>
 								<td>${review.r_code}</td>
 								<td>${review.id}</td>
-								<td>${review.f_code}</td>
 								<td>${review.r_w_date}</td>
 								<c:choose>
 									<c:when test="${review.r_lockpwd == 1 && admin.nick != null}">
-										<td style="color: red;">
-											<a href="reviewDetail?r_code=${review.r_code}&rev_code=${review.rev_code}">
+										<td>
+											<a style="color: red" href="reviewDetail?r_code=${review.r_code}&rev_code=${review.rev_code}">
 												<b>이 글은 잠긴글입니다.</b>
-											</a></td>
+											</a>
+										</td>
 									</c:when>
 									<c:when test="${review.r_lockpwd == 1 }">
 										<td style="color: red;"><b>이 글은 잠긴글입니다.</b></td>
@@ -90,7 +89,7 @@ ul li{
 									<c:otherwise>
 										<td><a
 										href="reviewDetail?r_code=${review.r_code}&rev_code=${review.rev_code}">
-										${review.r_content}</a></td>
+										<b>${review.r_content}</b></a></td>
 									</c:otherwise>
 								</c:choose>
 								<td>${review.r_star}</td>

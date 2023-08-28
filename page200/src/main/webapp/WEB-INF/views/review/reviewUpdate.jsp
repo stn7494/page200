@@ -57,7 +57,7 @@
 
 	<!-- Main content -->
 	<section >
-		<form role="form" method="post">
+		<form role="form" method="post" id="fform">
 			<div>
 				<label>캠핑장이름</label> <input type="text" name='cam_name'
 					class="form-control" value="${campingName2.cam_name}" readonly="readonly" >
@@ -73,23 +73,15 @@
 			<div>
 				<label>내용</label>
 				<textarea class="form-control" name="r_content" rows="3"
-					placeholder="내용을 입력해주세요">${selectOne2.r_content}</textarea>
+					placeholder="내용을 입력해주세요" id="r_content">${selectOne2.r_content}</textarea>
 			</div>
 			<div>
-				<label>파일 올리기</label>
-				<textarea class="form-control" name="f_code" rows="15"
-					placeholder="파일 선택을 눌러주세요"></textarea>
-			</div>
-			<tr>
-				<td colspan="5"><input type="file" name="fileName"></td>
-			</tr>
-			<div>
-				<label>별점</label> <input type="text" name='r_star'
-					class="form-control" value="${selectOne2.r_star}">
+				<label>별점</label>
+				<input type="text" name="r_star" id="r_star" class="form-control" placeholder="별점을 입력해주세요" value="${selectOne2.r_star}">
 			</div>
 
 			<div>
-				<button type="submit" class="btn btn-primary">수정 완료</button>
+				<button type="button" id="btn" class="btn btn-primary">수정 완료</button>
 			</div>
 		</form>
 		
@@ -102,6 +94,22 @@
 		$("#main").click(function() {
 			location.href = "${contextPath }";
 		});
+		
+		$("#btn").click(function() {
+				if($("#r_content").val() == "") {
+					alert("내용을 입력해주세요.");
+					return false;
+				}else if($("#r_star").val() == ""){
+					alert("별점을 입력해주세요.");
+					return false;
+				}else{
+					$("#fform").submit();
+				}
+				
+			
+		});
+		
+		
 	</script>
 
 	<!-- /.content -->

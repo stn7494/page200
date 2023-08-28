@@ -72,11 +72,6 @@
 				class="form-control">${selectOne.r_content}</textarea>
 			</div>
 			<div class="form-group">
-			<label>파일</label>
-			<textarea name="fileWrite" rows="5" readonly="readonly"
-				class="form-control"></textarea>
-			</div>
-			<div class="form-group">
 			<label>별점</label> <input type="text" name="star" class="form-control"
 				value="${selectOne.r_star}" readonly="readonly" />
 		</div>
@@ -89,7 +84,7 @@
 		</form>
 		<form action="reviewLock" method="get" id="btn3">
 			<input type="hidden" name="r_code" value="${selectOne.r_code}">
-		</form>
+		</form> 
 	</div>
 
 	</div>
@@ -101,22 +96,22 @@
 				type="button" value="리뷰 목록" id="list" /></td>
 
 			<c:if test="${user.id == selectOne.id or admin !=null }">
-				<td colspan="5" align="center"><input class="btn btn-success"
+				<td colspan="5" align="center"><input class="btn btn-warning"
 					type="button" value="수정" id="reviewUpdate" /></td>
-				<td colspan="5" align="center"><input class="btn btn-success"
+				<td colspan="5" align="center"><input class="btn btn-dark"
 					type="button" value="삭제" id="reviewDelete" /></td>
 			</c:if>
 			<c:if test="${admin !=null }">
 				<td colspan="5" align="center">
 					<c:if test="${selectOne.r_lockpwd == 1 }">
-					<input class="btn btn-success"type="button" value="리뷰잠금해제" id="reviewLock" />
+					<input class="btn btn-danger"type="button" value="리뷰잠금해제" id="reviewLock" />
 					</c:if>
 				</td>
 			</c:if>
 			<c:if test="${admin !=null }">
 				<td colspan="5" align="center">
 					<c:if test="${selectOne.r_lockpwd == 0 }">
-					<input class="btn btn-success"type="button" value="리뷰잠금" id="reviewLock" />
+					<input class="btn btn-danger"type="button" value="리뷰잠금" id="reviewLock" />
 					</c:if>
 				</td>
 			</c:if>

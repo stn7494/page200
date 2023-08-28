@@ -47,14 +47,15 @@ public class ReviewController {
 	
 //	리뷰글 상세조회
 	@GetMapping("/reviewDetail")
-	public ModelAndView reviewDetail (@RequestParam("r_code") String r_code, @RequestParam("rev_code") String rev_code, HttpServletRequest request) throws Exception {
+	public ModelAndView reviewDetail (@RequestParam("r_code") String r_code, @RequestParam("rev_code") String rev_code, 
+			HttpServletRequest request) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		ModelAndView mav = new ModelAndView();
 		ReviewDTO dto = service.selectOne(r_code);
 		CampingDTO name = service.campingName(rev_code);
 		UserDTO nick = service.userNick(rev_code);
-		logger.info("선택조회!!!!" + dto);
-		logger.info("선택조회!!!!" + name);
+//		logger.info("선택조회!!!!" + dto);
+//		logger.info("선택조회!!!!" + name);
 		mav.addObject("selectOne", dto);   //뷰에 전달하는 값
 		mav.addObject("campingName", name);
 		mav.addObject("userNick1", nick);
@@ -101,7 +102,7 @@ public class ReviewController {
 		ReviewDTO dto = service.selectOne(r_code);
 		CampingDTO name = service.campingName(rev_code);
 		UserDTO nick = service.userNick(rev_code);
-		logger.info("리뷰수정안의 선택조회!!!"+ dto);
+//		logger.info("리뷰수정안의 선택조회!!!"+ dto);
 		mav.addObject("selectOne2", dto);
 		mav.addObject("campingName2", name);
 		mav.addObject("userNick2", nick);
@@ -115,15 +116,13 @@ public class ReviewController {
 		request.setCharacterEncoding("utf-8");
 		ModelAndView mav = new ModelAndView();
 		service.update(dto);
-//		List<ReviewDTO> list = service.listAll();
-		logger.info("리뷰수정???!!!!!" + dto);
+//		logger.info("리뷰수정???!!!!!" + dto);
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.listCountCriteria(cri));
 		mav.addObject("pageMaker", pageMaker);
 		
-//		mav.addObject("listAll", list);
 		mav.addObject("plist", service.listCriteria(cri));
 		mav.setViewName("review/reviewlistPage");
 		return mav;
@@ -158,7 +157,7 @@ public class ReviewController {
 		return mav;
 	}
 	
-//	페이징처리 2
+//	페이징처리 
 	@GetMapping("previewlistPage")
 	public ModelAndView rlistPage(Criteria cri) throws Exception{
 		ModelAndView mav = new ModelAndView();
